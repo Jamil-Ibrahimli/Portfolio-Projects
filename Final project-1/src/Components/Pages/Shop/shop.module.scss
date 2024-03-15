@@ -1,0 +1,37 @@
+.container {
+
+  .banner {
+    height: 20rem;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.572), rgba(0, 0, 0, 0.408)), url('src/assets/images/shop_banner.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+  }
+
+  .products {
+    padding: 0.5rem;
+
+    &_container {
+      display: flex;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+
+      &_cards {        
+        padding: 0.5rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(5, 1fr);
+
+      }
+    }
+
+
+  }
+
+
+
+
+}
