@@ -4,7 +4,6 @@ import img2 from '../../../assets/images/slide_home_2.jpg'
 import img3 from '../../../assets/images/slide_home_3.jpg'
 import KidShoes from "../../../assets/images/Kid's shoes.jpg"
 import WomenShoes from '../../../assets/images/Woman shoes.jpg';
-import KidsShoes from '../../../assets/images/Kids shoes.jpg'
 import MenShoes from '../../../assets/images/Man shoes (2).jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -13,9 +12,12 @@ import { Pagination } from 'swiper/modules';
 import Card from '../../UI/TopCard/Card'
 import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
-import { FC } from 'react'
-
-
+import { FC, } from 'react'
+import discountedImage from '../../../assets/images/imgDiscountBanner.jpg'
+import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { filteredAll } from '../../../Redux/CategoriesSlice'
 
 export interface IHome {
 
@@ -25,11 +27,29 @@ export interface IHome {
 
 const Home: FC<IHome> = ({ data }) => {
 
-
-    const topSelling = data.filter(item => item.rating.rate > 4.5).map((item) => item.rating.count < 200 ? ({ ...item, discountedPercent: 30 }) : item)
+    const topSelling = data.filter(item =>
+        item.rating.rate > 4.5).map((item) =>
+            item.rating.count < 200 ? ({ ...item, discountedPercent: 30 }) : item)
     const hotDeals = data.filter((item) =>
-        item.rating.rate < 3.7).map((item) => item.rating.count < 200 ? ({ ...item, discountedPercent: 30 }) : item)
+        item.rating.rate < 3.7).map((item) =>
+            item.rating.count < 200 ? ({ ...item, discountedPercent: 30 }) : item)
 
+    const newData = data.map((item) =>
+        item.rating.count < 200 ?
+
+            ({ ...item, discountedPercent: 30 }) : item
+
+    );
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleShopAll = () => {
+
+        dispatch(filteredAll(newData))
+        navigate('/shop')
+
+    }
 
     return (
         <>
@@ -64,29 +84,6 @@ const Home: FC<IHome> = ({ data }) => {
                     <div className={styles.collections_kids}><img src={KidShoes} alt="Kids shoes" /></div>
                 </div>
 
-                <div className={styles['top-products']} >
-
-                    <div className={styles['top-products_container']}>
-                        <div className={styles['top-products_container_heading']}>
-                            <h2>Top Selling</h2>
-                            <p> Find the perfect product for you!</p>
-                        </div>
-                        <div className={styles['top-products_container_items']}>
-
-                            {topSelling.map((item) => <Card key={item.id}
-                                image={item.image}
-                                price={item.price}
-                                title={item.title}
-                                item={item} discountedPercent={item.discountedPercent}/>)}
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className={styles['discount-announcement']}>
-
-                </div>
 
                 <div className={styles['discounted-products']}>
                     <div className={styles['discounted-products_container']}>
@@ -107,6 +104,45 @@ const Home: FC<IHome> = ({ data }) => {
 
                         </div>
 
+                    </div>
+
+                </div>
+
+
+                <div className={styles['discount-announcement']}>
+
+                </div>
+
+
+                <div className={styles['top-products']} >
+                    <div className={styles['top-products_heading']}>
+                        <h2>Top Selling</h2>
+                        <p> Find the perfect product for you!</p>
+                    </div>
+
+                    <div className={styles['top-products_container']}>
+
+                        <div className={styles['top-products_container_discounted-image']}>
+                            <img src={discountedImage} alt="dicountedImg" />
+                            <div className={styles['discount-img-cover']}>
+                                <div className={styles['discount-img-cover_text']}>
+                                    <p> up to 30%</p>
+                                    <span>sale off</span>
+
+                                </div>
+                                <button className={styles['discount-img-button']} onClick={handleShopAll} >Shop now</button>
+                            </div>
+
+                        </div>
+                        <div className={styles['top-products_container_items']}>
+
+                            {topSelling.map((item) => <Card key={item.id}
+                                image={item.image}
+                                price={item.price}
+                                title={item.title}
+                                item={item} discountedPercent={item.discountedPercent} />)}
+
+                        </div>
                     </div>
 
                 </div>

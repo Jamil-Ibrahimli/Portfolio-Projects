@@ -68,7 +68,24 @@ const CategoriesSlice = createSlice({
 
             )
 
+        },
+
+        filterPriceTill50: (state, action: PayloadAction<IProduct[]>) => {
+
+            state.filteredData = action.payload.filter((item) =>{
+
+                if(item.price<=50){ return true}
+             
+
+            }
+            
+         
+            
+            )
+
+
         }
+
 
 
     }
@@ -76,7 +93,8 @@ const CategoriesSlice = createSlice({
 
 export const { filteredAll, filteredMen,
     filterWomen, filterJewelery,
-    filterElectronics, filterDiscounted, filterInputData
+    filterElectronics, filterDiscounted,
+     filterInputData,filterPriceTill50
 } = CategoriesSlice.actions;
 
 export default CategoriesSlice.reducer;

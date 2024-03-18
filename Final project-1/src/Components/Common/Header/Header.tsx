@@ -31,6 +31,7 @@ const Header = () => {
     const newData = data.map((item) => (item.rating.rate < 3.7 ? { ...item, discountedPercent: 30 } : item))
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY) {
@@ -61,14 +62,14 @@ const Header = () => {
     const handleActiveCart = () => {
 
         setCart(prev => !prev)
-
+      
     }
 
     const handleActiveCategories = () => {
 
         setCategories(prev => !prev)
         setCart(false)
-
+       
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
