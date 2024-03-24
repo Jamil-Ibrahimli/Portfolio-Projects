@@ -2,9 +2,9 @@ import styles from './home.module.scss'
 import img1 from '../../../assets/images/slide_home_1.jpg'
 import img2 from '../../../assets/images/slide_home_2.jpg'
 import img3 from '../../../assets/images/slide_home_3.jpg'
-import KidShoes from "../../../assets/images/Kid's shoes.jpg"
-import WomenShoes from '../../../assets/images/Woman shoes.jpg';
-import MenShoes from '../../../assets/images/Man shoes (2).jpg'
+import GaminImage from '../../../assets/images/gamingImage.png'
+import WomenShoes from '../../../assets/images/Womans.jpg.png';
+import MenShoes from '../../../assets/images/man.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -14,11 +14,14 @@ import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
 import { FC, } from 'react'
 import discountedImage from '../../../assets/images/imgDiscountBanner.jpg'
+import jewelery from '../../../assets/images/jewelery2.jpg'
 import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { filteredAll } from '../../../Redux/CategoriesSlice'
-
+import {
+    filterElectronics,
+    filterJewelery, filterWomen,
+    filteredAll, filteredMen
+} from '../../../Redux/CategoriesSlice'
 export interface IHome {
 
     data: IProduct[];
@@ -27,19 +30,20 @@ export interface IHome {
 
 const Home: FC<IHome> = ({ data }) => {
 
-    const topSelling = data.filter(item =>
-        item.rating.rate > 4.5).map((item) =>
-            item.rating.count < 200 ? ({ ...item, discountedPercent: 30 }) : item)
-    const hotDeals = data.filter((item) =>
-        item.rating.rate < 3.7).map((item) =>
-            item.rating.count < 200 ? ({ ...item, discountedPercent: 30 }) : item)
 
-    const newData = data.map((item) =>
-        item.rating.count < 200 ?
+    const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
 
-            ({ ...item, discountedPercent: 30 }) : item
+        ({ ...item, discountedPercent: 30, count: 0 })
+
+        : ({ ...item, count: 0 })
 
     );
+
+    const topSelling = newData.filter(item =>
+        item.rating.rate > 4.5)
+    const hotDeals = newData.filter((item) =>
+        item.rating.rate < 3.7)
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -48,6 +52,15 @@ const Home: FC<IHome> = ({ data }) => {
 
         dispatch(filteredAll(newData))
         navigate('/shop')
+
+    }
+
+    const handleCollection = (filter: any) => {
+
+        dispatch(filter(newData))
+
+        navigate('/shop')
+
 
     }
 
@@ -79,9 +92,22 @@ const Home: FC<IHome> = ({ data }) => {
 
                 <div className={styles.collections}>
 
-                    <div className={styles.collections_men}><img src={MenShoes} alt="Man shoes" /></div>
-                    <div className={styles.collections_women}><img src={WomenShoes} alt="women shoes" /></div>
-                    <div className={styles.collections_kids}><img src={KidShoes} alt="Kids shoes" /></div>
+                    <div className={styles.collections_image}><div className={styles['image-cover']}>
+                        <p>men's collection</p> <button onClick={() =>
+                            handleCollection(filteredMen)}>shop now</button > </div>
+                        <img src={MenShoes} alt="Man shoes" /></div>
+                    <div className={styles.collections_image}><div className={styles['image-cover']}>
+                        <p>women's collection</p> <button onClick={() =>
+                            handleCollection(filterWomen)}>shop now</button> </div>
+                        <img src={WomenShoes} alt="women shoes" /></div>
+                    <div className={styles.collections_image}><div className={styles['image-cover']}>
+                        <p>gamer's collection</p> <button onClick={() =>
+                            handleCollection(filterElectronics)}>shop now</button> </div>
+                        <img src={GaminImage} alt="Kids shoes" /></div>
+                    <div className={styles.collections_image}><div className={styles['image-cover']}>
+                        <p>jewelery collection</p> <button onClick={() =>
+                            handleCollection(filterJewelery)}>shop now</button> </div>
+                        <img src={jewelery} alt="Kids shoes" /></div>
                 </div>
 
 
@@ -130,7 +156,8 @@ const Home: FC<IHome> = ({ data }) => {
                                     <span>sale off</span>
 
                                 </div>
-                                <button className={styles['discount-img-button']} onClick={handleShopAll} >Shop now</button>
+                                <button className={styles['discount-img-button']} onClick={handleShopAll} >
+                                    Shop now</button>
                             </div>
 
                         </div>
@@ -146,7 +173,6 @@ const Home: FC<IHome> = ({ data }) => {
                     </div>
 
                 </div>
-
 
 
             </section>

@@ -1,0 +1,51 @@
+.container {
+
+    margin: 6rem 5rem;
+
+    .cart-page {
+
+        span {
+
+            font-size: 0.9rem;
+            color: rgb(104, 104, 104);
+
+        }
+
+        h3 {
+            margin-top: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        &_content {
+            margin-top: 2rem;
+
+            &_titles {
+                padding: 0.5rem 9.5rem 0.5rem 0.5rem;
+                display: flex;
+                justify-content: space-between;
+                gap: 4rem;
+
+                p {
+                    text-transform: uppercase;
+                    font-size: 0.9rem;
+                    width: 8rem;
+                }
+
+                .product {
+                    width: 16rem;
+                    margin-right: 2rem;
+
+                }
+
+            }
+
+            &_items {
+                width: 100%;
+
+            }
+        }
+    }
+
+
+}

@@ -5,7 +5,7 @@
 
 
     &_item {
-        background-color: white;
+        background-color: rgb(255, 255, 255);
         width: 100%;
         height: 17rem;
         padding: 0.3rem;
@@ -15,13 +15,17 @@
         border-radius: 10px;
         overflow: hidden;
         transition: 1s;
+        display: grid;
+        align-content: center;
 
         img {
             margin-top: 2rem;
-            max-width: 80%;
-            max-height: 80%;
+            max-width: 100%;
+            max-height: 100%;
             z-index: -1;
-            transition: 1s;
+            transition: 5s;
+            transform: scale(0.8) ;
+           
         }
 
         .new {
@@ -73,7 +77,7 @@
             background-color: rgb(9, 36, 82);
             padding: 0.2rem;
             border-radius: 5px 0 0 5px;
-            transition: 0.2s ease-in ;
+            transition: 0.2s ease-in;
 
 
             &_icon {
@@ -113,7 +117,7 @@
             background-color: rgb(9, 36, 82);
             padding: 0.1rem;
             border-radius: 5px 0 0 5px;
-            transition: 0.2s ease ;
+            transition: 0.2s ease;
 
             &_icon {
                 color: white;
@@ -161,7 +165,7 @@
 
     &:hover img {
 
-        transform: scale(1.2) rotateY(180deg)
+        transform: scale(0.9) 
     }
 
     &:hover &_item {
@@ -191,7 +195,7 @@
         justify-content: space-evenly;
         align-items: end;
         height: 2rem;
-    
+
         &_discounted {
 
             color: rgb(9, 89, 248);

@@ -20,22 +20,26 @@ const addToCartSlice = createSlice({
         addToCart: (state, action: PayloadAction<IProduct>) => {
             const existingItem = state.cart.find((item) => item.id === action.payload.id)
 
-            if (!existingItem) {
+            if (!existingItem && action.payload.count === 0) {
 
-                const newItem = {
 
-                    ...action.payload, count: 1, discountPercent: 30
+                state.cart.push({ ...action.payload, count: 1 })
 
-                }
-                state.cart.push(newItem)
+            }
 
-            } else {
+            else if (!existingItem && action.payload.count > 0) {
 
-                existingItem.count++
+                state.cart.push({ ...action.payload })
 
+            }
+            else {
+
+                existingItem ? (existingItem.count+=action.payload.count||1) : null
+               
             }
             localStorage.setItem('cart', JSON.stringify(state.cart))
         },
+
 
         incrementCount: (state, action: PayloadAction<IProduct>) => {
             const existingItem = state.cart.find((item) => item.id === action.payload.id)

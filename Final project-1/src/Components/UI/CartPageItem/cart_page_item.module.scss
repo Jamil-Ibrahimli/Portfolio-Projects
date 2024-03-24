@@ -1,0 +1,94 @@
+.item {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    align-items: center;
+
+    &_product {
+        display: flex;
+        align-items: center;
+        width: 16rem;
+        margin-right: 2rem;
+        gap: 1rem;
+
+        &_image {
+            width: 4rem;
+            height: 4rem;
+
+            background-color: white;
+            text-align: center;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: cover;
+            }
+
+        }
+
+        p {
+            font-size: 0.9rem;
+            word-wrap: break-word;
+        }
+    }
+
+    &_price {
+        width: 8rem;
+        font-weight: 500;
+        
+        span {
+          
+            text-decoration: line-through;
+        }
+    }
+
+
+
+    &_buttons {
+        width: 8rem;
+        height: 2rem;
+        border: 1px solid rgb(193, 190, 190);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+
+
+        button {
+            width: 2rem;
+            height: 2rem;
+            background-color: rgba(240, 248, 255, 0);
+            border: none;
+            cursor: pointer;
+        }
+
+    }
+
+    &_subtotal {
+        font-weight: 500;
+        width: 8rem;
+        color: rgb(42, 130, 165);
+        span{
+            text-decoration: line-through;
+        }
+    }
+
+    &_delete {
+
+      
+        height: 2rem;
+        font-size: 1.5rem;
+        border: none;
+        background-color: rgba(240, 248, 255, 0);
+        cursor: pointer;
+
+
+    }
+
+}
+
+.item:nth-child(odd) {
+
+    background-color: #E1E1E1;
+}

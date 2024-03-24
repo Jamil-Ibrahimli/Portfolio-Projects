@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../Redux/Store';
 import { addToCart } from '../../../Redux/AddToCartSlice';
 import { IProduct } from '../../Common/Main/Main';
+import { Link } from 'react-router-dom';
+
 
 interface IHotCard {
 
@@ -26,15 +28,17 @@ const HotCard: FC<IHotCard> = ({ image, title, price, discountedPercent, item })
     return (
         <>
             <div className={styles.card}>
+
                 <div className={styles.card_item}>
                     {item.discountedPercent ? <p className={styles.discount}>-30%</p> :
                         price > 100 ? <p className={styles.new}>new</p> : <p className={styles.hot}>hot</p>}
                     <p className={styles['add-wishlist']}><FaRegHeart className={styles['add-wishlist_icon']} /></p>
                     <p className={styles['add-cart']} onClick={() => dispatch(addToCart(item))}>
                         <CiShoppingCart className={styles['add-cart_icon']} /></p>
+                    <Link to={`prod_detail/${item.id}`}> <img src={image} alt="ItemImage" /></Link>
 
-                    <img src={image} alt="ItemImage" />
                 </div>
+
 
                 <StarRating item={item} />
                 <div className={styles.card_title}>

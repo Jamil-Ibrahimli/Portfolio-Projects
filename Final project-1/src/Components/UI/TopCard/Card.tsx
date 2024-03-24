@@ -3,10 +3,12 @@ import styles from './card.module.scss'
 import { FC } from 'react';
 import { FaRegHeart } from "react-icons/fa";
 import { CiShoppingCart } from "react-icons/ci";
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../Redux/Store';
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../Redux/AddToCartSlice';
 import { IProduct } from '../../Common/Main/Main';
+import { Link } from 'react-router-dom';
+
+
 
 interface ICard {
 
@@ -21,11 +23,9 @@ interface ICard {
 const Card: FC<ICard> = ({ image, price, title, item,discountedPercent }) => {
 
     const discountedPrice = price - (price * (discountedPercent / 100))
-    const cart = useSelector((state: RootState) => state.AddToCartReducer.cart)
+    
     const dispatch = useDispatch()
-    console.log(cart)
-
-
+   
     return (
 
         <>
@@ -37,7 +37,7 @@ const Card: FC<ICard> = ({ image, price, title, item,discountedPercent }) => {
                     <p className={styles['add-cart']} onClick={() => dispatch(addToCart(item))}>
                         <CiShoppingCart className={styles['add-cart_icon']} /></p>
 
-                    <img src={image} alt="ItemImage" />
+                  <Link to={`prod_detail/${item.id}`}> <img src={image} alt="ItemImage" /> </Link>  
                 </div>
 
                 <StarRating item={item} />

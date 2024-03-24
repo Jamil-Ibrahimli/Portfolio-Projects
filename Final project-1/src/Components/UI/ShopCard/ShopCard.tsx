@@ -7,6 +7,7 @@ import { addToCart } from '../../../Redux/AddToCartSlice';
 import StarRating from '../StarRating/StarRating';
 import { IProduct } from '../../Common/Main/Main';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 interface IShopCard {
     item: IProduct;
@@ -29,11 +30,13 @@ const ShopCard: FC<IShopCard> = ({ item, image, title, price, discountedPercent 
                 <div className={styles.card_item}>
                     {item.discountedPercent ? <p className={styles.discount}>-30%</p> :
                         price > 100 ? <p className={styles.new}>new</p> : <p className={styles.hot}>hot</p>}
+
                     <p className={styles['add-wishlist']}><FaRegHeart className={styles['add-wishlist_icon']} /></p>
                     <p className={styles['add-cart']} onClick={() => dispatch(addToCart(item))}>
                         <CiShoppingCart className={styles['add-cart_icon']} /></p>
 
-                    <img src={image} alt="ItemImage" />
+                   <Link to={`/prod_detail/${item.id}`}> <img src={image} alt="ItemImage" /> </Link>
+                   
                 </div>
 
                 <StarRating item={item} />

@@ -15,23 +15,100 @@ import {
 } from '../../../Redux/CategoriesSlice';
 import { RootState } from '../../../Redux/Store';
 import { GrClose } from "react-icons/gr";
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { DataContext } from '../../Context/DataContext';
 import searchingImage from '../../../assets/images/CartEmpty.png'
+
 
 
 const Header = () => {
 
     const cart = useSelector((state: RootState) => state.AddToCartReducer.cart)
-    const [isCart, setCart] = useState(false)
-    const [isCategories, setCategories] = useState(false)
-    const [scrolling, setScrolling] = useState(false)
-    const [inputData, setInputData] = useState('')
-    const { data, setData } = useContext(DataContext)
-    const newData = data.map((item) => (item.rating.rate < 3.7 ? { ...item, discountedPercent: 30 } : item))
+    const [isCart, setCart] = useState(false);
+    const [isCategories, setCategories] = useState(false);
+    const [scrolling, setScrolling] = useState(false);
+    const [inputData, setInputData] = useState('');
+    const { data } = useContext(DataContext);
+    const location = useLocation()
+    const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
+
+        ({ ...item, discountedPercent: 30, count: 0 })
+
+        : ({ ...item, count: 0 })
+
+    );
+    const [activeLink, setActivelink] = useState<any>({
+
+        option1: false,
+        option2: false,
+        option3: false,
+        option4: false
+
+    });
+
+
+    useEffect(() => {
+        if (location.pathname === '/shop') {
+
+            setActivelink((prev: any) => ({ ...prev, option2: true }))
+        } else {
+
+            setActivelink((prev: any) => ({ ...prev, option2: false }))
+
+        }
+        if (location.pathname === '/') {
+
+            setActivelink((prev: any) => ({ ...prev, option1: true }))
+
+        }
+        else {
+            setActivelink((prev: any) => ({ ...prev, option1: false }))
+        }
+        if (location.pathname === '/contacts') {
+
+            setActivelink((prev: any) => ({ ...prev, option3: true }))
+
+        }
+        else {
+            setActivelink((prev: any) => ({ ...prev, option3: false }))
+
+        }
+
+    }, [location.pathname])
+
+
+
+    // const handleActiveLink = (option: string) => {
+
+    //     setActivelink((prev: any) =>
+
+    //         ({ [option]: !prev[option] })
+
+    //     )
+
+    //     setActivelink((prev: any) => {
+
+    //         for (const key in prev) {
+    //             if (key !== option) {
+
+    //                 prev[key] = false
+
+    //             }
+
+    //         }
+
+    //         return prev
+
+    //     })
+
+    //     dispatch(filteredAll(newData))
+
+    // }
+
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY) {
@@ -62,14 +139,14 @@ const Header = () => {
     const handleActiveCart = () => {
 
         setCart(prev => !prev)
-      
+        setCategories(false)
     }
 
     const handleActiveCategories = () => {
 
         setCategories(prev => !prev)
         setCart(false)
-       
+
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -101,10 +178,10 @@ const Header = () => {
                 <div className={styles.header_uppart_center}>
                     <nav className={styles.header_uppart_center_nav}>
                         <ul className={styles.header_uppart_center_nav_ul}>
-                            <li><NavLink className={styles.navlink} to='/'  >Home</NavLink></li>
-                            <li onClick={() => dispatch(filteredAll(newData))}><NavLink className={styles.navlink} to='/shop'>Shop</NavLink></li>
-                            <li><NavLink className={styles.navlink} to='/contacts'>Contacts</NavLink></li>
-                            <li><NavLink className={styles.navlink} to='/about'>About</NavLink></li>
+                            <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option1 })} to='/' >Home</NavLink></li>
+                            <li ><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option2 })} to='/shop' onClick={() => dispatch(filteredAll(newData))}>Shop</NavLink></li>
+                            <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option3 })} to='/contacts' >Contacts</NavLink></li>
+                            <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option4 })} to='/about' >About</NavLink></li>
                         </ul> </nav> </div>
                 <div className={styles.header_uppart_right}>
                     <p className={styles.help}>Need Help?</p>
@@ -143,7 +220,7 @@ const Header = () => {
 
                     <ul className={styles.header_categories_content_list}>
 
-                        <li onClick={() => dispatch(filteredAll(newData))}> <Link className={styles.link} to='/shop'>All</Link> </li>
+                        <li > <Link className={styles.link} to='/shop'>All</Link> </li>
                         <li onClick={() => dispatch(filteredMen(newData))}><Link className={styles.link} to='/shop'>Men</Link> </li>
                         <li onClick={() => dispatch(filterWomen(newData))}><Link className={styles.link} to='/shop'>Women</Link></li>
                         <li onClick={() => dispatch(filterJewelery(newData))}><Link className={styles.link} to='/shop'>Jewelery</Link></li>
@@ -156,7 +233,7 @@ const Header = () => {
 
             </div>
 
-            <div className={classNames(styles.header_cart, { [styles.cart_active]: isCart })}>
+            <div className={classNames(styles.header_cart, { [styles.cart_active]: isCart })} onMouseLeave={handleActiveCart} >
 
                 <div className={styles.header_cart_heading}>
 
@@ -174,7 +251,7 @@ const Header = () => {
 
                 </div>
 
-                <div className={styles.header_cart_view}>
+                <div className={styles.header_cart_view} onClick={() => navigate('./cart_page')}>
                     <p>view cart</p>
                 </div>
 
