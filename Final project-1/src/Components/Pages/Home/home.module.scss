@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 .background {
     background: url('src/assets/images/Main.jpg');
     position: fixed;
@@ -18,8 +20,6 @@
         display: flex;
         height: 35rem;
         background-color: white;
-
-
 
         :global(.swiper-pagination-bullet) {
 
@@ -43,25 +43,145 @@
         &_image {
             max-width: 100%;
             max-height: 100%;
+            position: relative;
 
+            &_cover {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.453);
+                z-index: 1;
+                transition: 1s;
+
+                .info {
+
+
+                    .info_title {
+
+                        text-transform: uppercase;
+                        color: white;
+                        font-size: 3rem;
+                        line-height: 3rem;
+                        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
+                        transform: translate(10%);
+                        transition: 0.6s 0.4s;
+                        opacity: 0;
+                        font-weight: 900;
+
+                    }
+
+                    .info_text {
+
+                        color: white;
+                        font-size: 1.3rem;
+                        margin-top: 0.7rem;
+                        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
+                        transform: translate(10%);
+                        transition: 0.6s 0.5s;
+                        opacity: 0;
+                    }
+
+                    .info_title-active {
+
+                        transform: translate(0);
+                        opacity: 1;
+                    }
+
+                    .info_text-active {
+
+                        transform: translate(0);
+                        opacity: 1;
+                    }
+
+
+                    .info_button {
+
+                        width: 8rem;
+                        margin-top: 1.3rem;
+                        padding: 0.7rem 1rem;
+                        background-color: rgb(8, 75, 191);
+                        border: none;
+                        text-transform: capitalize;
+                        color: white;
+                        border-radius: 5px;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                        transform: translate(20%);
+                        transition: 0.6s 0.6s;
+                        opacity: 0;
+                        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
+                        cursor: pointer
+                    }
+
+                    .info_button-active {
+                        opacity: 1;
+                        transform: translate(0);
+                    }
+                }
+
+
+                .info0 {
+                    position: absolute;
+                    top: 40%;
+                    left: 5rem;
+
+                }
+
+                .info1 {
+                    position: absolute;
+                    top: 40%;
+                    right: 13rem;
+                    text-align: end;
+
+                }
+
+
+                .info2 {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+
+                    .info_title {
+                        filter: none;
+                        color: rgb(0, 0, 0);
+
+                    }
+
+                    .info_text {
+                        filter: none;
+                        color: rgb(0, 0, 0);
+
+
+                    }
+
+
+
+                }
+
+            }
+
+            .cover-active {
+                background-color: rgba(255, 255, 255, 0.411);
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+
+            }
 
             img {
                 width: 100%;
                 max-height: 100%;
                 object-fit: cover;
                 cursor: pointer;
-
-
+                
                 &:active {
                     cursor: grab;
                 }
             }
-
         }
-
-
     }
-
 
     .collections {
 
@@ -88,7 +208,6 @@
                 object-fit: cover;
                 object-position: bottom;
 
-
             }
 
             .image-cover {
@@ -102,9 +221,10 @@
                 p {
                     place-self: center;
                     color: white;
-                    font-size: 1.5rem;
+                    font-size: 1.6rem;
                     text-transform: uppercase;
                     font-weight: 600;
+                    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                 }
 
                 button {
@@ -145,9 +265,75 @@
 
     }
 
+    .discounted-products {
+
+        background-color: white;
+        padding: 5rem 5rem 2rem;
+
+        &_container {
+            width: 100%;
+            display: grid;
+            justify-content: center;
+
+            &_heading {
+                text-align: center;
+
+                h2 {
+                    text-transform: uppercase;
+                    font-size: 2rem;
+                    font-weight: 600;
+                    font-family: sans-serif;
+
+                }
+
+                p {
+                    font-size: 1.5rem;
+                    font-weight: 300;
+                }
+            }
+
+            &_items {
+                padding: 0.5rem;
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: repeat(5, 1fr);
+
+            }
+
+        }
+
+    }
+
+
+
+
+    .discount-announcement {
+        width: 100%;
+        height: 25rem;
+        background-color: rgba(0, 0, 0, 0.601);
+
+
+    }
+
+    .logos {
+        padding: 2rem 0;
+        background-color: rgb(255, 255, 255);
+
+        &_mySwiper {
+            text-align: center;
+
+            &_image {
+                display: flex;
+                justify-content: center;
+
+
+            }
+        }
+    }
+
     .top-products {
         background-color: white;
-        padding: 5rem;
+        padding: 3rem 5rem 0;
 
         &_heading {
             height: 6rem;
@@ -250,52 +436,8 @@
 
     }
 
-    .discount-announcement {
-        width: 100%;
-        height: 25rem;
-        background-color: rgba(0, 0, 0, 0.601);
 
 
-    }
-
-    .discounted-products {
-
-        background-color: white;
-        padding: 5rem;
-
-        &_container {
-            width: 100%;
-            display: grid;
-            justify-content: center;
-
-            &_heading {
-                text-align: center;
-
-                h2 {
-                    text-transform: uppercase;
-                    font-size: 2rem;
-                    font-weight: 600;
-                    font-family: sans-serif;
-
-                }
-
-                p {
-                    font-size: 1.5rem;
-                    font-weight: 300;
-                }
-            }
-
-            &_items {
-                padding: 0.5rem;
-                display: grid;
-                gap: 1rem;
-                grid-template-columns: repeat(5, 1fr);
-
-            }
-
-        }
-
-    }
 
 
 }

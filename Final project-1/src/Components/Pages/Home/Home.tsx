@@ -1,18 +1,16 @@
 import styles from './home.module.scss'
-import img1 from '../../../assets/images/slide_home_1.jpg'
-import img2 from '../../../assets/images/slide_home_2.jpg'
-import img3 from '../../../assets/images/slide_home_3.jpg'
 import GaminImage from '../../../assets/images/gamingImage.png'
 import WomenShoes from '../../../assets/images/Womans.jpg.png';
 import MenShoes from '../../../assets/images/man.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import 'swiper/css/navigation';
+import { Pagination, Autoplay, Navigation, Parallax } from 'swiper/modules';
 import Card from '../../UI/TopCard/Card'
 import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
-import { FC, } from 'react'
+import { FC, useState } from 'react'
 import discountedImage from '../../../assets/images/imgDiscountBanner.jpg'
 import jewelery from '../../../assets/images/jewelery2.jpg'
 import { useNavigate } from 'react-router'
@@ -22,14 +20,17 @@ import {
     filterJewelery, filterWomen,
     filteredAll, filteredMen
 } from '../../../Redux/CategoriesSlice'
+
+import { bannerSliders, logoSliders } from '../../../assets/images/Images_datas'
+import classNames from 'classnames';
+
+
 export interface IHome {
 
     data: IProduct[];
 }
 
-
 const Home: FC<IHome> = ({ data }) => {
-
 
     const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
 
@@ -38,6 +39,50 @@ const Home: FC<IHome> = ({ data }) => {
         : ({ ...item, count: 0 })
 
     );
+
+
+    const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+    const [infoActive, setInfoActive] = useState({
+
+        option0: false,
+        option1: false,
+        option2: false
+
+    })
+
+    const handleSlideChange = (swiper: any) => {
+
+        const newIndex = swiper.realIndex
+
+        setActiveSlideIndex(newIndex)
+
+        handleActiveInfo(`option${newIndex}`)
+
+    }
+
+
+    const handleActiveInfo = (option: string) => {
+
+        setInfoActive((prev: any) =>
+
+            ({ ...prev, [option]: true })
+
+        )
+
+        setInfoActive((prev: any) => {
+
+            for (const key in prev) {
+                if (key !== option) {
+
+                    prev[key] = false
+
+                }
+            }
+
+            return prev
+        })
+
+    }
 
     const topSelling = newData.filter(item =>
         item.rating.rate > 4.5)
@@ -64,30 +109,54 @@ const Home: FC<IHome> = ({ data }) => {
 
     }
 
+
+
+
     return (
         <>
             <div className={styles.background}></div>
             <section className={styles.container}>
 
                 <Swiper
+
+                    onSlideChange={handleSlideChange}
+
+                    autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: true,
+                    }}
                     pagination={{
                         dynamicBullets: true,
-
                     }}
 
-                    modules={[Pagination]}
+
+                    loop={true}
+                    modules={[Pagination, Autoplay]}
+
+
                     className={styles.mySwiper}
 
                 >
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img1} alt="IMG1" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img2} alt="IMG2" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img3} alt="IMG3" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img1} alt="IMG1" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img2} alt="IMG2" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img3} alt="IMG3" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img1} alt="IMG1" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img2} alt="IMG2" /></SwiperSlide>
-                    <SwiperSlide className={styles.mySwiper_image}><img src={img3} alt="IMG3" /></SwiperSlide>
+
+                    {bannerSliders.map((item, index) =>
+                        <SwiperSlide className={styles.mySwiper_image} key={index} >
+
+                            <div className={`${styles.mySwiper_image_cover} ${index > 1 && styles['cover-active']}`}>
+                                <div className={`${styles.info}  ${styles['info' + index]}`}>
+                                    <h2 className={classNames(styles.info_title, { [styles['info_title-active']]: infoActive[`option${index}` as keyof typeof infoActive] })} >
+                                        attack air
+                                    </h2>
+                                    <h2 className={classNames(styles.info_title, { [styles['info_title-active']]: infoActive[`option${index}` as keyof typeof infoActive] })} >
+                                        {index === 0 ? ' vapormax flyknit 3' : index === 1 ? "max 720 sage low" : "monarch iv se"}
+                                    </h2>
+                                    <p className={classNames(styles.info_text, { [styles['info_text-active']]: infoActive[`option${index}` as keyof typeof infoActive] })}>{index <= 1 ? 'Limited items available at this price' : 'Lightweight cushioning and durable support with a Phylon midsole'}</p>
+
+                                    <button className={classNames(styles.info_button, { [styles[`info_button-active`]]: infoActive[`option${index}` as keyof typeof infoActive] })} >shop now</button>
+                                </div>
+                            </div>
+
+                            <img src={item} alt="bannerImage" />
+                        </SwiperSlide>)}
                 </Swiper>
 
                 <div className={styles.collections}>
@@ -133,12 +202,33 @@ const Home: FC<IHome> = ({ data }) => {
                     </div>
 
                 </div>
+                <div className={styles.logos}>
 
+                    <Swiper
+                        speed={700}
+
+                        autoplay={{
+                            delay: 1500,
+                            disableOnInteraction: false,
+                        }}
+
+                        slidesPerView={6}
+                        loop={true}
+                        modules={[Autoplay]}
+                        className={styles.logos_mySwiper}
+                    >
+                        {logoSliders.map((item, index) =>
+                            <SwiperSlide className={styles.logos_mySwiper_image} key={index}>
+                                <img src={item} alt="IMG1" />
+                            </SwiperSlide>)}
+
+                    </Swiper>
+
+                </div>
 
                 <div className={styles['discount-announcement']}>
 
                 </div>
-
 
                 <div className={styles['top-products']} >
                     <div className={styles['top-products_heading']}>
@@ -173,6 +263,9 @@ const Home: FC<IHome> = ({ data }) => {
                     </div>
 
                 </div>
+
+
+
 
 
             </section>

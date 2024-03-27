@@ -94,15 +94,12 @@ const Header = () => {
     //                 prev[key] = false
 
     //             }
-
     //         }
 
     //         return prev
-
     //     })
 
     //     dispatch(filteredAll(newData))
-
     // }
 
 
@@ -156,8 +153,6 @@ const Header = () => {
             dispatch(filterInputData({ inputData, newData }))
             navigate('/shop')
         }
-
-
     }
 
 
@@ -166,8 +161,6 @@ const Header = () => {
         dispatch(filterInputData({ inputData, newData }))
         navigate('/shop')
     }
-
-
 
 
     return (
@@ -188,6 +181,7 @@ const Header = () => {
                     <p className={styles.number}>+94 423-23-221</p>
                 </div>
             </div>
+
             <div className={styles.header_downpart}>
 
                 <div className={styles.header_downpart_left} onClick={handleActiveCategories} >
@@ -201,7 +195,6 @@ const Header = () => {
                     </div>
 
                 </div>
-
 
                 <div className={styles.header_downpart_right}>
                     <RxAvatar className={styles.avatar} />
