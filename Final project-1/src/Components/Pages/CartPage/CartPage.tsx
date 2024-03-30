@@ -29,19 +29,23 @@ const CartPage = () => {
 
                     </div>
                     <div className={styles['cart-page_content_items']}>
-                     
 
-                     {cart.map((item)=>  <CartPageItem key={item.id} item={item}/>)}
-
+                        {cart.map((item) => <CartPageItem key={item.id} item={item} />)}
 
                     </div>
 
                 </div>
+                <div className={styles.checkout}>
+                <div className={styles.checkout_subtotal}><p>subtotal</p><span>$3223.00</span></div>
+                <div className={styles.checkout_shipping}><p>shipping</p><span>$5.00</span></div>
+                <div className={styles.checkout_total}><p>total</p><span>$234.00</span></div>
+                <button className={styles.checkout_proceed}>Proceed to Checkout</button>
 
             </div>
 
-            <div className={styles.checkout}></div>
+            </div>
 
+         
         </div>
     )
 }

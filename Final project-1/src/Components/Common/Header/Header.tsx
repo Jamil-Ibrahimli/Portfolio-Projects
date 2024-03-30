@@ -25,12 +25,15 @@ const Header = () => {
 
     const cart = useSelector((state: RootState) => state.AddToCartReducer.cart)
     const [isCart, setCart] = useState(false);
-    const [isCategories, setCategories] = useState(false);
+    const [previusScroll, setPreviusScroll] = useState(0)
     const [scrolling, setScrolling] = useState(false);
+    const [isCategories, setCategories] = useState(false);
     const [inputData, setInputData] = useState('');
+    const [searchMobileActive, setSearchMobileActive] = useState(false)
     const { data } = useContext(DataContext);
     const location = useLocation()
     const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
+
 
         ({ ...item, discountedPercent: 30, count: 0 })
 
@@ -103,14 +106,24 @@ const Header = () => {
     // }
 
 
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+
     useEffect(() => {
+
         const handleScroll = () => {
-            if (window.scrollY) {
+
+            const currentScroll = window.scrollY
+
+            if (currentScroll >= 0 && currentScroll >= previusScroll) {
                 setScrolling(true)
-            } else { setScrolling(false) }
+
+            }
+            else { setScrolling(false) }
+
+            setPreviusScroll(currentScroll)
         }
 
         window.addEventListener('scroll', handleScroll)
@@ -119,7 +132,11 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll)
         };
 
-    }, [])
+    }, [previusScroll])
+
+
+
+
     const totalCount = cart.reduce((acc, curr) => acc + curr.count, 0)
 
     const totalPrice = cart.reduce((total, item) =>
@@ -162,13 +179,21 @@ const Header = () => {
         navigate('/shop')
     }
 
+    const handleSearchMobileActive = () => {
 
+        setSearchMobileActive(prev => !prev)
+
+
+    }
+
+    console.log(searchMobileActive)
     return (
 
         <header className={classNames(styles.header, { [styles['header-active']]: scrolling })}>
             <div className={styles.header_uppart}>
-                <div className={styles.header_uppart_left} onClick={() => navigate('/')}><h2>Trend-Look</h2></div>
+                <div className={styles.header_uppart_left} >  <RxHamburgerMenu className={styles['burger-menu']} /><h2 onClick={() => navigate('/')}>Trend-Look</h2></div>
                 <div className={styles.header_uppart_center}>
+                    <h2 onClick={() => navigate('/')}>Trend-Look</h2>
                     <nav className={styles.header_uppart_center_nav}>
                         <ul className={styles.header_uppart_center_nav_ul}>
                             <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option1 })} to='/' >Home</NavLink></li>
@@ -197,6 +222,7 @@ const Header = () => {
                 </div>
 
                 <div className={styles.header_downpart_right}>
+                    <GoSearch className={styles.search_mobile} onClick={handleSearchMobileActive} />
                     <RxAvatar className={styles.avatar} />
                     <FaRegHeart className={styles.wishlist} />
                     <div className={styles.cart}><HiOutlineShoppingBag className={styles.cart_icon} onClick={handleActiveCart} />
@@ -206,6 +232,7 @@ const Header = () => {
 
 
             </div>
+
 
             <div className={classNames(styles.header_categories, { [styles['categories-active']]: isCategories })} onMouseLeave={handleActiveCategories}>
 
@@ -244,14 +271,20 @@ const Header = () => {
 
                 </div>
 
-                <div className={styles.header_cart_view} onClick={() => navigate('./cart_page')}>
+                {cart.length > 0 && <div className={styles.header_cart_view} onClick={() => navigate('./cart_page')}>
                     <p>view cart</p>
-                </div>
+                </div>}
 
             </div>
+            <div className={classNames(styles.header_bottom,{[styles['bottom-active']]:searchMobileActive})}>
+                <div className={styles.header_bottom_searcher}>
+                    <input type="text" placeholder='Search over 10.000 products' onChange={handleInputData} onKeyDown={handleKeyDown} />
 
-
+                </div>
+                <button onClick={handleClickInput} >Search</button >
+            </div>
         </header>
+
     )
 }
 

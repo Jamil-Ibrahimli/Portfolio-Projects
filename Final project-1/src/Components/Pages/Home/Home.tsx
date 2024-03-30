@@ -10,7 +10,7 @@ import { Pagination, Autoplay, Navigation, Parallax } from 'swiper/modules';
 import Card from '../../UI/TopCard/Card'
 import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import discountedImage from '../../../assets/images/imgDiscountBanner.jpg'
 import jewelery from '../../../assets/images/jewelery2.jpg'
 import { useNavigate } from 'react-router'
@@ -49,6 +49,7 @@ const Home: FC<IHome> = ({ data }) => {
         option2: false
 
     })
+    const [anounceActive, setAnounceActive] = useState(false)
 
     const handleSlideChange = (swiper: any) => {
 
@@ -89,7 +90,6 @@ const Home: FC<IHome> = ({ data }) => {
     const hotDeals = newData.filter((item) =>
         item.rating.rate < 3.7)
 
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -106,9 +106,28 @@ const Home: FC<IHome> = ({ data }) => {
 
         navigate('/shop')
 
-
     }
+    useEffect(() => {
 
+        const handleAnnounceActive = () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = document.documentElement.scrollHeight;
+            const thresHoldStart = windowHeight * 0.35;
+            const thresHoldEnd = windowHeight * 0.5;
+
+
+            if (scrollPosition >= thresHoldStart && scrollPosition < thresHoldEnd) {
+                setAnounceActive(true)
+
+            }
+            else { setAnounceActive(false) }
+
+        }
+
+        return () => window.addEventListener('scroll', handleAnnounceActive)
+
+
+    }, [])
 
 
 
@@ -202,32 +221,26 @@ const Home: FC<IHome> = ({ data }) => {
                     </div>
 
                 </div>
-                <div className={styles.logos}>
 
-                    <Swiper
-                        speed={700}
 
-                        autoplay={{
-                            delay: 1500,
-                            disableOnInteraction: false,
-                        }}
+                <div className={styles['discount-announcement']} >
+                    <div className={styles.info}>
+                        <h2 className={classNames(styles.info_title, { [styles['title-active']]: anounceActive })} >
+                            armor
+                        </h2>
+                        <h2 className={classNames(styles.info_title, { [styles['title-active']]: anounceActive })}>
+                            air color 720
+                        </h2>
+                        <p className={classNames(styles.info_text, { [styles['text-active']]: anounceActive })}>
 
-                        slidesPerView={6}
-                        loop={true}
-                        modules={[Autoplay]}
-                        className={styles.logos_mySwiper}
-                    >
-                        {logoSliders.map((item, index) =>
-                            <SwiperSlide className={styles.logos_mySwiper_image} key={index}>
-                                <img src={item} alt="IMG1" />
-                            </SwiperSlide>)}
+                            Lightweight cushioning and durable support with a Phylon midsole
+                        </p>
 
-                    </Swiper>
+                        <div className={classNames(styles.info_bottom, { [styles['bottom-active']]: anounceActive })}> <p className={styles.info_bottom_price}>$90.00 <span>$170.00</span></p>
+                            <button className={styles.info_bottom_button} >shop now</button></div>
 
-                </div>
 
-                <div className={styles['discount-announcement']}>
-
+                    </div>
                 </div>
 
                 <div className={styles['top-products']} >
@@ -260,10 +273,58 @@ const Home: FC<IHome> = ({ data }) => {
                                 item={item} discountedPercent={item.discountedPercent} />)}
 
                         </div>
+
+                        <div className={styles['top-products_container_swiper']}>
+                            <Swiper
+
+                                speed={700}
+
+                                autoplay={{
+                                    delay: 1500,
+                                    disableOnInteraction: false,
+                                }}
+
+                                slidesPerView={3}
+                                loop={true}
+                                modules={[Autoplay]}
+                                className={styles.products}
+
+                            >
+                                {topSelling.map((item) => <SwiperSlide className={styles.products_item} > <Card key={item.id}
+                                    image={item.image}
+                                    price={item.price}
+                                    title={item.title}
+                                    item={item} discountedPercent={item.discountedPercent} />
+                                </SwiperSlide>)}
+
+                            </Swiper>
+                        </div>
                     </div>
 
                 </div>
+                <div className={styles.logos}>
 
+                    <Swiper
+                        speed={700}
+
+                        autoplay={{
+                            delay: 1500,
+                            disableOnInteraction: false,
+                        }}
+
+                        slidesPerView={6}
+                        loop={true}
+                        modules={[Autoplay]}
+                        className={styles.logos_mySwiper}
+                    >
+                        {logoSliders.map((item, index) =>
+                            <SwiperSlide className={styles.logos_mySwiper_} key={index}>
+                                <img src={item} alt="IMG1" />
+                            </SwiperSlide>)}
+
+                    </Swiper>
+
+                </div>
 
 
 

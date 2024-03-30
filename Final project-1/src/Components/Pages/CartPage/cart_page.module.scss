@@ -1,8 +1,10 @@
 .container {
 
-    margin: 6rem 5rem;
+    padding: 6rem 5rem 15rem;
+    min-height: 80vh;
 
     .cart-page {
+        position: relative;
 
         span {
 
@@ -42,10 +44,80 @@
 
             &_items {
                 width: 100%;
+            }
+        }
 
+        .checkout {
+            position: absolute;
+            width: 25rem;
+            right: 0;
+            transform: translate(0, 2rem);
+
+            &_subtotal {
+                display: flex;
+                justify-content: space-between;
+
+                p {
+                    font-size: 1.2rem;
+                    text-transform: capitalize;
+                    font-weight: 500;
+                    color:rgb(60, 60, 60);
+                }
+                span{
+                    font-size: 1.2rem;
+                    text-transform: capitalize;
+                    font-weight: 500;
+                    color:rgb(60, 60, 60);
+                }
+            }
+
+            &_shipping {
+                display: flex;
+                justify-content: space-between;
+                p {
+                    font-size: 1.2rem;
+                    text-transform: capitalize;
+                    font-weight: 500;
+                    color:rgb(60, 60, 60);
+                }
+                span{
+                    font-size: 1.2rem;
+                    text-transform: capitalize;
+                    font-weight: 500;
+                    color:rgb(60, 60, 60);
+                }
+
+            }
+
+            &_total {margin: 1rem 0;
+                display: flex;
+                justify-content: space-between;
+                p {
+                    font-size: 1.5rem;
+                    text-transform: capitalize;
+                    font-weight: 600;
+                    color:rgb(245, 12, 12);
+                }
+                span{
+                    font-size: 1.5rem;
+                    text-transform: capitalize;
+                    font-weight: 600;
+                    color:rgb(245, 12, 12);
+                }
+
+            }
+
+            &_proceed {
+                width: 100%;
+                padding: 0.5rem;
+                font-size: 1.2rem;
+                background-color: #004DDA;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
             }
         }
     }
-
 
 }

@@ -17,6 +17,7 @@ const StarRating: FC<IStarRating> = ({ item }) => {
 
 
     return (
+
         <>
 
             <div className={styles.rating}>{[...Array(5)].map((star, index) => {
@@ -31,7 +32,6 @@ const StarRating: FC<IStarRating> = ({ item }) => {
 
                 )
             }
-
 
             )} </div>
         </>
