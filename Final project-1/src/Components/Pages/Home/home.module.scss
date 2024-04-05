@@ -6,21 +6,19 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
 }
 
 .container {
-
+   scroll-behavior: smooth;
     .mySwiper {
-
+        width: 100%;
         display: flex;
-        height: 35rem;
+        height: 100%;
         background-color: white;
-        z-index: 1;
+        position: relative;
 
         :global(.swiper-pagination-bullet) {
 
@@ -39,11 +37,13 @@
             width: 1rem;
             border-radius: .5rem;
             border: 2px solid white;
+
+
         }
 
         &_image {
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             position: relative;
 
             &_cover {
@@ -55,6 +55,7 @@
                 transition: 1s;
 
                 .info {
+                    position: absolute;
 
                     &_title {
 
@@ -64,9 +65,10 @@
                         line-height: 3rem;
                         filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                         transform: translate(10%);
-                        transition: 0.6s 0.4s;
+                        transition: 0.3s 0.5s;
                         opacity: 0;
                         font-weight: 900;
+
 
                     }
 
@@ -77,7 +79,7 @@
                         margin-top: 0.7rem;
                         filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                         transform: translate(10%);
-                        transition: 0.6s 0.5s;
+                        transition: 0.3s 0.6s;
                         opacity: 0;
                     }
 
@@ -106,8 +108,8 @@
                         border-radius: 5px;
                         font-size: 1.1rem;
                         cursor: pointer;
-                        transform: translate(20%);
-                        transition: 0.5s 0.6s;
+                        transform: translate(10%);
+                        transition: 0.3s 0.7s;
                         opacity: 0;
                         filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                         cursor: pointer
@@ -138,7 +140,7 @@
 
                 .info2 {
                     position: absolute;
-                    top: 50%;
+                    top: 60%;
                     left: 50%;
                     transform: translate(-50%, -50%);
                     text-align: center;
@@ -160,6 +162,7 @@
 
                 }
 
+
             }
 
             .cover-active {
@@ -180,6 +183,10 @@
                     cursor: grab;
                 }
             }
+        }
+
+        .swipe-icon {
+            display: none;
         }
     }
 
@@ -313,46 +320,50 @@
 
 
         .info {
+
             position: absolute;
-            top: 20%;
+            top: 50%;
             left: 5rem;
+            transform: translate(0, -50%);
 
 
-            .info_title {
+            &_title {
 
                 text-transform: uppercase;
                 color: white;
-                font-size: 2.2rem;
-                line-height: 3rem;
+                font-size: 3rem;
+                line-height: 1;
                 filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                 transition: 0.3s;
-                transform: translate(10%, 0);
+                transform: translate(3%, 0);
                 opacity: 0;
+
             }
 
             .title-active {
 
                 transform: translate(0);
                 opacity: 1;
-                transition: 0.3s;
+
             }
 
-            .info_text {
+            &_text {
 
                 color: white;
-                font-size: 1.1rem;
+                font-size: 1.5rem;
                 margin-top: 0.7rem;
                 filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                 transition: 0.3s 0.1s;
-                transform: translate(10%, 0);
+                transform: translate(3%, 0);
                 opacity: 0;
+
             }
 
             .text-active {
 
                 transform: translate(0);
                 opacity: 1;
-                transition: 0.3s;
+
             }
 
             &_bottom {
@@ -361,15 +372,16 @@
                 align-items: end;
                 gap: 1rem;
                 transition: 0.3s 0.2s;
-                transform: translate(10%);
+                transform: translate(3%);
                 opacity: 0;
+
 
                 &_price {
                     display: flex;
                     align-items: end;
                     gap: 0.3rem;
                     margin-top: 1.6rem;
-                    font-size: 1.8rem;
+                    font-size: 2rem;
                     font-family: Verdana, Geneva, Tahoma, sans-serif;
                     color: white;
                     filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, 0.668));
@@ -411,15 +423,13 @@
 
                 transform: translate(0);
                 opacity: 1;
-                transition: 0.3s;
+
             }
 
 
         }
 
     }
-
-
 
     .top-products {
         background-color: white;
@@ -446,7 +456,7 @@
         }
 
         &_container {
-            width: 100%;
+
             display: flex;
             justify-content: center;
             gap: 0.5rem;
@@ -520,89 +530,107 @@
 
             &_swiper {
                 display: none;
-                align-self: center;
-                width: 30%;
-                height: 100%;
-                border: 1px solid;
+                align-self: start;
 
                 .products {
                     display: flex;
-                    width: 100%;
 
-                    &_item {
-                        width: 100%;
-                    }
+
                 }
             }
 
         }
-    }
 
-    .logos {
-        padding: 1rem 0 2rem;
-        background-color: rgb(255, 255, 255);
+        .logos {
+            padding: 4rem 0 0;
+            background-color: rgb(255, 255, 255);
 
-        &_mySwiper {
-            text-align: center;
+            &_mySwiper {
+                text-align: center;
 
-            &_image {
-                display: flex;
-                justify-content: center;
+                &_image {
+                    display: flex;
+                    justify-content: center;
 
-
+                    img {
+                        height: 5rem;
+                    }
+                }
             }
         }
     }
+
+
 }
 
 
 // --------------------Responcive for Mobile---------------
 
-
-@media screen and (max-width: 768px) {
-
+@media (max-width:768px) {
 
     .container {
-
-        width: 200vh;
+        margin-top: 8.5rem;
+        width: 215%;
 
         .mySwiper {
-            height: 100rem;
+            width: 100%;
+            height: 200vh;
+
+            :global(.swiper-pagination-bullet) {
+
+                width: 4rem;
+                height: 4rem;
+                border-radius: 50%;
+
+            }
+
+            :global(.swiper-pagination-bullet-active) {
+                height: 4.5rem;
+                width: 4.5rem;
+                border-radius: 50%;
+
+
+            }
 
             .info {
-                width: 70rem;
-
+                width: 80%;
 
                 &_title {
-                    font-size: 8rem;
+                    font-size: 10rem;
                     word-wrap: break-word;
                     line-height: 1.2;
 
                 }
 
                 &_text {
-                    font-size: 4rem;
-
+                    font-size: 6rem;
                     word-wrap: break-word;
                     margin-bottom: 3rem;
+                    font-weight: 300;
 
                 }
 
                 &_button {
 
                     font-size: 4rem;
-                    padding: 1rem 2rem;
+                    padding: 3rem 3rem;
                     font-weight: 400;
 
                 }
             }
 
-            .info1 {
-                position: absolute;
-                top: 40%;
-                right: 5rem;
-                text-align: end;
+            .info0 {
+                top: 30%;
+            }
 
+            .info1 {
+
+                top: 30%;
+
+            }
+
+            .info2 {
+                top: 55%
             }
 
             img {
@@ -610,33 +638,45 @@
                 height: 100%;
 
             }
+
+            .swipe-icon {
+                display: block;
+                font-size: 12rem;
+                position: absolute;
+                bottom: 2rem;
+                right: 2rem;
+                color: rgb(198, 194, 194);
+                filter: drop-shadow(1px 1px 1px black);
+                z-index: 1;
+
+            }
         }
 
 
         .collections {
-            margin-top: 3px;
+            margin-top: 1px;
             flex-direction: column;
-            gap: 3px;
+            gap: 1px;
 
             &_image {
-                height: 45rem;
+                height: 70rem;
 
             }
 
             &_image:last-child img {
-                object-position: center;
+                object-position: bottom;
             }
 
             .image-cover {
                 p {
-                    font-size: 5rem;
+                    font-size: 7rem;
+                    font-weight: 300;
                 }
 
                 button {
                     font-size: 4rem;
-                    padding: 1rem 2rem;
+                    padding: 3rem 3rem;
                     font-weight: 400;
-
                 }
 
             }
@@ -652,6 +692,7 @@
 
                     p {
                         font-size: 4.5rem;
+                        font-weight: 500;
                     }
                 }
 
@@ -659,17 +700,176 @@
 
                     width: 100%;
                     grid-template-columns: repeat(2, 1fr);
+
+
                 }
             }
         }
 
         .discount-announcement {
 
-            height: 50rem;
+            height: 120rem;
+
+            .info {
+                width: 90%;
+
+                &_title {
+                    font-size: 10rem;
+                    font-weight: 900;
+                }
+
+                &_text {
+                    font-size: 4.5rem;
+                    margin-top: 4rem;
+                    font-weight: 500;
+                }
+
+                &_bottom {
+                    display: block;
+                    margin-top: 4rem;
+
+                    &_price {
+
+                        font-size: 10rem;
+                        font-weight: 500;
+
+                        span {
+                            font-size: 6rem;
+                        }
+                    }
+
+                    &_button {
+                        padding: 3rem 3rem;
+                        width: 30rem;
+                        font-size: 4rem;
+                        margin-top: 6rem;
+                    }
+                }
+            }
         }
+
+        .top-products {
+
+            padding: 5rem 0 0;
+
+            &_heading {
+                height: 15rem;
+
+                p {
+                    font-size: 4.5rem;
+                    font-weight: 500;
+                }
+
+                h2 {
+                    font-size: 5rem;
+                }
+            }
+
+            &_container {
+
+                &_discounted-image {
+
+                    width: 50%;
+                    height: 80rem;
+                }
+
+                .discount-img-cover {
+                    height: 80rem;
+
+                    p {
+                        font-size: 8rem;
+                    }
+
+                    span {
+                        font-size: 5rem;
+                    }
+
+                    button {
+                        font-size: 4rem;
+                        padding: 3rem 3rem;
+                        font-weight: 400;
+
+                    }
+                }
+
+                &_items {
+                    display: none;
+                }
+
+                &_swiper {
+                    padding: 0 3rem;
+                    width: 50%;
+                    display: block;
+
+                }
+            }
+
+            .logos {
+                padding: 5rem 0;
+
+                &_mySwiper {
+                    &_image {
+                        img {
+                            height: 15rem;
+                        }
+                    }
+
+
+                }
+
+            }
+        }
+
 
     }
 
+}
+
+// Responcive started for small Mobile screens
+@media (max-width:556px) {
+
+    .container {
+        .top-products {
+            padding-top: 10rem;
+
+            &_container {
+                padding-top: 5rem;
+                flex-direction: column-reverse;
+                row-gap: 8rem;
 
 
+                &_discounted-image {
+
+                    width: 100%;
+                    height: 120rem;
+                }
+
+                .discount-img-cover {
+                    height: 120rem;
+
+                    p {
+                        font-size: 12rem;
+                    }
+
+                    span {
+                        font-size: 8rem;
+                    }
+
+                    button {
+                        font-size: 5rem;
+                        padding: 4rem 4rem;
+                        font-weight: 500;
+                        text-transform: capitalize;
+                    }
+                }
+
+                &_swiper {
+                    align-self: center;
+                    width: 80%;
+                    display: block;
+
+                }
+            }
+        }
+    }
 }

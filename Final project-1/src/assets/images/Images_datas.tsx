@@ -7,16 +7,17 @@ import logo_6 from './logo_1.png';
 import img1 from './slide_home_1.jpg';
 import img2 from './slide_home_2.jpg';
 import img3 from './slide_home_3.jpg';
+import visa1 from './visa1.png'
+import visa2 from './visa2.png'
+import visa3 from './visa3.png'
+import visa4 from './visa4.png'
+import visa5 from './visa5.png'
+import visa6 from './visa6.png'
+import visa7 from './visa7.png'
+import visa8 from './visa8.png'
 
 
-
-export const bannerSliders = [
-
-    img1,
-    img2,
-    img3
-
-]
+export const bannerSliders = [img1, img2, img3]
 
 
 export const logoSliders = [
@@ -27,5 +28,6 @@ export const logoSliders = [
     logo_1, logo_2, logo_3,
     logo_4, logo_5, logo_6,
 
-
 ]
+
+export const visas = [visa1, visa2, visa3, visa4, visa5, visa6, visa7, visa8,]

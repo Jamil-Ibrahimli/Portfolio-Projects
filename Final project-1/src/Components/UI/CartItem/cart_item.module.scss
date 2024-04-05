@@ -1,7 +1,6 @@
 .cart-item {
     padding: 0.5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: white;
     border-bottom: 1px solid gray;
@@ -21,12 +20,11 @@
 
     &_center {
         width: 9rem;
+        height: 6rem;
         word-wrap: break-word;
         text-align: center;
         display: grid;
-        height: 6rem;
-        display: grid;
-        align-content: space-between;
+
 
         .title {
             font-size: 1rem;
@@ -37,6 +35,7 @@
             display: flex;
             justify-content: center;
             gap: 0.2rem;
+            align-items: center;
 
             button {
                 width: 1.5rem;
@@ -59,10 +58,11 @@
     }
 
     &_left {
-        height: 6rem;
+        width: 25%;
         display: grid;
+        justify-items: end;
         align-content: space-between;
-        width: 4rem;
+        height: 6rem;
         text-align: center;
 
         .delete {
@@ -91,6 +91,68 @@
             color: rgb(0, 136, 255);
             font-weight: 500;
         }
+    }
+
+}
+
+@media screen and (max-width:768px) {
+    .cart-item {
+        padding: 2rem;
+
+        &_image {
+            width: 15rem;
+            height: 15rem;
+        }
+
+        &_center {
+
+            width: 60%;
+            height: 30rem;
+
+            .title {
+                font-size: 4rem;
+            }
+
+            .count {
+                gap: 3rem;
+                align-items: center;
+
+                button {
+                    width: 10rem;
+                    height: 8rem;
+                    font-size: 4rem;
+                }
+
+                p {
+                    font-size: 5rem;
+                }
+            }
+        }
+
+        &_left {
+            width: 40%;
+            height: 30rem;
+
+            .delete {
+                font-size: 6rem;
+            }
+
+            .price {
+
+                font-size: 4rem;
+
+            }
+
+            .price-discounted {
+                font-size: 4rem;
+            }
+
+            .price-original {
+                font-size: 4rem;
+            }
+
+        }
+
     }
 
 }

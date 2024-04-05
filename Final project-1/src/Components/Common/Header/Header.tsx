@@ -18,7 +18,7 @@ import { GrClose } from "react-icons/gr";
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { DataContext } from '../../Context/DataContext';
 import searchingImage from '../../../assets/images/CartEmpty.png'
-
+import { FaPhoneVolume } from "react-icons/fa6";
 
 
 const Header = () => {
@@ -30,16 +30,7 @@ const Header = () => {
     const [isCategories, setCategories] = useState(false);
     const [inputData, setInputData] = useState('');
     const [searchMobileActive, setSearchMobileActive] = useState(false)
-    const { data } = useContext(DataContext);
-    const location = useLocation()
-    const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
-
-
-        ({ ...item, discountedPercent: 30, count: 0 })
-
-        : ({ ...item, count: 0 })
-
-    );
+    const [navMobile, setNavMobile] = useState(false)
     const [activeLink, setActivelink] = useState<any>({
 
         option1: false,
@@ -48,6 +39,22 @@ const Header = () => {
         option4: false
 
     });
+
+    const { data } = useContext(DataContext);
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+
+
+    const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
+
+
+        ({ ...item, discountedPercent: 30, count: 0 })
+
+        : ({ ...item, count: 0 })
+
+    );
 
 
     useEffect(() => {
@@ -107,10 +114,6 @@ const Header = () => {
 
 
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-
     useEffect(() => {
 
         const handleScroll = () => {
@@ -154,13 +157,14 @@ const Header = () => {
 
         setCart(prev => !prev)
         setCategories(false)
+        setNavMobile(false)
     }
 
     const handleActiveCategories = () => {
 
         setCategories(prev => !prev)
         setCart(false)
-
+setNavMobile(false)
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -185,13 +189,17 @@ const Header = () => {
 
 
     }
+    const handleNavMobile = () => {
 
-    console.log(searchMobileActive)
+        setNavMobile(prev => !prev)
+        setCart(false)
+    }
+
     return (
 
-        <header className={classNames(styles.header, { [styles['header-active']]: scrolling })}>
+        <header className={classNames(styles.header, { [styles['header-active']]: scrolling })} >
             <div className={styles.header_uppart}>
-                <div className={styles.header_uppart_left} >  <RxHamburgerMenu className={styles['burger-menu']} /><h2 onClick={() => navigate('/')}>Trend-Look</h2></div>
+                <div className={styles.header_uppart_left} >  <RxHamburgerMenu className={styles['burger-menu']} onClick={handleNavMobile} /><h2 onClick={() => navigate('/')}>Trend-Look</h2></div>
                 <div className={styles.header_uppart_center}>
                     <h2 onClick={() => navigate('/')}>Trend-Look</h2>
                     <nav className={styles.header_uppart_center_nav}>
@@ -204,12 +212,13 @@ const Header = () => {
                 <div className={styles.header_uppart_right}>
                     <p className={styles.help}>Need Help?</p>
                     <p className={styles.number}>+94 423-23-221</p>
+                    <span><FaPhoneVolume className={styles.call} /></span>
                 </div>
             </div>
 
             <div className={styles.header_downpart}>
 
-                <div className={styles.header_downpart_left} onClick={handleActiveCategories} >
+                <div className={styles.header_downpart_left} onClick={handleActiveCategories}>
                     <RxHamburgerMenu className={styles['burger-menu']} />
                     <p>categories</p>
                 </div>
@@ -234,7 +243,14 @@ const Header = () => {
             </div>
 
 
-            <div className={classNames(styles.header_categories, { [styles['categories-active']]: isCategories })} onMouseLeave={handleActiveCategories}>
+            <div className={classNames(styles.header_categories, { [styles['categories-active']]: isCategories })} onDragCapture={handleActiveCategories}>
+                <div className={styles.header_categories_heading}>
+                    <p>menu</p>
+
+                    < GrClose className={styles.header_categories_heading_close} onClick={handleActiveCategories} />
+
+                </div>
+
 
                 <div className={styles.header_categories_content}>
 
@@ -253,7 +269,7 @@ const Header = () => {
 
             </div>
 
-            <div className={classNames(styles.header_cart, { [styles.cart_active]: isCart })} onMouseLeave={handleActiveCart} >
+            <div className={classNames(styles.header_cart, { [styles.cart_active]: isCart })}  >
 
                 <div className={styles.header_cart_heading}>
 
@@ -276,7 +292,23 @@ const Header = () => {
                 </div>}
 
             </div>
-            <div className={classNames(styles.header_bottom,{[styles['bottom-active']]:searchMobileActive})}>
+
+
+            <div className={classNames(styles['header_nav-mobile'], { [styles['nav-mobile-active']]: navMobile })}>
+                <div className={styles['header_nav-mobile_heading']}>
+                    <h2>trend-look</h2>
+                    < GrClose className={styles.close} onClick={handleNavMobile} /></div>
+                <nav className={styles['header_nav-mobile_nav']}>
+
+                    <ul className={styles['header_nav-mobile_nav_list']}>
+                        <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option1 })} to='/' >Home</NavLink></li>
+                        <li ><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option2 })} to='/shop' onClick={() => dispatch(filteredAll(newData))}>Shop</NavLink></li>
+                        <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option3 })} to='/contacts' >Contacts</NavLink></li>
+                        <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option4 })} to='/about' >About</NavLink></li>
+                        <li onClick={handleActiveCategories} >categories</li>
+                    </ul> </nav> </div>
+
+            <div className={classNames(styles.header_bottom, { [styles['bottom-active']]: searchMobileActive })}>
                 <div className={styles.header_bottom_searcher}>
                     <input type="text" placeholder='Search over 10.000 products' onChange={handleInputData} onKeyDown={handleKeyDown} />
 

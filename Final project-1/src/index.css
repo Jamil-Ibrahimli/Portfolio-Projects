@@ -8,17 +8,7 @@
 }
 
 
-@media screen and (max-width:1300px) {
-
-    body,
-    html {
-
-        font-size: 14px;
-    }
-
-}
-
-@media screen and (max-width:1100px) {
+@media (max-width:1200px) {
 
     body,
     html {
@@ -28,12 +18,24 @@
 
 }
 
-@media screen and (max-width:900px) {
+
+@media (max-width:992px) {
 
     body,
     html {
 
         font-size: 10px;
+    }
+
+}
+
+
+@media (max-width:556px) {
+
+    body,
+    html {
+
+        font-size: 8px;
     }
 
 }

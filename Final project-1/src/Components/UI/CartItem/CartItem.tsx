@@ -28,7 +28,7 @@ const CartItem: FC<ICartItem> = ({ item }) => {
                     <img src={item.image} alt="cartImage" />
                 </div>
                 <div className={styles['cart-item_center']}>
-                    <p className={styles.title}>{item.title.slice(0, 35)}</p>
+                    <p className={styles.title}>{item.title.slice(0, 25)}</p>
                     <div className={styles.count}>
                         <button onClick={() => dispatch(decrementCount(item))}>-</button> <p>{item.count}</p> <button onClick={() => dispatch(incrementCount(item))}>+</button>
                     </div>

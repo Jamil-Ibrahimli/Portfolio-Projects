@@ -10,7 +10,7 @@ import { Pagination, Autoplay, Navigation, Parallax } from 'swiper/modules';
 import Card from '../../UI/TopCard/Card'
 import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import discountedImage from '../../../assets/images/imgDiscountBanner.jpg'
 import jewelery from '../../../assets/images/jewelery2.jpg'
 import { useNavigate } from 'react-router'
@@ -23,11 +23,12 @@ import {
 
 import { bannerSliders, logoSliders } from '../../../assets/images/Images_datas'
 import classNames from 'classnames';
-
+import { PiHandSwipeRightLight } from "react-icons/pi";
 
 export interface IHome {
 
     data: IProduct[];
+
 }
 
 const Home: FC<IHome> = ({ data }) => {
@@ -107,29 +108,28 @@ const Home: FC<IHome> = ({ data }) => {
         navigate('/shop')
 
     }
+    const containerRef = useRef<HTMLDivElement>(null)
+
     useEffect(() => {
 
         const handleAnnounceActive = () => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = document.documentElement.scrollHeight;
-            const thresHoldStart = windowHeight * 0.35;
-            const thresHoldEnd = windowHeight * 0.5;
+            const element = containerRef.current
+            const windowHeight = window.innerHeight
+            if (element) {
+                const { top, bottom } = element?.getBoundingClientRect();
 
-
-            if (scrollPosition >= thresHoldStart && scrollPosition < thresHoldEnd) {
-                setAnounceActive(true)
+                if ((bottom <= windowHeight) && (top >= 200)) {
+                    setAnounceActive(true)
+                } else { setAnounceActive(false) }
 
             }
-            else { setAnounceActive(false) }
 
         }
+        window.addEventListener('scroll', handleAnnounceActive)
 
-        return () => window.addEventListener('scroll', handleAnnounceActive)
-
+        return () => window.removeEventListener('scroll', handleAnnounceActive)
 
     }, [])
-
-
 
     return (
         <>
@@ -142,7 +142,7 @@ const Home: FC<IHome> = ({ data }) => {
 
                     autoplay={{
                         delay: 5000,
-                        disableOnInteraction: true,
+                        disableOnInteraction: false,
                     }}
                     pagination={{
                         dynamicBullets: true,
@@ -172,10 +172,12 @@ const Home: FC<IHome> = ({ data }) => {
 
                                     <button className={classNames(styles.info_button, { [styles[`info_button-active`]]: infoActive[`option${index}` as keyof typeof infoActive] })} >shop now</button>
                                 </div>
+
                             </div>
 
                             <img src={item} alt="bannerImage" />
                         </SwiperSlide>)}
+                    <PiHandSwipeRightLight className={styles['swipe-icon']} />
                 </Swiper>
 
                 <div className={styles.collections}>
@@ -222,9 +224,8 @@ const Home: FC<IHome> = ({ data }) => {
 
                 </div>
 
-
                 <div className={styles['discount-announcement']} >
-                    <div className={styles.info}>
+                    <div className={styles.info} >
                         <h2 className={classNames(styles.info_title, { [styles['title-active']]: anounceActive })} >
                             armor
                         </h2>
@@ -236,9 +237,9 @@ const Home: FC<IHome> = ({ data }) => {
                             Lightweight cushioning and durable support with a Phylon midsole
                         </p>
 
-                        <div className={classNames(styles.info_bottom, { [styles['bottom-active']]: anounceActive })}> <p className={styles.info_bottom_price}>$90.00 <span>$170.00</span></p>
+                        <div className={classNames(styles.info_bottom, { [styles['bottom-active']]: anounceActive })} ref={containerRef}>
+                            <p className={styles.info_bottom_price}>$90.00 <span>$170.00</span></p>
                             <button className={styles.info_bottom_button} >shop now</button></div>
-
 
                     </div>
                 </div>
@@ -277,54 +278,55 @@ const Home: FC<IHome> = ({ data }) => {
                         <div className={styles['top-products_container_swiper']}>
                             <Swiper
 
-                                speed={700}
-
                                 autoplay={{
-                                    delay: 1500,
+                                    delay: 3000,
                                     disableOnInteraction: false,
                                 }}
 
-                                slidesPerView={3}
-                                loop={true}
+                                slidesPerView={1}
+                                slidesPerGroup={1}
+                                loop={false}
                                 modules={[Autoplay]}
                                 className={styles.products}
 
                             >
-                                {topSelling.map((item) => <SwiperSlide className={styles.products_item} > <Card key={item.id}
-                                    image={item.image}
-                                    price={item.price}
-                                    title={item.title}
-                                    item={item} discountedPercent={item.discountedPercent} />
+                                {topSelling.map((item) => <SwiperSlide className={styles.products_item} key={item.id}>
+                                    <Card
+                                        image={item.image}
+                                        price={item.price}
+                                        title={item.title}
+                                        item={item} discountedPercent={item.discountedPercent} />
+
                                 </SwiperSlide>)}
 
                             </Swiper>
                         </div>
                     </div>
+                    <div className={styles.logos}>
 
+                        <Swiper
+                            speed={700}
+                            spaceBetween={100}
+                            autoplay={{
+                                delay: 1500,
+                                disableOnInteraction: false,
+                            }}
+
+                            slidesPerView={6}
+                            loop={true}
+                            modules={[Autoplay]}
+                            className={styles.logos_mySwiper}
+                        >
+                            {logoSliders.map((item, index) =>
+                                <SwiperSlide className={styles.logos_mySwiper_image} key={index}>
+                                    <img src={item} alt="IMG1" />
+                                </SwiperSlide>)}
+
+                        </Swiper>
+
+                    </div>
                 </div>
-                <div className={styles.logos}>
 
-                    <Swiper
-                        speed={700}
-
-                        autoplay={{
-                            delay: 1500,
-                            disableOnInteraction: false,
-                        }}
-
-                        slidesPerView={6}
-                        loop={true}
-                        modules={[Autoplay]}
-                        className={styles.logos_mySwiper}
-                    >
-                        {logoSliders.map((item, index) =>
-                            <SwiperSlide className={styles.logos_mySwiper_} key={index}>
-                                <img src={item} alt="IMG1" />
-                            </SwiperSlide>)}
-
-                    </Swiper>
-
-                </div>
 
 
 

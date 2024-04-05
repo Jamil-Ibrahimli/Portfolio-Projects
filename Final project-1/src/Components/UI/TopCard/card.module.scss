@@ -14,6 +14,7 @@
         margin-bottom: 1rem;
         border-radius: 10px;
         overflow: hidden;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         img {
             margin-top: 2rem;
@@ -62,7 +63,7 @@
             padding: 0.2rem;
             z-index: 1;
             border-radius: 5px 0;
-            
+
 
         }
 
@@ -107,7 +108,6 @@
 
         }
 
-
         .add-cart {
             width: 3.5rem;
             position: absolute;
@@ -118,7 +118,7 @@
             padding: 0.1rem;
             border-radius: 5px 0 0 5px;
             transition: 0.2s ease;
-            
+
 
             &_icon {
                 color: white;
@@ -144,20 +144,20 @@
                 transition: 0.5s;
                 padding: 0.3rem 0;
                 border-radius: 0 150px 150px 0;
-                
+
             }
 
         }
     }
 
     &:hover .add-wishlist {
-  
+
         right: 0;
 
     }
 
     &:hover .add-cart {
-        
+
         right: 0;
 
     }
@@ -166,13 +166,6 @@
 
         transform: scale(1.2)
     }
-
-    &:hover &_item {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    }
-
-
-
 
     &_title {
         display: grid;
@@ -214,5 +207,147 @@
 
     }
 
+    .add-cart-mobile {
+        display: none;
+    }
 
+    .add-wishlist-mobile {
+        display: none;
+    }
+}
+
+//--------- Responcive started for Mobile------------
+
+@media screen and (max-width:768px) {
+
+    .card {
+        position: relative;
+        width: 100%;
+        height: 80rem;
+
+        &_item {
+            height: 50rem;
+
+            img {
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: cover;
+              
+            }
+
+            .new {
+                width: 10rem;
+                height: 7rem;
+                padding: 0.1rem;
+                font-size: 4rem;
+                text-transform: uppercase;
+            }
+
+            .hot {
+                width: 10rem;
+                height: 7rem;
+                padding: 0.1rem;
+                font-size: 4rem;
+                text-transform: uppercase;
+            }
+
+            .discount {
+                width: 10rem;
+                height: 7rem;
+                padding: 0.1rem;
+                font-size: 4rem;
+                text-transform: uppercase;
+            }
+
+            .add-wishlist {
+                width: 7rem;
+                right: 0;
+                display: none;
+
+                &_icon {
+
+                    font-size: 5rem;
+
+                }
+
+            }
+
+            .add-cart {
+                width: 7rem;
+                right: 0;
+                top: 8rem;
+                display: none;
+
+                &_icon {
+
+                    font-size: 5rem;
+
+                }
+
+            }
+        }
+
+        &_title {
+            margin: 5rem 0;
+
+            h4 {
+
+                font-size: 4rem;
+                font-weight: 500;
+            }
+
+
+        }
+
+        &_price {
+            &_discounted {
+                font-size: 5rem;
+            }
+
+            &_original {
+                font-size: 3rem;
+            }
+        }
+
+        .add-wishlist-mobile {
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 35%;
+            text-align: center;
+            border-radius: 1rem;
+            background-color: rgb(2, 50, 144);
+
+            &_icon {
+                font-size: 8rem;
+                color: rgb(247, 247, 247);
+            }
+
+        }
+
+        .add-cart-mobile {
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            position: absolute;
+            width: 7rem;
+            right: 0;
+            bottom: 0;
+            width: 35%;
+            text-align: center;
+            background-color: rgb(2, 50, 144);
+            border-radius: 1rem;
+
+            &_icon {
+                color: white;
+                font-size: 8rem;
+
+            }
+
+        }
+
+
+    }
 }

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-visibility-sensor": "^5.1.1"
+  }
+}

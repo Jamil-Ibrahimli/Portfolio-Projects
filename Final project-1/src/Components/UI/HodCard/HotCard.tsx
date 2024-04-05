@@ -43,7 +43,7 @@ const HotCard: FC<IHotCard> = ({ image, title, price, discountedPercent, item })
                 <StarRating item={item} />
                 <div className={styles.card_title}>
 
-                    <h4>{title.slice(0, 18)}</h4>
+                    <h4>{title.slice(0, 13)}</h4>
 
                 </div>
 

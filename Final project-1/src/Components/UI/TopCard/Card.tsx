@@ -20,12 +20,12 @@ interface ICard {
 }
 
 
-const Card: FC<ICard> = ({ image, price, title, item,discountedPercent }) => {
+const Card: FC<ICard> = ({ image, price, title, item, discountedPercent }) => {
 
     const discountedPrice = price - (price * (discountedPercent / 100))
-    
+
     const dispatch = useDispatch()
-   
+
     return (
 
         <>
@@ -37,7 +37,7 @@ const Card: FC<ICard> = ({ image, price, title, item,discountedPercent }) => {
                     <p className={styles['add-cart']} onClick={() => dispatch(addToCart(item))}>
                         <CiShoppingCart className={styles['add-cart_icon']} /></p>
 
-                  <Link to={`prod_detail/${item.id}`}> <img src={image} alt="ItemImage" /> </Link>  
+                    <Link to={`prod_detail/${item.id}`}> <img src={image} alt="ItemImage" /> </Link>
                 </div>
 
                 <StarRating item={item} />
@@ -53,6 +53,8 @@ const Card: FC<ICard> = ({ image, price, title, item,discountedPercent }) => {
                     {discountedPrice ? <p className={styles.card_price_original}>${price.toFixed(2)}</p> : null}
 
                 </div>
+                <p className={styles['add-wishlist-mobile']}><FaRegHeart className={styles['add-wishlist-mobile_icon']} /></p>
+                <p className={styles['add-cart-mobile']} onClick={() => dispatch(addToCart(item))}><CiShoppingCart className={styles['add-cart-mobile_icon']} /></p>
             </div>
 
         </>

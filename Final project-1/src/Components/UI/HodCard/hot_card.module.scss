@@ -216,56 +216,63 @@
 @media screen and (max-width: 768px) {
 
     .card {
-        border: 3px solid;
+        display: grid;
+        align-content: space-between;
         width: 100%;
-        height: 50rem;
+        height: 70rem;
 
         &_item {
             width: 100%;
-            height: 35rem;
-            border: 1px solid;
+            height: 50rem;
+            box-shadow: rgba(0, 0, 0, 0.431) 0px 5px 15px;
+
+            img {
+                max-width: 100%;
+                max-height: 90%;
+                object-fit: cover;
+            }
 
             .new {
-                width: 9rem;
-                height: 5rem;
+                width: 10rem;
+                height: 7rem;
                 padding: 0.1rem;
-                font-size: 3rem;
+                font-size: 4rem;
             }
 
             .hot {
-                width: 9rem;
-                height: 5rem;
+                width: 10rem;
+                height: 7rem;
                 padding: 0.1rem;
-                font-size: 3rem;
+                font-size: 4rem;
             }
 
             .discount {
-                width: 9rem;
-                height: 5rem;
+                width: 10rem;
+                height: 7rem;
                 padding: 0.1rem;
-                font-size: 3rem;
+                font-size: 4rem;
             }
 
             .add-wishlist {
-                width: 7rem;
+                width: 10rem;
                 right: 0;
 
                 &_icon {
 
-                    font-size: 5rem;
+                    font-size: 8rem;
 
                 }
 
             }
 
             .add-cart {
-                width: 7rem;
+                width: 10rem;
                 right: 0;
-                top: 8rem;
+                top: 10rem;
 
                 &_icon {
 
-                    font-size: 5rem;
+                    font-size: 8rem;
 
                 }
 
@@ -273,10 +280,11 @@
         }
 
         &_title {
+            margin-top: 1rem;
 
             h4 {
 
-                font-size: 3rem;
+                font-size: 4rem;
                 font-weight: 500;
             }
 
@@ -284,12 +292,15 @@
         }
 
         &_price {
+            margin-top: 1rem;
+
+
             &_discounted {
-                font-size: 4rem;
+                font-size: 5rem;
             }
 
             &_original {
-                font-size: 3rem;
+                font-size: 4rem;
             }
         }
 
