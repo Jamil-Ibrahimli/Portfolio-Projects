@@ -1,0 +1,46 @@
+.scroll-up-icon {
+    font-size: 0.1rem;
+    border-radius: 50%;
+    display: grid;
+    position: fixed;
+    bottom: 3rem;
+    right: 2rem;
+    background-color: #000000d8;
+    place-items: center;
+    opacity: 0;
+    transition: 0.3s;
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 2;
+
+    &:hover {
+        transform: translate(0, -20%);
+
+        background-color: #004DDA;
+    }
+}
+
+.scroll-up-icon-active {
+    opacity: 1;
+    font-size: 4rem;
+}
+
+
+
+.scroll-up-icon-active2 {
+    background-color: #004DDA;
+    bottom: 8rem;
+}
+
+// --------------------Responcive for Mobile---------------
+
+@media (max-width:768px) {
+
+    .scroll-up-icon-active {
+        opacity: 1;
+        padding: 3rem;
+        font-size: 15rem;
+        background-color: #000000e0;
+    }
+}

@@ -25,7 +25,7 @@
             max-width: 80%;
             max-height: 80%;
             z-index: -1;
-            transition:5s;
+            transition: 5s;
 
         }
 
@@ -77,7 +77,7 @@
             right: -3rem;
             top: 1rem;
             z-index: 1;
-            background-color: rgb(9, 36, 82);
+            background-color: rgba(9, 36, 82, 0.853);
             padding: 0.2rem;
             border-radius: 5px 0 0 5px;
             transition: 0.2s ease-in;
@@ -95,18 +95,7 @@
             }
 
             &:hover::after {
-                content: 'Add to favorites';
-                width: 7rem;
-                position: absolute;
-                left: 0;
-                font-size: 0.8rem;
-                top: 50%;
-                transform: translate(-105%, -50%);
-                background-color: rgba(0, 0, 0, 0.786);
-                color: white;
-                border-radius: 0 50px 50px 0;
-                transition: 0.5s;
-                padding: 0.3rem 0;
+                display: block;
 
             }
 
@@ -118,7 +107,7 @@
             right: -3.5rem;
             top: 3.5rem;
             z-index: 1;
-            background-color: rgb(9, 36, 82);
+            background-color: rgba(9, 36, 82, 0.887);
             padding: 0.1rem;
             border-radius: 5px 0 0 5px;
             transition: 0.2s ease;
@@ -134,20 +123,8 @@
 
             }
 
-            &:hover::after {
-                width: 5rem;
-                content: 'Add to cart';
-                position: absolute;
-                left: 0;
-                font-size: 0.8rem;
-                top: 50%;
-                transform: translate(-105%, -50%);
-                padding: 0 0.5rem;
-                background-color: rgba(0, 0, 0, 0.786);
-                color: white;
-                transition: 0.5s;
-                padding: 0.3rem 0;
-                border-radius: 0 50px 50px 0;
+            &:hover::after {display: none;
+            
             }
 
 
@@ -159,14 +136,14 @@
 
 
     &:hover .add-wishlist {
-       
+
         right: 0;
 
 
     }
 
     &:hover .add-cart {
-    
+
         right: 0;
 
 
@@ -176,10 +153,10 @@
     &:hover img {
 
         transform: scale(1.2);
-      
+
     }
 
-  
+
     &_title {
         display: grid;
         row-gap: 0.3rem;
@@ -222,5 +199,99 @@
 
 
     }
+
+}
+
+
+// Responcive started for mobile
+
+
+@media screen and (max-width:768px) {
+
+    .card {
+        display: grid;
+        align-content: space-between;
+        width: 100%;
+        height: 70rem;
+        box-shadow: rgba(0, 0, 0, 0.431) 0px 5px 15px;
+
+        &_item {
+            width: 100%;
+            height: 50rem;
+
+            .new {
+                width: 10rem;
+                height: 7rem;
+                padding: 0.1rem;
+                font-size: 4rem;
+            }
+
+            .hot {
+                width: 10rem;
+                height: 7rem;
+                padding: 0.1rem;
+                font-size: 4rem;
+            }
+
+            .discount {
+                width: 10rem;
+                height: 7rem;
+                padding: 0.1rem;
+                font-size: 4rem;
+            }
+
+            .add-wishlist {
+                width: 10rem;
+                right: 0;
+
+                &_icon {
+
+                    font-size: 8rem;
+
+                }
+
+            }
+
+            .add-cart {
+                width: 10rem;
+                right: 0;
+                top: 10rem;
+
+                &_icon {
+
+                    font-size: 8rem;
+
+                }
+
+            }
+        }
+
+        &_title {
+            margin-top: 0.2rem;
+
+            h4 {
+
+                font-size: 4rem;
+                font-weight: 500;
+            }
+
+
+        }
+
+        &_price {
+            margin-top: 2rem;
+
+
+            &_discounted {
+                font-size: 5rem;
+            }
+
+            &_original {
+                font-size: 4rem;
+            }
+        }
+
+    }
+
 
 }

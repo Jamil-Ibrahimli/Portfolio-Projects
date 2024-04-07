@@ -1,4 +1,4 @@
-import React from 'react'
+
 import styles from './cart_item.module.scss'
 import { IProduct } from '../../Common/Main/Main';
 import { FC } from 'react'

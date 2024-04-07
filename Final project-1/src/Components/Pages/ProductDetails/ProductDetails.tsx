@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import styles from './product_details.module.scss';
 import { IProduct } from '../../Common/Main/Main';
 import { FC } from 'react';

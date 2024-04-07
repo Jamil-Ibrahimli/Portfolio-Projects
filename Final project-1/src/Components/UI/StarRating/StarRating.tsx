@@ -1,4 +1,4 @@
-import React, { startTransition, useState } from 'react'
+import  { useState } from 'react'
 import styles from './star_rating.module.scss'
 import { FC } from 'react'
 import { IoStar } from "react-icons/io5";

@@ -1,11 +1,10 @@
-import React from 'react'
+
 import styles from './hot_card.module.scss'
 import { FC } from 'react';
 import StarRating from '../StarRating/StarRating';
 import { FaRegHeart } from "react-icons/fa";
 import { CiShoppingCart } from "react-icons/ci";
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../Redux/Store';
+import { useDispatch} from 'react-redux';
 import { addToCart } from '../../../Redux/AddToCartSlice';
 import { IProduct } from '../../Common/Main/Main';
 import { Link } from 'react-router-dom';

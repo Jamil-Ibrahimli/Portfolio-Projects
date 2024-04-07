@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import styles from './footer.module.scss';
 import classNames from 'classnames';
 import { useLocation } from 'react-router';
 import { IoHomeOutline } from "react-icons/io5";
 import { PiPhoneCallLight } from "react-icons/pi";
 import { CiMail } from "react-icons/ci";
-import { FaAnglesRight, FaHeartPulse } from "react-icons/fa6";
+import { FaAnglesRight} from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaTiktok } from "react-icons/fa6";
@@ -17,7 +17,6 @@ const Footer = () => {
 
     const [footerActive, setFooterActive] = useState(false)
     const [footerActive2, setFooterActive2] = useState(false)
-    const [previousScroll, setPreviousScroll] = useState(0)
     const location = useLocation()
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -26,14 +25,14 @@ const Footer = () => {
             const windowHeight = window.innerHeight
             const currentScroll = window.scrollY
             const element = containerRef.current
-            const scrollHeight=document.documentElement.scrollHeight;
+            const scrollHeight = document.documentElement.scrollHeight;
             const bottomOfPage = currentScroll + windowHeight >= scrollHeight
 
             if (element) {
-                const { top, bottom } = element.getBoundingClientRect()
-               
-                if ((top <= windowHeight+200) &&
-                    (previousScroll-100 <= currentScroll) && location.pathname === '/') {
+                const {  bottom } = element.getBoundingClientRect()
+
+                if ((currentScroll>scrollHeight*0.65) &&
+                     (location.pathname === '/')) {
 
                     setFooterActive(true)
 
@@ -48,10 +47,7 @@ const Footer = () => {
                 else {
                     setFooterActive2(false)
                 }
-
             }
-
-            setPreviousScroll(currentScroll)
 
         }
 
@@ -59,8 +55,6 @@ const Footer = () => {
         return () => window.removeEventListener('scroll', handleFooterActive)
 
     }, [window.scrollY])
-
-
 
     return (
 
@@ -108,6 +102,7 @@ const Footer = () => {
                 </div>
 
             </div>
+
 
         </footer>
 

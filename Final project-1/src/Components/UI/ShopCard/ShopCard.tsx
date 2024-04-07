@@ -42,7 +42,7 @@ const ShopCard: FC<IShopCard> = ({ item, image, title, price, discountedPercent 
                 <StarRating item={item} />
                 <div className={styles.card_title}>
 
-                    <h4>{title.slice(0, 18)}</h4>
+                    <h4>{title.slice(0, 16)}</h4>
 
                 </div>
 

@@ -1,10 +1,10 @@
 import styles from './cart_page_item.module.scss'
 import { RiDeleteBin5Line } from "react-icons/ri";
-import React from 'react'
 import { FC } from 'react';
 import { IProduct } from '../../Common/Main/Main';
 import { useDispatch } from 'react-redux';
 import { incrementCount, decrementCount, removeItem } from '../../../Redux/AddToCartSlice';
+import ScrollUp from '../ScrollUp/ScrollUp';
 
 
 interface ICartPageItem {
@@ -59,6 +59,8 @@ const CartPageItem: FC<ICartPageItem> = ({ item }) => {
                     <p className={styles.item_subtotal}>${(item.count * (item.price)).toFixed(2)}</p>}
 
                 <button className={styles.item_delete} onClick={handleRemoveItem}><RiDeleteBin5Line /></button>
+
+<ScrollUp/>
 
             </div>
 

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Pagination, Autoplay, Navigation, Parallax } from 'swiper/modules';
+import { Pagination, Autoplay} from 'swiper/modules';
 import Card from '../../UI/TopCard/Card'
 import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
@@ -24,6 +24,8 @@ import {
 import { bannerSliders, logoSliders } from '../../../assets/images/Images_datas'
 import classNames from 'classnames';
 import { PiHandSwipeRightLight } from "react-icons/pi";
+import ScrollUp from '../../UI/ScrollUp/ScrollUp';
+
 
 export interface IHome {
 
@@ -41,8 +43,7 @@ const Home: FC<IHome> = ({ data }) => {
 
     );
 
-
-    const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+    const [ _ , setActiveSlideIndex] = useState(0)
     const [infoActive, setInfoActive] = useState({
 
         option0: false,
@@ -115,13 +116,13 @@ const Home: FC<IHome> = ({ data }) => {
         const handleAnnounceActive = () => {
             const element = containerRef.current
             const windowHeight = window.innerHeight
+
             if (element) {
                 const { top, bottom } = element?.getBoundingClientRect();
 
                 if ((bottom <= windowHeight) && (top >= 200)) {
                     setAnounceActive(true)
                 } else { setAnounceActive(false) }
-
             }
 
         }
@@ -141,7 +142,7 @@ const Home: FC<IHome> = ({ data }) => {
                     onSlideChange={handleSlideChange}
 
                     autoplay={{
-                        delay: 5000,
+                        delay: 10000,
                         disableOnInteraction: false,
                     }}
                     pagination={{
@@ -326,11 +327,7 @@ const Home: FC<IHome> = ({ data }) => {
 
                     </div>
                 </div>
-
-
-
-
-
+                <ScrollUp />
             </section>
 
         </>

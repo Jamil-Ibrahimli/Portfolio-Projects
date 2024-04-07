@@ -1,8 +1,8 @@
 .header {
     width: 100%;
     position: fixed;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.674);
+    z-index: 3;
+    background-color: rgb(255, 255, 255);
     border-radius: 0 0 10px 10px;
     top: 0;
     transition: 0.2s 0.2s;
@@ -10,7 +10,7 @@
     &_uppart {
 
         height: 2.5rem;
-        background-color: rgb(3, 90, 152);
+       background-color: #004DDA;
         display: flex;
         justify-content: space-between;
         padding: 1rem 5rem;
@@ -133,7 +133,6 @@
         padding: 0 5rem;
         position: sticky;
         top: 0;
-
 
         &_left {
 

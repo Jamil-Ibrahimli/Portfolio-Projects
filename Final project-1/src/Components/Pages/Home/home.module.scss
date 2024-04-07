@@ -9,10 +9,12 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+
 }
 
 .container {
-   scroll-behavior: smooth;
+    scroll-behavior: smooth;
+
     .mySwiper {
         width: 100%;
         display: flex;
@@ -101,7 +103,7 @@
 
                         margin-top: 1.3rem;
                         padding: 0.7rem 1rem;
-                        background-color: rgb(8, 75, 191);
+                        background-color: #004DDA;
                         border: none;
                         text-transform: capitalize;
                         color: white;
@@ -242,11 +244,11 @@
                     transition: 0.4s 0.1s;
                     opacity: 0;
                     padding: 0.7rem 1rem;
-                    background-color: rgb(4, 66, 174);
+                    background-color: #004DDA;
                     border: none;
                     text-transform: capitalize;
                     color: white;
-                    font-weight: 600;
+                    font-weight: 400;
                     border-radius: 5px;
                     font-size: 1.1rem;
                     filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
@@ -401,7 +403,7 @@
                     width: 8rem;
                     margin-top: 1.3rem;
                     padding: 0.7rem 1rem;
-                    background-color: rgb(8, 75, 191);
+                    background-color: #004DDA;
                     border: none;
                     text-transform: capitalize;
                     color: white;
@@ -518,7 +520,6 @@
                     height: 100%;
                     object-fit: cover;
                 }
-
             }
 
             &_items {
@@ -538,7 +539,6 @@
 
                 }
             }
-
         }
 
         .logos {
@@ -560,9 +560,35 @@
         }
     }
 
+    .scroll-up-icon {
+        font-size: 0.1rem;
+        border-radius: 50%;
+        display: grid;
+        position: fixed;
+        bottom: 8rem;
+        right: 2rem;
+        background-color: #000000d8;
+        place-items: center;
+        opacity: 0;
+        transition: 0.3s;
+        color: white;
+        padding: 0.8rem;
+        cursor: pointer;
+        z-index: 2;
+
+        &:hover {
+            transform: translate(0, -10%);
+
+            background-color: #004DDA;
+        }
+    }
+
+    .scroll-up-icon-active {
+        opacity: 1;
+        font-size: 5rem;
+    }
 
 }
-
 
 // --------------------Responcive for Mobile---------------
 
@@ -814,14 +840,14 @@
                         }
                     }
 
-
                 }
 
             }
         }
 
-
+       
     }
+   
 
 }
 
@@ -871,5 +897,6 @@
                 }
             }
         }
+    
     }
 }

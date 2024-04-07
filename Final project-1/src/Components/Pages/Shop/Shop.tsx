@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './shop.module.scss';
 import { IProduct } from '../../Common/Main/Main';
 import { FC } from 'react';
@@ -13,6 +13,7 @@ import {
 import { LiaFilterSolid } from "react-icons/lia";
 import { HiOutlineSortAscending } from "react-icons/hi";
 import classNames from 'classnames';
+import ScrollUp from '../../UI/ScrollUp/ScrollUp';
 
 export interface IShop {
 
@@ -245,7 +246,7 @@ const Shop: FC<IShop> = ({ data }) => {
 
             </div>
 
-
+<ScrollUp/>
 
         </div>
     )

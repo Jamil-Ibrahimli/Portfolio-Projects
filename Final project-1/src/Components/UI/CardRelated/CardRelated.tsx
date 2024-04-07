@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { IProduct } from '../../Common/Main/Main'
 import styles from './card_related.module.scss'
-import React, { FC } from 'react'
+import  { FC } from 'react'
 
 interface ICardRelated {
 
@@ -11,8 +11,7 @@ interface ICardRelated {
 
 
 const CardRelated: FC<ICardRelated> = ({ item }) => {
-    const discountedPrice = item.price - (item.price * (item.discountedPercent / 100))
-
+  
     return (
 
         <div className={styles.card}>

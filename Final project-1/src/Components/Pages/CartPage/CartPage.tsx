@@ -1,6 +1,6 @@
-import React from 'react'
+
 import styles from './cart_page.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { RootState } from '../../../Redux/Store'
 import CartPageItem from '../../UI/CartPageItem/CartPageItem'
 
@@ -9,8 +9,6 @@ import CartPageItem from '../../UI/CartPageItem/CartPageItem'
 const CartPage = () => {
 
     const cart = useSelector((state: RootState) => state.AddToCartReducer.cart)
-    const dispatch = useDispatch()
-
 
     return (
 

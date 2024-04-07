@@ -4,8 +4,8 @@
     padding: 3.5rem;
     width: 100%;
     z-index: -1;
-    position: sticky;
     
+
 
     &_container {
         padding: 0 2rem;
@@ -87,7 +87,13 @@
                             border: none;
                             font-size: 1.1rem;
                             padding: 0.8rem;
+                            cursor: pointer;
+                            transition: 0.2s;
 
+                            &:hover {
+                                background-color: #ffffff;
+                                color: #004DDA;
+                            }
                         }
                     }
                 }
@@ -158,13 +164,15 @@
 
         }
     }
+
 }
 
 .footer-active {
 
-    
+    position: sticky;
+
     bottom: 0;
-  
+
 }
 
 .footer-active2 {
