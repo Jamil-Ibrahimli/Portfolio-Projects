@@ -20,7 +20,7 @@ const StarRating: FC<IStarRating> = ({ item }) => {
 
         <>
 
-            <div className={styles.rating}>{[...Array(5)].map((star, index) => {
+            <div className={styles.rating}>{[...Array(5)].map((_, index) => {
 
                 const currentRate = index + 1
 

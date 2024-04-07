@@ -17,20 +17,18 @@
     &:hover {
         transform: translate(0, -20%);
 
-        background-color: #004DDA;
     }
 }
 
 .scroll-up-icon-active {
     opacity: 1;
-    font-size: 4rem;
+    font-size: 5rem;
 }
 
-
-
 .scroll-up-icon-active2 {
-    background-color: #004DDA;
+    background-color: #004cdae9;
     bottom: 8rem;
+    font-size: 6rem;
 }
 
 // --------------------Responcive for Mobile---------------
@@ -40,7 +38,13 @@
     .scroll-up-icon-active {
         opacity: 1;
         padding: 3rem;
-        font-size: 15rem;
+        font-size: 20rem;
         background-color: #000000e0;
+    }
+
+    .scroll-up-icon-active2 {
+        background-color: #004cdade;
+        bottom: 24rem;
+        font-size: 24rem;
     }
 }

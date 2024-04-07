@@ -7,7 +7,7 @@ import axios from 'axios'
 import { DataContext } from '../../Context/DataContext';
 import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 import CartPage from '../../Pages/CartPage/CartPage';
-
+import styles from './main.module.scss'
 
 export interface IProduct {
 

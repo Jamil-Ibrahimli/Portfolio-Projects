@@ -2,16 +2,19 @@
 
 .container {
   margin-bottom: 10rem;
+  width: 100%;
 
   .banner {
+    width: 100%;
     height: 20rem;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.717),
-        rgba(0, 0, 0, 0.167)), url('src/assets/images/women_collection.png');
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right;
 
+    }
   }
 
   .categories {
@@ -182,7 +185,6 @@
 @media screen and (max-width:768px) {
 
   .container {
-    width: 215%;
 
     .banner {
       margin-top: 20rem;
@@ -195,7 +197,7 @@
       height: 10rem;
       justify-content: space-around;
       align-items: center;
-
+    
       p {
         display: none;
       }
@@ -225,7 +227,7 @@
 
     .products {
       &_container {
-        padding: 1rem;
+        padding: 5rem;
 
         &_cards {
           grid-template-columns: repeat(2, 1fr);

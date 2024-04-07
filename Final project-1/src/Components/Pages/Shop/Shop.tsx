@@ -14,7 +14,7 @@ import { LiaFilterSolid } from "react-icons/lia";
 import { HiOutlineSortAscending } from "react-icons/hi";
 import classNames from 'classnames';
 import ScrollUp from '../../UI/ScrollUp/ScrollUp';
-
+import womenBanner from '../../../assets/images/women_collection.png';
 export interface IShop {
 
     data: IProduct[];
@@ -152,6 +152,7 @@ const Shop: FC<IShop> = ({ data }) => {
         <div className={styles.container} >
 
             <div className={styles.banner}>
+                <img src={womenBanner} alt="womenBanner" />
             </div>
             <div className={styles.categories}>
                 <div className={styles.sorting} ><div className={classNames(styles['sorting-board'],

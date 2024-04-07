@@ -18,7 +18,7 @@ function App() {
       <Router>
         <DataContext.Provider value={{ data, setData }}>
           <Header />
-          <Main />
+          <Main/>
           <Footer />
         </DataContext.Provider>
       </Router>

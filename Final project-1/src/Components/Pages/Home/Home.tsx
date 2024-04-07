@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Pagination, Autoplay} from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import Card from '../../UI/TopCard/Card'
 import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
@@ -25,7 +25,7 @@ import { bannerSliders, logoSliders } from '../../../assets/images/Images_datas'
 import classNames from 'classnames';
 import { PiHandSwipeRightLight } from "react-icons/pi";
 import ScrollUp from '../../UI/ScrollUp/ScrollUp';
-
+import Background from '../../../assets/images/Main.jpg'
 
 export interface IHome {
 
@@ -43,7 +43,7 @@ const Home: FC<IHome> = ({ data }) => {
 
     );
 
-    const [ _ , setActiveSlideIndex] = useState(0)
+    const [_, setActiveSlideIndex] = useState(0)
     const [infoActive, setInfoActive] = useState({
 
         option0: false,
@@ -51,6 +51,7 @@ const Home: FC<IHome> = ({ data }) => {
         option2: false
 
     })
+    
     const [anounceActive, setAnounceActive] = useState(false)
 
     const handleSlideChange = (swiper: any) => {
@@ -134,15 +135,18 @@ const Home: FC<IHome> = ({ data }) => {
 
     return (
         <>
-            <div className={styles.background}></div>
-            <section className={styles.container}>
 
+            <section className={styles.container}>
+                <div className={styles.background}>
+                    <img src={Background} alt="background_image" />
+
+                </div>
                 <Swiper
 
                     onSlideChange={handleSlideChange}
 
                     autoplay={{
-                        delay: 10000,
+                        delay: 8000,
                         disableOnInteraction: false,
                     }}
                     pagination={{
@@ -278,9 +282,9 @@ const Home: FC<IHome> = ({ data }) => {
 
                         <div className={styles['top-products_container_swiper']}>
                             <Swiper
-
+                                
                                 autoplay={{
-                                    delay: 3000,
+                                    delay: 2000,
                                     disableOnInteraction: false,
                                 }}
 
@@ -306,8 +310,8 @@ const Home: FC<IHome> = ({ data }) => {
                     <div className={styles.logos}>
 
                         <Swiper
-                            speed={700}
-                            spaceBetween={100}
+
+                            spaceBetween={50}
                             autoplay={{
                                 delay: 1500,
                                 disableOnInteraction: false,

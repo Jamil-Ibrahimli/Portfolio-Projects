@@ -5,17 +5,18 @@
     font-family: "Roboto", sans-serif;
     list-style: none;
     text-decoration: none;
+    
 }
 
 
-@media (min-width:1400px){
+@media screen and  (min-width:1400px){
 body,html{
     font-size: 18px;
 }
 
 }
 
-@media (max-width:1200px) {
+@media screen and  (max-width:1200px) {
 
     body,
     html {
@@ -26,7 +27,7 @@ body,html{
 }
 
 
-@media (max-width:992px) {
+@media screen and  (max-width:992px) {
 
     body,
     html {
@@ -37,12 +38,12 @@ body,html{
 }
 
 
-@media (max-width:556px) {
+@media screen and  (max-width:556px) {
 
     body,
     html {
 
-        font-size: 8px;
+        font-size: 3px;
     }
 
 }

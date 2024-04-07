@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './scroll_up.module.scss';
 import classNames from 'classnames';
 import { FaChevronUp } from "react-icons/fa";
@@ -26,8 +26,7 @@ const ScrollUp = () => {
                 }
                 else { setScrollPosBottom(false) }
             }
-
-            else { setScrollPos(false) }
+            else { setScrollPos(false)}
 
         }
 
@@ -39,7 +38,7 @@ const ScrollUp = () => {
     const handleScrollTop = () => {
 
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-
+        setScrollPosBottom(true)
     }
 
     console.log(scrollPos)

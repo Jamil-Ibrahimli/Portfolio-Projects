@@ -10,7 +10,7 @@
     &_uppart {
 
         height: 2.5rem;
-       background-color: #004DDA;
+        background-color: #004DDA;
         display: flex;
         justify-content: space-between;
         padding: 1rem 5rem;
@@ -79,7 +79,7 @@
                         .navlink-active {
                             letter-spacing: 3px;
                             color: rgb(255, 255, 255);
-                        
+
 
                             &::after {
                                 content: "";
@@ -511,10 +511,13 @@
 // --------Responcive Started For Mobile--------------------
 
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:556px) {
+
+
     .header {
         z-index: 2;
         border-radius: 0 0 2.5rem 2.5rem;
+        width: 100%;
 
         &_uppart {
             height: 15rem;
@@ -525,7 +528,7 @@
                 }
 
                 .burger-menu {
-                    font-size: 8rem;
+                    font-size: 10rem;
                     color: rgb(255, 255, 255);
                     display: block;
 
@@ -540,7 +543,7 @@
                     font-family: "Caveat", cursive;
                     transform: rotate(-5deg);
                     cursor: pointer;
-                    font-size: 5rem;
+                    font-size: 7rem;
                     filter: drop-shadow(2px 2px 3px black);
                     text-transform: capitalize;
                 }
@@ -564,7 +567,7 @@
                 span {
                     .call {
                         display: block;
-                        font-size: 5rem;
+                        font-size: 7rem;
                         color: white;
                     }
                 }
@@ -572,7 +575,7 @@
         }
 
         &_downpart {
-            height: 12rem;
+            height: 15rem;
 
             &_left {
                 .burger-menu {
@@ -581,7 +584,7 @@
                 }
 
                 p {
-                    font-size: 4rem;
+                    font-size: 5rem;
 
                 }
             }
@@ -595,30 +598,32 @@
             }
 
             &_right {
+                gap: 5rem;
+
                 .search_mobile {
-                    font-size: 7rem;
+                    font-size: 10rem;
                     display: block;
 
-                    &:active {
+                    &:hover {
                         color: red;
                     }
                 }
 
                 .avatar {
-                    font-size: 7rem;
+                    font-size: 10rem;
 
                 }
 
                 .wishlist {
-                    font-size: 7rem;
+                    font-size: 10rem;
                 }
 
                 .cart_icon {
-                    font-size: 7rem;
+                    font-size: 10rem;
                 }
 
                 .cart_counter {
-                    font-size: 3rem;
+                    font-size: 5rem;
                 }
             }
         }
@@ -635,20 +640,21 @@
 
             &_heading {
                 height: 15rem;
-                box-shadow: 3px 3px 35px rgb(41, 41, 41);
                 background-color: #d4d5d8;
                 display: flex;
-                justify-content: space-between;
+                justify-content: end;
                 align-items: center;
+                padding: 2rem;
 
                 p {
                     font-size: 8rem;
                     text-transform: capitalize;
-
+                    ;
                 }
 
                 &_close {
-                    font-size: 5rem;
+                    font-size: 8rem;
+                    margin-left: 30%;
 
                 }
             }
@@ -693,13 +699,14 @@
 
             &_heading {
                 height: 15rem;
+                padding: 2rem;
 
                 .total {
                     font-size: 5rem;
                 }
 
                 .cart {
-                    font-size: 5rem;
+                    font-size: 8rem;
                 }
             }
 
@@ -745,11 +752,11 @@
 
             &_heading {
                 display: flex;
-                justify-content: space-between;
+                justify-content: end;
                 height: 15rem;
                 background-color: #035A98;
                 align-items: center;
-                padding: 0.5rem;
+                padding: 2rem;
 
                 h2 {
                     text-transform: capitalize;
@@ -762,9 +769,10 @@
                 }
 
                 .close {
-                    font-size: 7rem;
+                    font-size: 8rem;
                     color: white;
                     transition: 0.1s;
+                    margin-left: 30%;
 
                     &:hover {
                         transform: rotate(-25deg);
