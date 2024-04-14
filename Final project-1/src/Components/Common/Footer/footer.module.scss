@@ -1,5 +1,5 @@
 .footer {
-    background-color: #172134;
+    background-color: var(--primary-color);
     height: 25rem;
     padding: 3.5rem;
     width: 100%;
@@ -15,10 +15,18 @@
             padding-bottom: 2rem;
 
             .nav {
+
                 h3 {
+
                     text-transform: uppercase;
                     font-size: 1rem;
                     color: white;
+
+                    .arrow-icon {
+                        display: none;
+                    }
+
+
                 }
 
                 &_list {
@@ -41,11 +49,8 @@
 
                         }
                     }
-
                 }
             }
-
-
 
             .right {
 
@@ -54,6 +59,11 @@
                     font-size: 1rem;
                     color: white;
                     margin-bottom: 1rem;
+
+                    .arrow-icon {
+                        display: none;
+                    }
+
                 }
 
                 &_search {
@@ -65,27 +75,30 @@
                         display: flex;
                         align-items: center;
 
-
                         input {
+
                             width: 15rem;
                             height: 100%;
-                            background-color: #232C3E;
+                            background-color: #0e1013;
                             border: none;
                             outline: none;
                             padding: 1rem;
                             color: white;
+                            font-size: 1.1rem;
+                            font-weight: 300;
 
                         }
 
                         input::placeholder {
-                            font-size: 1.05rem;
-                            font-weight: 300;
+                            font-size: 1.1rem;
+                            font-weight: 400;
                         }
 
                         button {
+
                             width: 2.7em;
                             height: 100%;
-                            background-color: #004DDA;
+                            background-color: var(--secondary-color);
                             color: white;
                             border: none;
                             font-size: 1.1rem;
@@ -95,8 +108,9 @@
                             transition: 0.2s;
 
                             &:hover {
-                                background-color: #ffc506;
-                                color: #000000;
+                                background-color: var(--fourth-color);
+                                color: var(--secondary-color);
+
                             }
                         }
                     }
@@ -110,6 +124,7 @@
                             color: white;
                             margin-bottom: 1rem;
                             font-weight: 400;
+
                         }
 
                         &_icons {
@@ -124,13 +139,11 @@
                         }
                     }
                 }
-
-
-
             }
         }
 
         &_downpart {
+
             display: flex;
             justify-content: space-between;
             padding: 1rem 0;
@@ -146,10 +159,10 @@
             }
 
             &_copyright {
+
                 height: 3rem;
                 align-items: end;
                 display: flex;
-
 
                 p {
                     font-size: 1rem;
@@ -166,21 +179,14 @@
                     border-left: 1px solid whitesmoke;
                     padding-left: 0.5rem;
                 }
-
             }
-
-
         }
     }
-
 }
 
 .footer-active {
-
     position: sticky;
-
     bottom: 0;
-
 }
 
 .footer-active2 {
@@ -189,7 +195,7 @@
 
 // Responcive started for Mobile
 
-@media screen and (max-width:556px) {
+@media screen and (max-width:768px) {
 
     .footer {
         width: 100%;
@@ -215,13 +221,26 @@
                         padding: 3rem 5rem;
                         font-size: 5rem;
                         width: 100%;
+
+                        .arrow-icon {
+                            display: block;
+                            transition: 0.3s ease-in;
+                            font-size: 8rem;
+                        }
+
+                        .arrow-icon-active {
+
+                            transform: rotate(-180deg);
+                        }
+
+
                     }
 
                     &_list {
                         height: 0;
                         overflow: hidden;
                         padding: 0 5rem;
-                        transition: 0.3s;
+                        transition: 0.5s ease-out;
                         border-bottom: 1px solid rgba(195, 194, 194, 0.8);
 
                         li {
@@ -232,17 +251,11 @@
                             .icon {
                                 font-size: 7rem;
                             }
-
-
                         }
-
-
                     }
 
                     .list-active {
                         height: 50rem;
-
-
                     }
                 }
 
@@ -251,14 +264,27 @@
                     padding: 0 5rem;
 
                     h3 {
+
                         display: flex;
                         justify-content: space-between;
                         font-size: 5rem;
                         margin: 2rem 0;
 
+                        .arrow-icon {
+                            display: block;
+                            transition: 0.3s ease-in;
+                            font-size: 8rem;
+                        }
+
+                        .arrow-icon-active {
+
+                            transform: rotate(-180deg);
+                        }
+
                     }
 
                     &_search {
+
                         width: 100%;
                         margin: 2rem 0;
                         height: 0;
@@ -266,6 +292,7 @@
                         transition: 0.3s;
 
                         &_searcher {
+                            margin-top: 5rem;
                             width: 100%;
                             height: 15rem;
 
@@ -295,10 +322,10 @@
 
                             h3 {
                                 font-size: 5rem;
-
                             }
 
                             &_icons {
+
                                 gap: 2rem;
                                 margin: 2rem 0;
 
@@ -308,25 +335,21 @@
                                 }
                             }
                         }
-
                     }
 
                     .list-right-active {
                         height: 40rem;
 
-
                     }
-
-
-
-
                 }
             }
 
             &_downpart {
+
                 flex-direction: column;
 
                 &_icons {
+                    margin-bottom: 15rem;
                     display: flex;
                     padding: 0 5rem;
 
@@ -354,20 +377,14 @@
 
                     p:first-Child {
                         margin: 1rem;
-
                     }
 
                     p:last-child {
                         border-left: none;
                         padding-left: 0.5rem;
                     }
-
                 }
-
-
-
             }
         }
     }
-
 }

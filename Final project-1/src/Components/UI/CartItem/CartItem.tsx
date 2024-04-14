@@ -1,7 +1,7 @@
 
 import styles from './cart_item.module.scss'
 import { IProduct } from '../../Common/Main/Main';
-import { FC } from 'react'
+import { FC, MouseEvent} from 'react'
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { removeItem, incrementCount, decrementCount } from '../../../Redux/AddToCartSlice';
 import { useDispatch } from 'react-redux';
@@ -20,6 +20,12 @@ const CartItem: FC<ICartItem> = ({ item }) => {
     let discountedPrice = item.price - item.price * (item.discountedPercent / 100)
     const dispatch = useDispatch()
 
+const handleRemoveItem=(event:MouseEvent)=>{
+
+
+    dispatch(removeItem(item))
+    event.stopPropagation()
+}
 
     return (
         <>
@@ -35,7 +41,7 @@ const CartItem: FC<ICartItem> = ({ item }) => {
                 </div>
                 <div className={styles['cart-item_left']}>
                     <button className={styles.delete}>
-                        <RiDeleteBin5Line onClick={() => dispatch(removeItem(item))} /></button>
+                        <RiDeleteBin5Line onClick={handleRemoveItem} /></button>
 
                     {item.discountedPercent ?
                         <>

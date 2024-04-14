@@ -13,7 +13,6 @@ import {
 import { LiaFilterSolid } from "react-icons/lia";
 import { HiOutlineSortAscending } from "react-icons/hi";
 import classNames from 'classnames';
-import ScrollUp from '../../UI/ScrollUp/ScrollUp';
 import womenBanner from '../../../assets/images/women_collection.png';
 export interface IShop {
 
@@ -243,11 +242,7 @@ const Shop: FC<IShop> = ({ data }) => {
 
                     </div>
                 </div>
-
-
             </div>
-
-<ScrollUp/>
 
         </div>
     )

@@ -3,16 +3,16 @@
     border-radius: 50%;
     display: grid;
     position: fixed;
-    bottom: 3rem;
-    right: 2rem;
-    background-color: #000000d8;
+    bottom: 1rem;
+    right: 0.5rem;
+    background-color: var(--secondary-color);
     place-items: center;
     opacity: 0;
     transition: 0.3s;
     color: white;
     padding: 0.5rem;
     cursor: pointer;
-    z-index: 2;
+    z-index: 1;
 
     &:hover {
         transform: translate(0, -20%);
@@ -21,14 +21,19 @@
 }
 
 .scroll-up-icon-active {
+    background-color: var(--secondary-color);
     opacity: 1;
-    font-size: 5rem;
+    font-size: 3.5rem;
+   
 }
 
 .scroll-up-icon-active2 {
-    background-color: #004cdae9;
-    bottom: 8rem;
-    font-size: 6rem;
+    bottom: 7rem;
+    font-size: 5rem;
+    color: var(--secondary-color);
+    background-color: var(--fourth-color);
+   
+
 }
 
 // --------------------Responcive for Mobile---------------
@@ -36,15 +41,16 @@
 @media (max-width:768px) {
 
     .scroll-up-icon-active {
-        opacity: 1;
+        opacity: 0.9;
         padding: 3rem;
         font-size: 20rem;
-        background-color: #000000e0;
+     
+
     }
 
     .scroll-up-icon-active2 {
-        background-color: #004cdade;
-        bottom: 24rem;
-        font-size: 24rem;
+        opacity: 0.9;
+        font-size: 22rem;
+        bottom: 25rem;
     }
 }

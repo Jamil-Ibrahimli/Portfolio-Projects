@@ -1,29 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+.background {
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    position: fixed;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: bottom;
+    }
+}
 
 .container {
     scroll-behavior: smooth;
     width: 100%;
 
-    .background {
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        position: fixed;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: bottom;
-        }
-    }
-
     .mySwiper {
         width: 100%;
         height: 40rem;
         display: flex;
-
         background-color: white;
         position: relative;
 
@@ -34,12 +33,12 @@
             border-radius: .5rem;
             opacity: 1;
             background-color: white;
-            
+
 
         }
 
         :global(.swiper-pagination-bullet-active) {
-            background-color: rgb(6, 115, 170);
+            background-color: var(--secondary-color);
             height: 1rem;
             width: 1rem;
             border-radius: .5rem;
@@ -94,21 +93,21 @@
 
                         transform: translate(0);
                         opacity: 1;
+
                     }
 
                     &_text-active {
 
                         transform: translate(0);
                         opacity: 1;
+
                     }
 
 
                     &_button {
-
-
                         margin-top: 1.3rem;
                         padding: 0.7rem 1rem;
-                        background-color: #004DDA;
+                        background-color: var(--secondary-color);
                         border: none;
                         text-transform: capitalize;
                         color: white;
@@ -116,10 +115,15 @@
                         font-size: 1.1rem;
                         cursor: pointer;
                         transform: translate(10%);
-                        transition: 0.3s 0.7s;
+                        transition: background-color 0.2s, filter 0.2s, opacity 0.3s 0.7s;
                         opacity: 0;
                         filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
-                        cursor: pointer
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: var(--fivth-color);
+                            filter: drop-shadow(1px 1px 5px rgba(134, 134, 134, 0.735));
+                        }
                     }
 
                     &_button-active {
@@ -127,7 +131,6 @@
                         transform: translate(0);
                     }
                 }
-
 
                 .info0 {
                     position: absolute;
@@ -143,7 +146,6 @@
                     text-align: end;
 
                 }
-
 
                 .info2 {
                     position: absolute;
@@ -186,14 +188,15 @@
                 object-fit: cover;
                 cursor: pointer;
 
-                &:active {
-                    cursor: grab;
-                }
             }
         }
 
         .swipe-icon {
             display: none;
+        }
+
+        &:active {
+            cursor: grab;
         }
     }
 
@@ -210,14 +213,13 @@
             width: 100%;
             height: 17rem;
             overflow: hidden;
-            cursor: pointer;
             position: relative;
 
 
             img {
                 width: 100%;
                 height: 100%;
-                transition: 0.4s 0.1s;
+                transition: 0.3s;
                 transform: scale(1.1);
                 object-fit: cover;
                 object-position: bottom;
@@ -246,10 +248,10 @@
                     bottom: 2rem;
                     left: 50%;
                     transform: translate(-50%, 0);
-                    transition: 0.4s 0.1s;
+                    transition: 0.2s;
                     opacity: 0;
                     padding: 0.7rem 1rem;
-                    background-color: #004DDA;
+                    background-color: var(--secondary-color);
                     border: none;
                     text-transform: capitalize;
                     color: white;
@@ -258,30 +260,31 @@
                     font-size: 1.1rem;
                     filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                     cursor: pointer;
+
+                    &:hover {
+                        background-color: var(--fivth-color);
+                        filter: drop-shadow(1px 1px 5px rgba(134, 134, 134, 0.735));
+
+                    }
                 }
 
                 &:hover+img {
 
                     transform: scale(1);
-
                 }
+
 
                 &:hover button {
                     opacity: 1;
-
                     transform: translate(-50%, -50%);
+
                 }
-
             }
-
-
         }
-
     }
 
     .discounted-products {
-
-        background-color: white;
+        background-color: var(--third-color);
         padding: 5rem 5rem 2rem;
 
         &_container {
@@ -290,19 +293,22 @@
             justify-content: center;
 
             &_heading {
+                height: 6rem;
                 text-align: center;
+                margin-bottom: 2rem 0 2rem;
 
                 h2 {
-                    text-transform: uppercase;
-                    font-size: 2rem;
-                    font-weight: 600;
-                    font-family: sans-serif;
+                    text-transform: capitalize;
+                    font-size: 3rem;
+                    font-weight: 400;
+                    font-family: "Ubuntu", sans-serif;
 
                 }
 
                 p {
-                    font-size: 1.5rem;
+                    font-size: 2rem;
                     font-weight: 300;
+                    font-family: "Ubuntu", sans-serif;
                 }
             }
 
@@ -321,7 +327,7 @@
 
     .discount-announcement {
         width: 100%;
-        height: 25rem;
+        height: 30rem;
         background-color: rgba(0, 0, 0, 0.497);
         position: relative;
 
@@ -408,7 +414,7 @@
                     width: 8rem;
                     margin-top: 1.3rem;
                     padding: 0.7rem 1rem;
-                    background-color: #004DDA;
+                    background-color: var(--secondary-color);
                     border: none;
                     text-transform: capitalize;
                     color: white;
@@ -417,9 +423,11 @@
                     cursor: pointer;
                     filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                     cursor: pointer;
+                    transition: 0.2s;
 
                     &:hover {
-                        filter: drop-shadow(3px 3px 5px rgba(54, 54, 54, 0.668));
+                        filter: drop-shadow(1px 1px 5px rgba(134, 134, 134, 0.735));
+                        background-color: var(--fivth-color);
                     }
                 }
 
@@ -432,52 +440,48 @@
                 opacity: 1;
 
             }
-
-
         }
-
     }
 
     .top-products {
-        background-color: white;
-        padding: 3rem 5rem 3rem;
+        background-color: var(--third-color);
+        padding: 6rem 5rem 2rem;
 
         &_heading {
             height: 6rem;
             text-align: center;
-            padding-left: 5rem;
+            margin-bottom: 3rem;
 
             h2 {
-                text-transform: uppercase;
-                font-size: 2rem;
-                font-weight: 600;
-                font-family: sans-serif;
+                text-transform: capitalize;
+                font-size: 3rem;
+                font-weight: 400;
+                font-family: "Ubuntu", sans-serif;
 
             }
 
             p {
-                font-size: 1.5rem;
+                font-size: 2rem;
                 font-weight: 300;
-
+                font-family: "Ubuntu", sans-serif;
             }
         }
 
         &_container {
-
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 1rem;
             position: relative;
 
             &_discounted-image {
                 background-color: white;
                 width: 30rem;
-                height: 55rem;
+                height: 50rem;
                 position: relative;
 
                 .discount-img-cover {
                     width: 100%;
-                    height: 55rem;
+                    height: 50rem;
                     position: absolute;
                     background: linear-gradient(to right, rgba(2, 2, 2, 0.55) 30%,
                             rgba(0, 0, 0, 0.115)90%);
@@ -513,9 +517,14 @@
                         font-weight: 500;
                         border: none;
                         border-radius: 5px;
-                        background-color: #0242ba;
+                        background-color: var(--secondary-color);
                         filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.668));
                         cursor: pointer;
+
+                        &:hover {
+                            background-color: var(--fivth-color);
+                            filter: drop-shadow(1px 1px 5px rgba(134, 134, 134, 0.735));
+                        }
                     }
 
                 }
@@ -540,15 +549,13 @@
 
                 .products {
                     display: flex;
-
-
                 }
             }
         }
 
         .logos {
             padding: 4rem 0 0;
-            background-color: rgb(255, 255, 255);
+            background-color: var(--third-color);
 
             &_mySwiper {
                 text-align: center;
@@ -565,32 +572,9 @@
         }
     }
 
-    .scroll-up-icon {
-        font-size: 0.1rem;
-        border-radius: 50%;
-        display: grid;
-        position: fixed;
-        bottom: 8rem;
-        right: 2rem;
-        background-color: #000000d8;
-        place-items: center;
-        opacity: 0;
-        transition: 0.3s;
-        color: white;
-        padding: 0.8rem;
-        cursor: pointer;
-        z-index: 2;
+    .toast-success {
+        background-color: #fa0101;
 
-        &:hover {
-            transform: translate(0, -10%);
-
-            background-color: #004DDA;
-        }
-    }
-
-    .scroll-up-icon-active {
-        opacity: 1;
-        font-size: 5rem;
     }
 
 }
@@ -603,7 +587,7 @@
         margin-top: 8.5rem;
 
         .mySwiper {
-              height: 160rem;
+            height: 160rem;
 
             :global(.swiper-pagination-bullet) {
 
@@ -641,8 +625,8 @@
 
                 &_button {
 
-                    font-size: 4rem;
-                    padding: 3rem 3rem;
+                    font-size: 5rem;
+                    padding: 5rem 5rem;
                     font-weight: 400;
 
                 }
@@ -681,8 +665,8 @@
             }
         }
 
-
         .collections {
+
             margin-top: 1px;
             flex-direction: column;
             gap: 1px;
@@ -703,9 +687,11 @@
                 }
 
                 button {
-                    font-size: 4rem;
-                    padding: 3rem 3rem;
+                    font-size: 5rem;
+                    padding: 5rem 5rem;
                     font-weight: 400;
+                    opacity: 1;
+                    transform: translate(-50%, -50%);
                 }
 
             }
@@ -714,14 +700,19 @@
 
         .discounted-products {
             &_container {
+                margin-top: 10rem;
+
                 &_heading {
+                    height: 15rem;
+                    margin-bottom: 8rem;
+
                     h2 {
-                        font-size: 5rem;
+                        font-size: 10rem;
                     }
 
                     p {
-                        font-size: 4.5rem;
-                        font-weight: 500;
+                        font-size: 6rem;
+                        font-weight: 400;
                     }
                 }
 
@@ -779,67 +770,71 @@
 
         .top-products {
 
-            padding: 5rem 0 0;
-
             &_heading {
-                height: 15rem;
-
-                p {
-                    font-size: 4.5rem;
-                    font-weight: 500;
-                }
+                height: 20rem;
+                padding: 5em 0 5rem;
+                margin-bottom: 8rem;
 
                 h2 {
-                    font-size: 5rem;
+                    font-size: 10rem;
+                }
+
+                p {
+                    font-size: 6rem;
+                    font-weight: 400;
                 }
             }
 
             &_container {
 
                 &_discounted-image {
-
                     width: 50%;
-                    height: 80rem;
+                    height: 150rem;
                 }
 
                 .discount-img-cover {
-                    height: 80rem;
+                    height: 150rem;
+                    padding-bottom: 0;
 
                     p {
-                        font-size: 8rem;
+                        font-size: 15rem;
+
                     }
 
                     span {
-                        font-size: 5rem;
+                        font-size: 10rem;
+
                     }
 
                     button {
-                        font-size: 4rem;
-                        padding: 3rem 3rem;
-                        font-weight: 400;
-
+                        font-size: 6rem;
+                        padding: 5rem 6rem;
+                        font-weight: 500;
+                        text-transform: capitalize;
                     }
+                }
+
+                &_swiper {
+                    align-self: center;
+                    width: 50%;
+                    display: block;
+
                 }
 
                 &_items {
                     display: none;
                 }
 
-                &_swiper {
-                    padding: 0 3rem;
-                    width: 50%;
-                    display: block;
 
-                }
             }
 
             .logos {
-                padding: 5rem 0;
+                padding: 10rem 0 0;
 
                 &_mySwiper {
                     &_image {
                         img {
-                            height: 15rem;
+                            height: 20rem;
                         }
                     }
 
@@ -860,36 +855,38 @@
     .container {
 
         .top-products {
-            padding-top: 10rem;
+            padding: 10rem 0;
 
             &_container {
-                padding-top: 5rem;
+                padding-top: 5rem 0;
                 flex-direction: column-reverse;
                 row-gap: 8rem;
 
 
                 &_discounted-image {
-
                     width: 100%;
-                    height: 120rem;
+                    height: 170rem;
                 }
 
                 .discount-img-cover {
-                    height: 120rem;
+                    height: 170rem;
 
                     p {
-                        font-size: 12rem;
+                        font-size: 15rem;
+
                     }
 
                     span {
-                        font-size: 8rem;
+                        font-size: 10rem;
+
                     }
 
                     button {
-                        font-size: 5rem;
-                        padding: 4rem 4rem;
+                        font-size: 6rem;
+                        padding: 5rem 6rem;
                         font-weight: 500;
                         text-transform: capitalize;
+                        margin-bottom: 15rem;
                     }
                 }
 

@@ -1,10 +1,7 @@
-import { KeyboardEvent, useContext, useEffect, useState } from 'react'
+import { KeyboardEvent, useContext, useEffect, useRef, useState } from 'react'
 import styles from './header.module.scss'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GoSearch } from "react-icons/go";
-import { RxAvatar } from "react-icons/rx";
-import { FaRegHeart } from "react-icons/fa";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
 import classNames from 'classnames';
 import CartItem from '../../UI/CartItem/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +16,11 @@ import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { DataContext } from '../../Context/DataContext';
 import searchingImage from '../../../assets/images/CartEmpty.png'
 import { FaPhoneVolume } from "react-icons/fa6";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { IoBagHandleOutline } from "react-icons/io5";
+import { BsPerson } from "react-icons/bs";
+import webLogo from '../../../assets/images/webLogo.png'
+import { MdOutlineCategory } from "react-icons/md";
 
 
 const Header = () => {
@@ -36,7 +38,7 @@ const Header = () => {
         option1: false,
         option2: false,
         option3: false,
-        option4: false
+        option4: false,
 
     });
 
@@ -44,8 +46,8 @@ const Header = () => {
     const location = useLocation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-
+    const cartElementRef = useRef<HTMLDivElement>(null)
+    const cartButtonRef = useRef<HTMLDivElement>(null)
 
     const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
 
@@ -83,36 +85,18 @@ const Header = () => {
             setActivelink((prev: any) => ({ ...prev, option3: false }))
 
         }
+        if (location.pathname === '/about') {
+
+            setActivelink((prev: any) => ({ ...prev, option4: true }))
+
+        }
+        else {
+            setActivelink((prev: any) => ({ ...prev, option4: false }))
+
+        }
+
 
     }, [location.pathname])
-
-
-
-    // const handleActiveLink = (option: string) => {
-
-    //     setActivelink((prev: any) =>
-
-    //         ({ [option]: !prev[option] })
-
-    //     )
-
-    //     setActivelink((prev: any) => {
-
-    //         for (const key in prev) {
-    //             if (key !== option) {
-
-    //                 prev[key] = false
-
-    //             }
-    //         }
-
-    //         return prev
-    //     })
-
-    //     dispatch(filteredAll(newData))
-    // }
-
-
 
     useEffect(() => {
 
@@ -138,6 +122,21 @@ const Header = () => {
     }, [previusScroll])
 
 
+    useEffect(() => {
+
+        const handleClickOutside = (event: MouseEvent) => {
+            if ((!cartButtonRef.current?.contains(event.target as Node)
+                && !cartElementRef.current?.contains(event.target as Node))) {
+
+                setCart(false)
+
+            }
+        }
+
+        document.addEventListener('click', handleClickOutside)
+        return () => { document.removeEventListener('click', handleClickOutside) }
+
+    }, [])
 
 
     const totalCount = cart.reduce((acc, curr) => acc + curr.count, 0)
@@ -163,8 +162,16 @@ const Header = () => {
     const handleActiveCategories = () => {
 
         setCategories(prev => !prev)
+        setCart(true)
+        setNavMobile(false)
+    }
+
+    const handleNewPage = () => {
+
         setCart(false)
-setNavMobile(false)
+        setNavMobile(false)
+        setCategories(false)
+
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -197,17 +204,18 @@ setNavMobile(false)
 
     return (
 
-        <header className={classNames(styles.header, { [styles['header-active']]: scrolling })} >
+        <header className={classNames(styles.header, { [styles['header-active']]: scrolling })}  >
             <div className={styles.header_uppart}>
-                <div className={styles.header_uppart_left} >  <RxHamburgerMenu className={styles['burger-menu']} onClick={handleNavMobile} /><h2 onClick={() => navigate('/')}>Trend-Look</h2></div>
+                <div className={styles.header_uppart_left} >  <RxHamburgerMenu className={styles['burger-menu']} onClick={handleNavMobile} />
+                    <img src={webLogo} alt="site_logo" onClick={() => navigate('/')} /></div>
                 <div className={styles.header_uppart_center}>
-                    <h2 onClick={() => navigate('/')}>Trend-Look</h2>
+                    <img src={webLogo} alt="site_logo" onClick={() => navigate('/')} />
                     <nav className={styles.header_uppart_center_nav}>
-                        <ul className={styles.header_uppart_center_nav_ul}>
-                            <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option1 })} to='/' >Home</NavLink></li>
-                            <li ><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option2 })} to='/shop' onClick={() => dispatch(filteredAll(newData))}>Shop</NavLink></li>
-                            <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option3 })} to='/contacts' >Contacts</NavLink></li>
-                            <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option4 })} to='/about' >About</NavLink></li>
+                        <ul className={styles.header_uppart_center_nav_ul} >
+                            <li onClick={handleNewPage}><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option1 })} to='/' >Home</NavLink></li>
+                            <li onClick={handleNewPage}><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option2 })} to='/shop' onClick={() => dispatch(filteredAll(newData))}>Shop</NavLink></li>
+                            <li onClick={handleNewPage}><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option3 })} to='/contacts' >Contacts</NavLink></li>
+                            <li onClick={handleNewPage}><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option4 })} to='/about' >About</NavLink></li>
                         </ul> </nav> </div>
                 <div className={styles.header_uppart_right}>
                     <p className={styles.help}>Need Help?</p>
@@ -219,7 +227,7 @@ setNavMobile(false)
             <div className={styles.header_downpart}>
 
                 <div className={styles.header_downpart_left} onClick={handleActiveCategories}>
-                    <RxHamburgerMenu className={styles['burger-menu']} />
+                    <MdOutlineCategory className={styles['burger-menu']} />
                     <p>categories</p>
                 </div>
                 <div className={styles.header_downpart_center}>
@@ -232,20 +240,18 @@ setNavMobile(false)
 
                 <div className={styles.header_downpart_right}>
                     <GoSearch className={styles.search_mobile} onClick={handleSearchMobileActive} />
-                    <RxAvatar className={styles.avatar} />
-                    <FaRegHeart className={styles.wishlist} />
-                    <div className={styles.cart}><HiOutlineShoppingBag className={styles.cart_icon} onClick={handleActiveCart} />
+                    <BsPerson className={styles.avatar} />
+                    <IoIosHeartEmpty className={styles.wishlist} />
+                    <div className={styles.cart} ref={cartButtonRef}>< IoBagHandleOutline className={styles.cart_icon} onClick={handleActiveCart} />
                         <span className={styles.cart_counter}>{totalCount}</span></div>
 
                 </div>
 
-
             </div>
-
 
             <div className={classNames(styles.header_categories, { [styles['categories-active']]: isCategories })} onDragCapture={handleActiveCategories}>
                 <div className={styles.header_categories_heading}>
-                    <p>menu</p>
+                    <p>categories</p>
 
                     < GrClose className={styles.header_categories_heading_close} onClick={handleActiveCategories} />
 
@@ -256,12 +262,12 @@ setNavMobile(false)
 
                     <ul className={styles.header_categories_content_list}>
 
-                        <li > <Link className={styles.link} to='/shop'>All</Link> </li>
-                        <li onClick={() => dispatch(filteredMen(newData))}><Link className={styles.link} to='/shop'>Men</Link> </li>
-                        <li onClick={() => dispatch(filterWomen(newData))}><Link className={styles.link} to='/shop'>Women</Link></li>
-                        <li onClick={() => dispatch(filterJewelery(newData))}><Link className={styles.link} to='/shop'>Jewelery</Link></li>
-                        <li onClick={() => dispatch(filterDiscounted(newData))}><Link className={styles.link} to='/shop'>Discounted</Link></li>
-                        <li onClick={() => dispatch(filterElectronics(newData))}><Link className={styles.link} to='/shop'>Electronics</Link></li>
+                        <li onClick={() => dispatch(filteredAll(newData))}> <Link onClick={handleNewPage} className={styles.link} to='/shop'>All</Link> </li>
+                        <li onClick={() => dispatch(filteredMen(newData))}><Link onClick={handleNewPage} className={styles.link} to='/shop'>Men</Link> </li>
+                        <li onClick={() => dispatch(filterWomen(newData))}><Link onClick={handleNewPage} className={styles.link} to='/shop'>Women</Link></li>
+                        <li onClick={() => dispatch(filterJewelery(newData))}><Link onClick={handleNewPage} className={styles.link} to='/shop'>Jewelery</Link></li>
+                        <li onClick={() => dispatch(filterDiscounted(newData))}><Link onClick={handleNewPage} className={styles.link} to='/shop'>Discounted</Link></li>
+                        <li onClick={() => dispatch(filterElectronics(newData))}><Link onClick={handleNewPage} className={styles.link} to='/shop'>Electronics</Link></li>
 
                     </ul>
 
@@ -269,7 +275,7 @@ setNavMobile(false)
 
             </div>
 
-            <div className={classNames(styles.header_cart, { [styles.cart_active]: isCart })}  >
+            <div className={classNames(styles.header_cart, { [styles.cart_active]: isCart })} ref={cartElementRef}  >
 
                 <div className={styles.header_cart_heading}>
 
@@ -278,8 +284,8 @@ setNavMobile(false)
 
                 </div>
 
-                <div className={styles.header_cart_content}>
 
+                <div className={styles.header_cart_content} >
                     {cart.length > 0 ? cart.map((item) =>
                         <CartItem key={item.id} item={item} />) : <img src={searchingImage} className={styles.searcher} />}
 

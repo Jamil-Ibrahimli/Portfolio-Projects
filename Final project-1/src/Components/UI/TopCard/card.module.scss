@@ -2,6 +2,10 @@
     width: 14rem;
     height: 24rem;
     cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    transition: 0.2s;
+
 
     &_item {
         background-color: rgb(255, 255, 255);
@@ -10,46 +14,23 @@
         padding: 0.3rem;
         position: relative;
         text-align: center;
-        transition: 0.5s;
         margin-bottom: 1rem;
         border-radius: 10px;
+        transition: 1s;
+        display: grid;
+        align-content: center;
         overflow: hidden;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         img {
             margin-top: 2rem;
-            max-width: 80%;
-            max-height: 80%;
+            max-width: 90%;
+            max-height: 100%;
+            object-fit: cover;
             z-index: -1;
-            transition: 5s;
+            transition: 1s;
+            transform: scale(0.8);
 
 
-        }
-
-        .new {
-            position: absolute;
-            width: 3rem;
-            height: 2rem;
-            background-color: rgb(14, 137, 3);
-            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 17% 75%, 1% 100%);
-            color: white;
-            display: grid;
-            padding: 0.2rem;
-            border-radius: 5px 0;
-            z-index: 1;
-        }
-
-        .hot {
-            position: absolute;
-            width: 3rem;
-            height: 2rem;
-            background-color: rgb(116, 13, 176);
-            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 17% 75%, 1% 100%);
-            color: white;
-            display: grid;
-            padding: 0.2rem;
-            z-index: 1;
-            border-radius: 5px 0;
         }
 
         .discount {
@@ -68,26 +49,24 @@
         }
 
         .add-wishlist {
-            width: 3rem;
+            width: 3.5rem;
             position: absolute;
-            right: -3rem;
+            right: -3.5rem;
             top: 1rem;
             z-index: 1;
-            background-color: rgb(9, 36, 82);
+            background-color: var(--secondary-color);
             padding: 0.2rem;
             border-radius: 5px 0 0 5px;
             transition: 0.2s ease-in;
 
-
             &_icon {
                 color: white;
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
-
 
             &:hover {
 
-                background-color: rgb(117, 14, 14);
+                background-color: var(--fivth-color);
             }
 
             &:hover::after {
@@ -114,7 +93,7 @@
             right: -3.5rem;
             top: 3.5rem;
             z-index: 1;
-            background-color: rgb(9, 36, 82);
+            background-color: var(--secondary-color);
             padding: 0.1rem;
             border-radius: 5px 0 0 5px;
             transition: 0.2s ease;
@@ -127,7 +106,7 @@
 
             &:hover {
 
-                background-color: rgb(117, 14, 14);
+                background-color: var(--fivth-color);
             }
 
             &:hover::after {
@@ -174,8 +153,9 @@
         word-wrap: break-word;
 
         h4 {
-
-            font-weight: 400;
+            color: var(--secondary-color);
+            font-weight: 500;
+            text-transform: uppercase;
         }
 
 
@@ -190,7 +170,7 @@
 
         &_discounted {
 
-            color: rgb(9, 89, 248);
+            color: var(--fivth-color);
             font-weight: 700;
             font-size: 1.2rem;
 
@@ -214,6 +194,10 @@
     .add-wishlist-mobile {
         display: none;
     }
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 }
 
 //--------- Responcive started for Mobile------------
@@ -221,78 +205,52 @@
 @media screen and (max-width:768px) {
 
     .card {
-        position: relative;
+
         width: 100%;
-        height: 80rem;
+        height: 150rem;
 
         &_item {
-            height: 50rem;
+            width: 100%;
+            display: grid;
+            align-items: center;
+            height: 90rem;
 
             img {
-                max-width: 90%;
-                max-height: 90%;
+                max-width: 80%;
                 object-fit: cover;
-              
-            }
-
-            .new {
-                width: 10rem;
-                height: 7rem;
-                padding: 0.1rem;
-                font-size: 4rem;
-                text-transform: uppercase;
-            }
-
-            .hot {
-                width: 10rem;
-                height: 7rem;
-                padding: 0.1rem;
-                font-size: 4rem;
-                text-transform: uppercase;
             }
 
             .discount {
-                width: 10rem;
-                height: 7rem;
-                padding: 0.1rem;
-                font-size: 4rem;
+                width: 12rem;
+                height: 12rem;
+                border-radius: 50%;
+                display: grid;
+                place-items: center;
+                font-size: 5rem;
                 text-transform: uppercase;
             }
 
             .add-wishlist {
-                width: 7rem;
+                width: 12rem;
+                height: 12rem;
                 right: 0;
                 display: none;
-
-                &_icon {
-
-                    font-size: 5rem;
-
-                }
-
             }
 
             .add-cart {
-                width: 7rem;
-                right: 0;
+                width: 12rem;
+                right: 12rem;
                 top: 8rem;
                 display: none;
-
-                &_icon {
-
-                    font-size: 5rem;
-
-                }
-
             }
         }
 
         &_title {
-            margin: 5rem 0;
+            margin: 10rem 0;
 
             h4 {
 
-                font-size: 4rem;
+                font-size: 6rem;
                 font-weight: 500;
             }
 
@@ -301,11 +259,11 @@
 
         &_price {
             &_discounted {
-                font-size: 5rem;
+                font-size: 8rem;
             }
 
             &_original {
-                font-size: 3rem;
+                font-size: 4rem;
             }
         }
 
@@ -314,16 +272,20 @@
             position: absolute;
             right: 0;
             bottom: 0;
-            width: 35%;
+            width: 45%;
             text-align: center;
             border-radius: 1rem;
-            background-color: rgb(2, 50, 144);
+            background-color: var(--secondary-color);
+            padding: 1rem;
 
             &_icon {
-                font-size: 8rem;
+                font-size: 15rem;
                 color: rgb(247, 247, 247);
             }
-
+            &:hover {
+                background-color: var(--fivth-color);
+                filter: drop-shadow(1px 1px 5px rgba(134, 134, 134, 0.735));
+            }
         }
 
         .add-cart-mobile {
@@ -332,22 +294,22 @@
             left: 0;
             bottom: 0;
             position: absolute;
-            width: 7rem;
             right: 0;
             bottom: 0;
-            width: 35%;
+            width: 45%;
             text-align: center;
-            background-color: rgb(2, 50, 144);
+            background-color: var(--secondary-color);
             border-radius: 1rem;
+            padding: 1rem;
 
             &_icon {
                 color: white;
-                font-size: 8rem;
-
+                font-size: 15rem;
             }
-
+            &:hover {
+                background-color: var(--fivth-color);
+                filter: drop-shadow(1px 1px 5px rgba(134, 134, 134, 0.735));
+            }
         }
-
-
     }
 }

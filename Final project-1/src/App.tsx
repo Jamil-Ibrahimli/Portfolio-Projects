@@ -5,7 +5,7 @@ import Main, { IProduct } from './Components/Common/Main/Main'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { DataContext } from './Components/Context/DataContext'
 import Footer from './Components/Common/Footer/Footer'
-
+import ScrollUp from './Components/UI/ScrollUp/ScrollUp'
 
 function App() {
   const [data, setData] = useState<IProduct[]>([])
@@ -18,11 +18,11 @@ function App() {
       <Router>
         <DataContext.Provider value={{ data, setData }}>
           <Header />
-          <Main/>
+          <Main />
           <Footer />
         </DataContext.Provider>
       </Router>
-
+      <ScrollUp />
 
     </>
   )

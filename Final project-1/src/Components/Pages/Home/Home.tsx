@@ -24,8 +24,9 @@ import {
 import { bannerSliders, logoSliders } from '../../../assets/images/Images_datas'
 import classNames from 'classnames';
 import { PiHandSwipeRightLight } from "react-icons/pi";
-import ScrollUp from '../../UI/ScrollUp/ScrollUp';
-import Background from '../../../assets/images/Main.jpg'
+import Background from '../../../assets/images/Main.jpg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 export interface IHome {
 
@@ -51,7 +52,7 @@ const Home: FC<IHome> = ({ data }) => {
         option2: false
 
     })
-    
+
     const [anounceActive, setAnounceActive] = useState(false)
 
     const handleSlideChange = (swiper: any) => {
@@ -61,6 +62,24 @@ const Home: FC<IHome> = ({ data }) => {
         setActiveSlideIndex(newIndex)
 
         handleActiveInfo(`option${newIndex}`)
+
+    }
+
+
+    const notify = () => {
+
+        toast.success(' Product added !', {
+
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            style: { fontSize: '20px'}
+        });
 
     }
 
@@ -89,7 +108,7 @@ const Home: FC<IHome> = ({ data }) => {
     }
 
     const topSelling = newData.filter(item =>
-        item.rating.rate > 4.5)
+        item.rating.rate >= 4.2)
     const hotDeals = newData.filter((item) =>
         item.rating.rate < 3.7)
 
@@ -135,12 +154,12 @@ const Home: FC<IHome> = ({ data }) => {
 
     return (
         <>
+            <div className={styles.background}>
+                <img src={Background} alt="background_image" />
 
+            </div>
             <section className={styles.container}>
-                <div className={styles.background}>
-                    <img src={Background} alt="background_image" />
 
-                </div>
                 <Swiper
 
                     onSlideChange={handleSlideChange}
@@ -161,7 +180,6 @@ const Home: FC<IHome> = ({ data }) => {
                     className={styles.mySwiper}
 
                 >
-
                     {bannerSliders.map((item, index) =>
                         <SwiperSlide className={styles.mySwiper_image} key={index} >
 
@@ -175,7 +193,7 @@ const Home: FC<IHome> = ({ data }) => {
                                     </h2>
                                     <p className={classNames(styles.info_text, { [styles['info_text-active']]: infoActive[`option${index}` as keyof typeof infoActive] })}>{index <= 1 ? 'Limited items available at this price' : 'Lightweight cushioning and durable support with a Phylon midsole'}</p>
 
-                                    <button className={classNames(styles.info_button, { [styles[`info_button-active`]]: infoActive[`option${index}` as keyof typeof infoActive] })} >shop now</button>
+                                    <button className={classNames(styles.info_button, { [styles[`info_button-active`]]: infoActive[`option${index}` as keyof typeof infoActive] })} onClick={handleShopAll} >shop now</button>
                                 </div>
 
                             </div>
@@ -187,7 +205,7 @@ const Home: FC<IHome> = ({ data }) => {
 
                 <div className={styles.collections}>
 
-                    <div className={styles.collections_image}><div className={styles['image-cover']}>
+                    <div className={styles.collections_image} ><div className={styles['image-cover']}>
                         <p>men's collection</p> <button onClick={() =>
                             handleCollection(filteredMen)}>shop now</button > </div>
                         <img src={MenShoes} alt="Man shoes" /></div>
@@ -221,7 +239,7 @@ const Home: FC<IHome> = ({ data }) => {
                                     title={item.title}
                                     price={item.price}
                                     item={item}
-                                    discountedPercent={item.discountedPercent} />)}
+                                    discountedPercent={item.discountedPercent} notify={() => notify()} />)}
 
                         </div>
 
@@ -244,7 +262,7 @@ const Home: FC<IHome> = ({ data }) => {
 
                         <div className={classNames(styles.info_bottom, { [styles['bottom-active']]: anounceActive })} ref={containerRef}>
                             <p className={styles.info_bottom_price}>$90.00 <span>$170.00</span></p>
-                            <button className={styles.info_bottom_button} >shop now</button></div>
+                            <button className={styles.info_bottom_button} onClick={handleShopAll}>shop now</button></div>
 
                     </div>
                 </div>
@@ -276,13 +294,13 @@ const Home: FC<IHome> = ({ data }) => {
                                 image={item.image}
                                 price={item.price}
                                 title={item.title}
-                                item={item} discountedPercent={item.discountedPercent} />)}
+                                item={item} discountedPercent={item.discountedPercent} notify={notify} />)}
 
                         </div>
 
                         <div className={styles['top-products_container_swiper']}>
                             <Swiper
-                                
+
                                 autoplay={{
                                     delay: 2000,
                                     disableOnInteraction: false,
@@ -300,7 +318,7 @@ const Home: FC<IHome> = ({ data }) => {
                                         image={item.image}
                                         price={item.price}
                                         title={item.title}
-                                        item={item} discountedPercent={item.discountedPercent} />
+                                        item={item} discountedPercent={item.discountedPercent} notify={notify} />
 
                                 </SwiperSlide>)}
 
@@ -311,7 +329,7 @@ const Home: FC<IHome> = ({ data }) => {
 
                         <Swiper
 
-                            spaceBetween={50}
+                            spaceBetween={70}
                             autoplay={{
                                 delay: 1500,
                                 disableOnInteraction: false,
@@ -331,7 +349,9 @@ const Home: FC<IHome> = ({ data }) => {
 
                     </div>
                 </div>
-                <ScrollUp />
+
+                <ToastContainer />
+
             </section>
 
         </>

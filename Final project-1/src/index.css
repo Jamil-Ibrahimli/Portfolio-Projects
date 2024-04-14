@@ -5,18 +5,29 @@
     font-family: "Roboto", sans-serif;
     list-style: none;
     text-decoration: none;
-    
-}
-
-
-@media screen and  (min-width:1400px){
-body,html{
-    font-size: 18px;
-}
 
 }
 
-@media screen and  (max-width:1200px) {
+
+:root {
+
+    --primary-color:#161616;
+    --secondary-color: #092452;
+    --third-color: #e2dfdf;
+    --fourth-color: white;
+    --fivth-color: #6b0303;
+}
+
+@media screen and (min-width:1400px) {
+
+    body,
+    html {
+        font-size: 18px;
+    }
+
+}
+
+@media screen and (max-width:1200px) {
 
     body,
     html {
@@ -26,19 +37,18 @@ body,html{
 
 }
 
-
-@media screen and  (max-width:992px) {
+@media screen and (max-width:992px) {
 
     body,
     html {
 
-        font-size: 10px;
+        font-size: 8px;
     }
 
 }
 
 
-@media screen and  (max-width:556px) {
+@media screen and (max-width:768px) {
 
     body,
     html {

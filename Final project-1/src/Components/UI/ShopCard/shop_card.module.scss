@@ -15,7 +15,7 @@
         text-align: center;
         transition: 0.5s;
         margin-bottom: 1rem;
-        border-radius: 10px;
+        border-radius: 5px;
         overflow: hidden;
         display: grid;
         align-content: center;
@@ -26,6 +26,7 @@
             max-height: 80%;
             z-index: -1;
             transition: 5s;
+            object-fit: cover;
 
         }
 
@@ -123,8 +124,9 @@
 
             }
 
-            &:hover::after {display: none;
-            
+            &:hover::after {
+                display: none;
+
             }
 
 
@@ -205,61 +207,70 @@
 
 // Responcive started for mobile
 
-
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
 
     .card {
-        display: grid;
-        align-content: space-between;
+
         width: 100%;
-        height: 70rem;
-        box-shadow: rgba(0, 0, 0, 0.431) 0px 5px 15px;
+        min-width: 50rem;
+        height: 90rem;
+       
 
         &_item {
+            
             width: 100%;
-            height: 50rem;
+            min-width: 50rem;
+            height: 67rem;
+
+            img {
+                max-width: 80%;
+                max-height: 90%;
+                object-fit: cover;
+            }
 
             .new {
-                width: 10rem;
-                height: 7rem;
-                padding: 0.1rem;
-                font-size: 4rem;
+                width: 12rem;
+                height: 9rem;
+                padding: 0.2rem;
+                font-size: 5rem;
+                
             }
 
             .hot {
-                width: 10rem;
-                height: 7rem;
-                padding: 0.1rem;
-                font-size: 4rem;
+                width: 12rem;
+                height: 9rem;
+                padding: 0.2rem;
+                font-size: 5rem;
             }
 
             .discount {
-                width: 10rem;
-                height: 7rem;
-                padding: 0.1rem;
-                font-size: 4rem;
+                width: 12rem;
+                height: 9rem;
+                padding: 0.2rem;
+                font-size: 5rem;
             }
 
             .add-wishlist {
-                width: 10rem;
+                width: 12rem;
                 right: 0;
+                top: 1rem;
 
                 &_icon {
 
-                    font-size: 8rem;
+                    font-size: 10rem;
 
                 }
 
             }
 
             .add-cart {
-                width: 10rem;
+                width: 12rem;
                 right: 0;
-                top: 10rem;
+                top: 14rem;
 
                 &_icon {
 
-                    font-size: 8rem;
+                    font-size: 10rem;
 
                 }
 
@@ -267,11 +278,11 @@
         }
 
         &_title {
-            margin-top: 0.2rem;
+            margin-top: 3rem;
 
             h4 {
 
-                font-size: 4rem;
+                font-size: 5rem;
                 font-weight: 500;
             }
 
@@ -279,15 +290,14 @@
         }
 
         &_price {
-            margin-top: 2rem;
-
+            margin-top: 7rem;
 
             &_discounted {
-                font-size: 5rem;
+                font-size: 8rem;
             }
 
             &_original {
-                font-size: 4rem;
+                font-size: 6rem;
             }
         }
 

@@ -9,8 +9,6 @@ import img2 from './slide_home_2.jpg';
 import img3 from './slide_home_3.jpg';
 import visa1 from './visa1.png'
 import visa2 from './visa2.png'
-import visa3 from './visa3.png'
-import visa4 from './visa4.png'
 import visa5 from './visa5.png'
 import visa6 from './visa6.png'
 import visa7 from './visa7.png'
@@ -30,4 +28,4 @@ export const logoSliders = [
 
 ]
 
-export const visas = [visa1, visa2, visa3, visa4, visa5, visa6, visa7, visa8,]
+export const visas = [visa1, visa2,  visa5, visa6, visa7, visa8,]
