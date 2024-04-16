@@ -2,13 +2,14 @@
 
     display: flex;
     justify-content: center;
+    align-items: end;
     gap: 0.8rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
     height: 2rem;
 
     &_star {
         transition: 0.3s;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         cursor: pointer;
 
         &:hover {
@@ -21,18 +22,17 @@
 
 // -------Responsive Starte for Mobile------------
 
-
 @media screen and (max-width:768px) {
 
     .rating {
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+        gap: 1.5rem;   
+        margin-top: 7rem;
 
         &_star {
-            font-size: 5rem;
+            font-size: 7rem;
 
             &:hover {
-                font-size: 4rem;
+                font-size: 7rem;
                 filter: drop-shadow(8px 5px 5px gray);
                 transform: translate(0, 0.3rem);
             }

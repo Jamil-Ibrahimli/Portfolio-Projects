@@ -14,6 +14,7 @@ import { LiaFilterSolid } from "react-icons/lia";
 import { HiOutlineSortAscending } from "react-icons/hi";
 import classNames from 'classnames';
 import womenBanner from '../../../assets/images/women_collection.png';
+import { useLocation } from 'react-router';
 export interface IShop {
 
     data: IProduct[];
@@ -24,9 +25,9 @@ const Shop: FC<IShop> = ({ data }) => {
 
     const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
 
-        ({ ...item, discountedPercent: 30,count:0 })
+        ({ ...item, discountedPercent: 30, count: 0 })
 
-        : ({...item,count:0})
+        : ({ ...item, count: 0 })
 
     );
 
@@ -34,6 +35,7 @@ const Shop: FC<IShop> = ({ data }) => {
     const [sortActive, setSortActive] = useState(false)
     const [filterActive, setFilterActive] = useState(false)
     const dispatch = useDispatch();
+    const location = useLocation()
     const [filterOptions, setFilterOptions] = useState<any>({
 
         option1: false,
@@ -78,6 +80,20 @@ const Shop: FC<IShop> = ({ data }) => {
         })
 
     }
+
+    useEffect(() => {
+
+        setTimeout(() => {
+
+            if (window.innerWidth <= 1400 && (location.pathname = '/shop') && window.innerWidth >= 800) {
+
+                window.scrollTo({ top: 600, left: 0, behavior: 'smooth' })
+
+            }
+
+        }, 2000)
+
+    }, [])
 
 
     const handleFilterCheckbox = (option: string) => {
@@ -130,13 +146,13 @@ const Shop: FC<IShop> = ({ data }) => {
 
     )
 
-
-
     const handleFilterBoard = () => {
         setFilterActive(prev => !prev)
+        setSortActive(false)
     }
     const handleSortBoard = () => {
         setSortActive(prev => !prev)
+        setFilterActive(false)
     }
 
     useEffect(() => {
@@ -152,6 +168,15 @@ const Shop: FC<IShop> = ({ data }) => {
 
             <div className={styles.banner}>
                 <img src={womenBanner} alt="womenBanner" />
+                <div className={styles['banner_cover']}>
+                    <div className={styles.banner_cover_info}>
+
+                        <p>Explore Quality </p>
+                        <p>Upgrade Your Style</p>
+
+
+                    </div>
+                </div>
             </div>
             <div className={styles.categories}>
                 <div className={styles.sorting} ><div className={classNames(styles['sorting-board'],

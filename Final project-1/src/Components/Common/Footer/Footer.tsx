@@ -13,6 +13,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { visas } from '../../../assets/images/Images_datas';
 import { SlArrowUp } from "react-icons/sl";
+
+
 const Footer = () => {
 
     const [footerActive, setFooterActive] = useState(false)

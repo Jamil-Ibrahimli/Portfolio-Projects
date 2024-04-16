@@ -275,9 +275,9 @@
 
     &_categories {
         position: fixed;
-        top: 0;
-        left: 0;
-        transform: translate(10%, -100%);
+        top: -100%;
+        left: 5%;
+     
         background-color: rgba(234, 234, 234, 0.963);
         transition: 0.2s ease-in 0.2s;
         padding: 0.5rem;
@@ -285,7 +285,7 @@
         border-radius: 10px;
         align-content: start;
         z-index: 1;
-        box-shadow: rgba(0, 0, 0, 0.66) 0px 5px 15px;
+        box-shadow: rgba(0, 0, 0, 0.586) 0px 5px 10px;
 
         &_heading {
             display: flex;
@@ -298,7 +298,7 @@
                 font-size: 2rem;
                 cursor: pointer;
                 transition: 0.2s;
-
+                color: var(--secondary-color);
 
                 &:hover {
                     transform: rotate(-65deg);
@@ -309,9 +309,10 @@
 
             p {
                 font-family: "Philosopher", sans-serif;
-                font-weight: 400;
+                font-weight: 600;
                 font-size: 2rem;
                 text-transform: uppercase;
+                color: var(--secondary-color);
             }
         }
 
@@ -350,7 +351,7 @@
     }
 
     .categories-active {
-        transform: translate(10%, 35%);
+        top: 20%;
     }
 
     &_cart {
@@ -395,7 +396,7 @@
         }
 
         &_content {
-            width: 20rem;
+            width: 25rem;
             height: 100vh;
             padding: 0 0 7rem;
             overflow-y: scroll;
@@ -549,7 +550,7 @@
             &_center {
                 img {
                     display: block;
-                    width: 32rem;
+                    width: 35rem;
                     cursor: pointer;
                     filter: drop-shadow(2px 2px 3px var(--primary-color));
                 }
@@ -573,7 +574,7 @@
                 span {
                     .call {
                         display: block;
-                        font-size: 6rem;
+                        font-size: 7rem;
                         color: white;
                     }
                 }
@@ -655,6 +656,7 @@
                 p {
                     font-size: 10rem;
                     font-weight: 500;
+
                 }
 
                 &_close {
@@ -669,7 +671,6 @@
                 margin-bottom: 5rem;
 
                 &_list {
-                    border: none;
                     display: grid;
                     gap: 5rem;
 
@@ -699,12 +700,12 @@
 
         .categories-active {
             left: 50%;
-            top: 40%;
-            transform: translate(-50%, -50%);
+            top: 20%;
+            transform: translate(-50%);
         }
 
         &_cart {
-            width: 70%;
+            width: 80%;
             height: 100%;
             padding-bottom: 35rem;
 

@@ -77,8 +77,8 @@ const Home: FC<IHome> = ({ data }) => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
-            style: { fontSize: '20px'}
+            theme: "light",
+            style: { fontSize: '20px' }
         });
 
     }
@@ -329,7 +329,7 @@ const Home: FC<IHome> = ({ data }) => {
 
                         <Swiper
 
-                            spaceBetween={70}
+                            spaceBetween={60}
                             autoplay={{
                                 delay: 1500,
                                 disableOnInteraction: false,

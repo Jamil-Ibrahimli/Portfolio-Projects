@@ -1,32 +1,65 @@
 .card {
     width: 14rem;
-    height: 23rem;
+    height: 24rem;
     cursor: pointer;
-    position: relative;
-    border: 2px solid rgb(219, 218, 218);
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
+    transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     &_item {
         background-color: rgb(255, 255, 255);
         width: 100%;
-        height: 16rem;
+        height: 17rem;
         padding: 0.3rem;
         position: relative;
         text-align: center;
-        transition: 0.5s;
         margin-bottom: 1rem;
         border-radius: 5px;
-        overflow: hidden;
+        transition: 1s;
         display: grid;
         align-content: center;
+        overflow: hidden;
 
         img {
             margin-top: 2rem;
-            max-width: 80%;
-            max-height: 80%;
-            z-index: -1;
-            transition: 5s;
+            max-width: 90%;
+            max-height: 100%;
             object-fit: cover;
+            z-index: -1;
+            transition: 1s;
+            transform: scale(0.8);
+
+
+        }
+
+        .discount {
+            position: absolute;
+            width: 3rem;
+            height: 2rem;
+            background-color: var(--fivth-color);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 17% 75%, 1% 100%);
+            color: white;
+            display: grid;
+            padding: 0.2rem;
+            z-index: 1;
+            border-radius: 5px 0;
+
+
+        }
+
+        .hot {
+            position: absolute;
+            width: 3rem;
+            height: 2rem;
+            background-color: var(--secondary-color);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 17% 75%, 1% 100%);
+            color: white;
+            display: grid;
+            padding: 0.2rem;
+            z-index: 1;
+            border-radius: 5px 0;
+
 
         }
 
@@ -34,35 +67,7 @@
             position: absolute;
             width: 3rem;
             height: 2rem;
-            background-color: rgb(14, 137, 3);
-            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 17% 75%, 1% 100%);
-            color: white;
-            display: grid;
-            padding: 0.2rem;
-            border-radius: 5px 0;
-            z-index: 1;
-        }
-
-        .hot {
-            position: absolute;
-            width: 3rem;
-            height: 2rem;
-            background-color: rgb(116, 13, 176);
-            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 17% 75%, 1% 100%);
-            color: white;
-            display: grid;
-            padding: 0.2rem;
-            z-index: 1;
-            border-radius: 5px 0;
-        }
-
-
-        .discount {
-
-            position: absolute;
-            width: 3rem;
-            height: 2rem;
-            background-color: rgb(171, 12, 7);
+            background-color: var(--primary-color);
             clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 17% 75%, 1% 100%);
             color: white;
             display: grid;
@@ -70,33 +75,47 @@
             z-index: 1;
             border-radius: 5px 0;
 
+
         }
+
+
+
+
 
         .add-wishlist {
-            width: 3rem;
+            width: 3.5rem;
             position: absolute;
-            right: -3rem;
+            right: -3.5rem;
             top: 1rem;
             z-index: 1;
-            background-color: rgba(9, 36, 82, 0.853);
+            background-color: var(--secondary-color);
             padding: 0.2rem;
             border-radius: 5px 0 0 5px;
             transition: 0.2s ease-in;
 
-
             &_icon {
                 color: white;
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
-
 
             &:hover {
 
-                background-color: rgb(117, 14, 14);
+                background-color: var(--fivth-color);
             }
 
             &:hover::after {
-                display: block;
+                width: 7rem;
+                content: 'Add to favorites';
+                position: absolute;
+                left: 0;
+                font-size: 0.8rem;
+                top: 50%;
+                transform: translate(-105%, -50%);
+                background-color: rgba(0, 0, 0, 0.786);
+                color: white;
+                border-radius: 0 150px 150px 0;
+                transition: 0.5s;
+                padding: 0.3rem 0;
 
             }
 
@@ -108,10 +127,11 @@
             right: -3.5rem;
             top: 3.5rem;
             z-index: 1;
-            background-color: rgba(9, 36, 82, 0.887);
+            background-color: var(--secondary-color);
             padding: 0.1rem;
             border-radius: 5px 0 0 5px;
             transition: 0.2s ease;
+
 
             &_icon {
                 color: white;
@@ -120,27 +140,32 @@
 
             &:hover {
 
-                background-color: rgb(117, 14, 14);
-
+                background-color: var(--fivth-color);
             }
 
             &:hover::after {
-                display: none;
+                width: 5rem;
+                content: 'Add to cart';
+                position: absolute;
+                left: 0;
+                font-size: 0.8rem;
+                top: 50%;
+                transform: translate(-105%, -50%);
+                padding: 0 0.5rem;
+                background-color: rgba(0, 0, 0, 0.786);
+                color: white;
+                transition: 0.5s;
+                padding: 0.3rem 0;
+                border-radius: 0 150px 150px 0;
 
             }
 
-
         }
-
-
-
     }
-
 
     &:hover .add-wishlist {
 
         right: 0;
-
 
     }
 
@@ -148,34 +173,29 @@
 
         right: 0;
 
-
     }
-
 
     &:hover img {
 
-        transform: scale(1.2);
-
+        transform: scale(1.2)
     }
 
-
     &_title {
+
         display: grid;
         row-gap: 0.3rem;
         text-align: center;
         word-wrap: break-word;
 
         h4 {
-
-            font-weight: 400;
+            color: var(--secondary-color);
+            font-weight: 500;
+            text-transform: uppercase;
         }
 
-        p {
-            color: rgb(85, 14, 14);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
+
     }
+
 
     &_price {
         display: flex;
@@ -185,10 +205,9 @@
 
         &_discounted {
 
-            color: rgb(9, 89, 248);
+            color: var(--fivth-color);
             font-weight: 700;
             font-size: 1.2rem;
-
 
         }
 
@@ -199,13 +218,23 @@
 
         }
 
-
     }
 
+    .add-cart-mobile {
+        display: none;
+    }
+
+    .add-wishlist-mobile {
+        display: none;
+    }
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.894) 0px 5px 15px;
+    }
 }
 
 
-// Responcive started for mobile
+// Responsive started from Mobile
 
 @media screen and (max-width: 768px) {
 
@@ -213,60 +242,60 @@
 
         width: 100%;
         min-width: 50rem;
-        height: 90rem;
-       
+        height: 160rem;
+        display: grid;
+        align-content: space-between;
 
         &_item {
-            
             width: 100%;
             min-width: 50rem;
-            height: 67rem;
+            height: 120rem;
+            margin-bottom: 2rem;
 
-            img {
-                max-width: 80%;
-                max-height: 90%;
-                object-fit: cover;
-            }
 
-            .new {
+            .discount {
                 width: 12rem;
-                height: 9rem;
-                padding: 0.2rem;
+                height: 12rem;
                 font-size: 5rem;
-                
+                padding: 1.3rem;
             }
 
             .hot {
                 width: 12rem;
-                height: 9rem;
-                padding: 0.2rem;
+                height: 12rem;
                 font-size: 5rem;
+                padding: 1.3rem;
             }
 
-            .discount {
+            .new {
                 width: 12rem;
-                height: 9rem;
-                padding: 0.2rem;
+                height: 12rem;
                 font-size: 5rem;
+                padding: 1.3rem;
             }
 
             .add-wishlist {
                 width: 12rem;
+                height: 12rem;
                 right: 0;
-                top: 1rem;
+                top: 5rem;
 
                 &_icon {
 
                     font-size: 10rem;
+                }
 
+                &:hover::after {
+                    display: none;
                 }
 
             }
 
             .add-cart {
                 width: 12rem;
+                height: 12rem;
                 right: 0;
-                top: 14rem;
+                top: 20rem;
 
                 &_icon {
 
@@ -274,34 +303,58 @@
 
                 }
 
+                &:hover::after {
+                    display: none;
+                }
             }
         }
 
         &_title {
-            margin-top: 3rem;
+            margin: 5rem 0;
+            overflow: hidden;
 
             h4 {
 
                 font-size: 5rem;
-                font-weight: 500;
             }
-
 
         }
 
         &_price {
-            margin-top: 7rem;
+
 
             &_discounted {
-                font-size: 8rem;
+                font-size: 6rem;
             }
 
             &_original {
-                font-size: 6rem;
+                font-size: 5rem;
             }
         }
 
     }
+
+
+}
+
+@media screen and (max-width:556px) {
+
+    .card {
+
+        width: 100%;
+        min-width: 50rem;
+        height: 90rem;
+        display: grid;
+        align-content: space-between;
+
+        &_item {
+            width: 100%;
+            min-width: 50rem;
+            height: 60rem;
+            margin-bottom: 2rem;
+        }
+    }
+
 
 
 }

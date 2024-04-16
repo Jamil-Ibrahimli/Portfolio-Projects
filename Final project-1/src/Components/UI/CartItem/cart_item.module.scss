@@ -1,14 +1,15 @@
 .cart-item {
     padding: 0.5rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
     border-bottom: 1px solid gray;
 
     &_image {
 
-        width: 5rem;
-        height: 5rem;
+        width: 7rem;
+        height: 7rem;
 
         img {
             max-width: 100%;
@@ -19,7 +20,7 @@
     }
 
     &_center {
-        width: 9rem;
+        width: 10rem;
         height: 6rem;
         word-wrap: break-word;
         text-align: center;
@@ -28,6 +29,9 @@
 
         .title {
             font-size: 1rem;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            font-weight: 500;
         }
 
         .count {
@@ -38,12 +42,13 @@
             align-items: center;
 
             button {
-                width: 1.5rem;
-                height: 1.5rem;
+                width: 2rem;
+                height: 2rem;
                 border-radius: 5px;
                 border: 2px solid rgb(150, 148, 148);
                 cursor: pointer;
-                font-size: 1rem;
+                font-size: 1.5rem;
+                color: var(--fivth-color);
 
                 &:active {
                     border: 2px solid rgb(111, 39, 19);
@@ -68,7 +73,7 @@
         .delete {
             border: none;
             font-size: 1.5rem;
-            color: rgb(136, 59, 14);
+            color: var(--fivth-color);
             cursor: pointer;
             background-color: white;
 
@@ -76,7 +81,7 @@
 
 
         .price {
-            color: rgb(0, 115, 255);
+            color: var(--secondary-color);
             font-weight: 500;
         }
 
@@ -88,7 +93,7 @@
         }
 
         .price-discounted {
-            color: rgb(0, 136, 255);
+            color: var(--secondary-color);
             font-weight: 500;
         }
     }
@@ -97,20 +102,20 @@
 
 @media screen and (max-width:768px) {
     .cart-item {
-        padding: 2rem;
+        padding: 3rem;
 
         &_image {
-            width: 15rem;
-            height: 15rem;
+            width: 30rem;
+            height: 30rem;
         }
 
         &_center {
-
-            width: 60%;
+            margin-left: 5rem;
+            width: 90%;
             height: 30rem;
 
             .title {
-                font-size: 4rem;
+                font-size: 5rem;
             }
 
             .count {
@@ -119,8 +124,8 @@
 
                 button {
                     width: 10rem;
-                    height: 8rem;
-                    font-size: 4rem;
+                    height: 10rem;
+                    font-size: 6rem;
                 }
 
                 p {
@@ -134,21 +139,21 @@
             height: 30rem;
 
             .delete {
-                font-size: 6rem;
+                font-size: 10rem;
             }
 
             .price {
 
-                font-size: 4rem;
+                font-size: 6rem;
 
             }
 
             .price-discounted {
-                font-size: 4rem;
+                font-size: 6rem;
             }
 
             .price-original {
-                font-size: 4rem;
+                font-size: 5rem;
             }
 
         }

@@ -48,7 +48,9 @@ const Header = () => {
     const navigate = useNavigate()
     const cartElementRef = useRef<HTMLDivElement>(null)
     const cartButtonRef = useRef<HTMLDivElement>(null)
-
+    const categoriesElementRef = useRef<HTMLDivElement>(null)
+    const categoriesButtonRef = useRef<HTMLDivElement>(null)
+    
     const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
 
 
@@ -171,7 +173,7 @@ const Header = () => {
         setCart(false)
         setNavMobile(false)
         setCategories(false)
-
+        window.scrollTo(0, 0)
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -201,15 +203,27 @@ const Header = () => {
         setNavMobile(prev => !prev)
         setCart(false)
     }
+    const handleViewCart = () => {
+
+        navigate('./cart_page')
+
+        setCart(false)
+    }
+
+    const handleClickLogo = () => {
+
+        window.scrollTo(0, 0)
+        navigate('/')
+    }
 
     return (
 
         <header className={classNames(styles.header, { [styles['header-active']]: scrolling })}  >
             <div className={styles.header_uppart}>
                 <div className={styles.header_uppart_left} >  <RxHamburgerMenu className={styles['burger-menu']} onClick={handleNavMobile} />
-                    <img src={webLogo} alt="site_logo" onClick={() => navigate('/')} /></div>
+                    <img src={webLogo} alt="site_logo" onClick={handleClickLogo} /></div>
                 <div className={styles.header_uppart_center}>
-                    <img src={webLogo} alt="site_logo" onClick={() => navigate('/')} />
+                    <img src={webLogo} alt="site_logo" onClick={handleClickLogo} />
                     <nav className={styles.header_uppart_center_nav}>
                         <ul className={styles.header_uppart_center_nav_ul} >
                             <li onClick={handleNewPage}><NavLink className={classNames(styles.navlink, { [styles['navlink-active']]: activeLink.option1 })} to='/' >Home</NavLink></li>
@@ -220,7 +234,9 @@ const Header = () => {
                 <div className={styles.header_uppart_right}>
                     <p className={styles.help}>Need Help?</p>
                     <p className={styles.number}>+94 423-23-221</p>
-                    <span><FaPhoneVolume className={styles.call} /></span>
+                    <span><Link to="tel:555999222000">
+                        <FaPhoneVolume className={styles.call} />
+                    </Link></span>
                 </div>
             </div>
 
@@ -293,7 +309,7 @@ const Header = () => {
 
                 </div>
 
-                {cart.length > 0 && <div className={styles.header_cart_view} onClick={() => navigate('./cart_page')}>
+                {cart.length > 0 && <div className={styles.header_cart_view} onClick={handleViewCart}>
                     <p>view cart</p>
                 </div>}
 
@@ -307,7 +323,7 @@ const Header = () => {
                 <nav className={styles['header_nav-mobile_nav']}>
 
                     <ul className={styles['header_nav-mobile_nav_list']}>
-                        <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option1 })} to='/' >Home</NavLink></li>
+                        <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option1 })} to='/' onClick={handleNewPage}>Home</NavLink></li>
                         <li ><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option2 })} to='/shop' onClick={() => dispatch(filteredAll(newData))}>Shop</NavLink></li>
                         <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option3 })} to='/contacts' >Contacts</NavLink></li>
                         <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option4 })} to='/about' >About</NavLink></li>

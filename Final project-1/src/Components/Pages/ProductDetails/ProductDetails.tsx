@@ -1,8 +1,8 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './product_details.module.scss';
 import { IProduct } from '../../Common/Main/Main';
 import { FC } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { BsCashCoin } from "react-icons/bs";
 import { addToCart } from '../../../Redux/AddToCartSlice';
 import { useDispatch } from 'react-redux';
@@ -35,6 +35,9 @@ const ProductDetails: FC<IProductDetails> = ({ data }) => {
         (item.category === itemDetail?.category) && item.id !== itemDetail?.id);
     const discountedPrice = itemDetail &&
         (itemDetail.price - (itemDetail.price * itemDetail.discountedPercent / 100));
+    const navigate = useNavigate()
+
+
 
     const handleIncrement = () => {
 
@@ -76,8 +79,8 @@ const ProductDetails: FC<IProductDetails> = ({ data }) => {
 
         <div className={styles.container}>
             <div className={styles.details}>
-                <span className={styles.details_path}>
-                    Home {'>'} Shop {'>'} Details</span>
+                <p className={styles.details_path}>
+                    <span onClick={() => navigate('/')}> Home</span> {'>'} <span onClick={() => navigate('/shop')}>Shop</span></p>
                 <div className={styles.details_title}><h2>Armor Air X Fear</h2></div>
 
                 <div className={styles.details_content}>
@@ -107,7 +110,6 @@ const ProductDetails: FC<IProductDetails> = ({ data }) => {
                                         <button onClick={handleDecrement}>-</button>
                                         <p>{countState}</p> <button onClick={handleIncrement}>+</button> </div>
                                 </div>
-
                                 <div className={styles.centerpart}>
                                     {itemDetail?.discountedPercent ? <div className={styles.centerpart_prices}>
                                         <p className={styles['new-price']}>${discountedPrice?.toFixed(2)}</p>
@@ -123,13 +125,9 @@ const ProductDetails: FC<IProductDetails> = ({ data }) => {
                                     <button className={styles.bottompart_addwish}>add to wish</button></div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
-
             <div className={styles.related}>
                 <div className={styles.related_heading}><h3>Related</h3><p>You may also like similar products</p></div>
                 <div className={styles.related_items}>
