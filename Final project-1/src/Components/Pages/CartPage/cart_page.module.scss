@@ -1,5 +1,5 @@
 .container {
-
+    margin-top: 2rem;
     padding: 6rem 5rem 15rem;
     min-height: 80vh;
 
@@ -8,7 +8,7 @@
 
         span {
 
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: rgb(104, 104, 104);
 
         }
@@ -44,6 +44,7 @@
 
             &_items {
                 width: 100%;
+
             }
         }
 
@@ -61,48 +62,54 @@
                     font-size: 1.2rem;
                     text-transform: capitalize;
                     font-weight: 500;
-                    color:rgb(60, 60, 60);
+                    color: rgb(60, 60, 60);
                 }
-                span{
+
+                span {
                     font-size: 1.2rem;
                     text-transform: capitalize;
                     font-weight: 500;
-                    color:rgb(60, 60, 60);
+                    color: rgb(60, 60, 60);
                 }
             }
 
             &_shipping {
                 display: flex;
                 justify-content: space-between;
+
                 p {
                     font-size: 1.2rem;
                     text-transform: capitalize;
                     font-weight: 500;
-                    color:rgb(60, 60, 60);
+                    color: rgb(60, 60, 60);
                 }
-                span{
+
+                span {
                     font-size: 1.2rem;
                     text-transform: capitalize;
                     font-weight: 500;
-                    color:rgb(60, 60, 60);
+                    color: rgb(60, 60, 60);
                 }
 
             }
 
-            &_total {margin: 1rem 0;
+            &_total {
+                margin: 1rem 0;
                 display: flex;
                 justify-content: space-between;
+
                 p {
                     font-size: 1.5rem;
                     text-transform: capitalize;
                     font-weight: 600;
-                    color:rgb(245, 12, 12);
+                    color: rgb(245, 12, 12);
                 }
-                span{
+
+                span {
                     font-size: 1.5rem;
                     text-transform: capitalize;
                     font-weight: 600;
-                    color:rgb(245, 12, 12);
+                    color: rgb(245, 12, 12);
                 }
 
             }
@@ -111,7 +118,7 @@
                 width: 100%;
                 padding: 0.5rem;
                 font-size: 1.2rem;
-                background-color: #004DDA;
+                background-color:var(--primary-color);
                 color: white;
                 border: none;
                 border-radius: 3px;
@@ -119,5 +126,114 @@
             }
         }
     }
+
+}
+
+
+
+// Responisive started for mobile
+
+
+@media screen and (max-width:768px) {
+
+    .container {
+        margin-top: 30rem;
+        min-height: 80vh;
+
+        .cart-page {
+            position: relative;
+
+            span {
+
+                font-size: 5rem;
+                color: rgb(104, 104, 104);
+                cursor: pointer;
+            }
+
+            h3 {
+                margin-top: 0.8rem;
+                font-size: 8rem;
+                font-weight: 500;
+            }
+
+            &_content {
+
+
+                &_titles {
+
+                    display: none;
+
+                }
+
+                &_items {
+                    display: grid;
+                    gap: 10rem;
+
+                }
+
+            }
+
+            .checkout {
+                position: static;
+                margin: 10rem 0;
+                width: 100%;
+
+                &_subtotal {
+
+                    display: flex;
+
+                    p {
+                        font-size: 6rem;
+
+                    }
+
+                    span {
+                        font-size: 6rem;
+
+                    }
+                }
+
+                &_shipping {
+                    display: flex;
+                    justify-content: space-between;
+
+                    p {
+                        font-size: 6rem;
+
+                    }
+
+                    span {
+                        font-size: 6rem;
+
+                    }
+
+                }
+
+                &_total {
+                    margin: 1rem 0;
+
+                    p {
+                        font-size: 6rem;
+
+                    }
+
+                    span {
+                        font-size: 6rem;
+
+                    }
+
+                }
+
+                &_proceed {
+
+                    padding: 3rem;
+                    font-size: 6rem;
+
+                }
+            }
+        }
+
+    }
+
 
 }

@@ -7,8 +7,12 @@
     .details {
 
         &_path {
-            font-size: 0.8rem;
-            color: rgb(103, 103, 103);
+
+
+            span {
+                font-size: 1rem;
+                color: rgb(103, 103, 103);
+            }
         }
 
         &_title {
@@ -176,6 +180,7 @@
                             .alert {
                                 color: rgb(253, 9, 9);
                                 position: absolute;
+                                align-self: center;
                                 right: 11rem;
                                 font-weight: 600;
                                 opacity: 0;
@@ -388,12 +393,16 @@
 
     .container {
         margin-top: 30rem;
-
+        padding: 6rem 5rem 15rem;
         .details {
 
             &_path {
                 font-size: 4.5rem;
                 color: rgb(103, 103, 103);
+
+                span {
+                    font-size: 5rem;
+                }
 
             }
 
@@ -403,6 +412,8 @@
                 h2 {
                     font-size: 8rem;
                 }
+
+
 
             }
 
@@ -516,8 +527,10 @@
                                 .alert {
 
                                     font-size: 4rem;
-                                    right: 1rem;
-                                    top: -5rem;
+                                    top: -3rem;
+                                    right: 2rem;
+                                    z-index: 1;
+                                    background-color: white;
                                 }
 
 

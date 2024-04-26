@@ -60,7 +60,7 @@ const handleAddProduct=()=>{
 
                 </div>
                 <p className={styles['add-wishlist-mobile']}><CiHeart className={styles['add-wishlist-mobile_icon']} /></p>
-                <p className={styles['add-cart-mobile']} onClick={() => dispatch(addToCart(item))}><CiShoppingCart className={styles['add-cart-mobile_icon']}  /></p>
+                <p className={styles['add-cart-mobile']} onClick={handleAddProduct }><CiShoppingCart className={styles['add-cart-mobile_icon']}  /></p>
             </div>
 
         </>

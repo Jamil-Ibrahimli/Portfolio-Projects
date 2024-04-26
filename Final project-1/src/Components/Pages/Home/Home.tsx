@@ -154,18 +154,20 @@ const Home: FC<IHome> = ({ data }) => {
 
     return (
         <>
-            <div className={styles.background}>
-                <img src={Background} alt="background_image" />
 
-            </div>
             <section className={styles.container}>
+
+                <div className={styles.background}>
+                    <img src={Background} alt="background_image" />
+
+                </div>
 
                 <Swiper
 
                     onSlideChange={handleSlideChange}
 
                     autoplay={{
-                        delay: 8000,
+                        delay: 5000,
                         disableOnInteraction: false,
                     }}
                     pagination={{

@@ -7,9 +7,9 @@ import { DataContext } from './Components/Context/DataContext'
 import Footer from './Components/Common/Footer/Footer'
 import ScrollUp from './Components/UI/ScrollUp/ScrollUp'
 
+
 function App() {
   const [data, setData] = useState<IProduct[]>([])
-
 
 
   return (
@@ -20,7 +20,9 @@ function App() {
           <Header />
           <Main />
           <Footer />
+      
         </DataContext.Provider>
+    
       </Router>
       <ScrollUp />
 

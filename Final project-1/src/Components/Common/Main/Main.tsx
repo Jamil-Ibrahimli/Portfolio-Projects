@@ -7,6 +7,8 @@ import axios from 'axios'
 import { DataContext } from '../../Context/DataContext';
 import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 import CartPage from '../../Pages/CartPage/CartPage';
+import NotFound from '../../UI/NotFound/NotFound';
+
 
 export interface IProduct {
 
@@ -42,7 +44,9 @@ const Main = () => {
       }
 
     }
+
     fetchData()
+
   }, [])
 
 
@@ -52,6 +56,7 @@ const Main = () => {
     <>
 
       <Routes>
+
         <Route path='/' element={<Home data={data} />} />
 
         <Route path='/shop' element={<Shop data={data} />} />
@@ -60,8 +65,9 @@ const Main = () => {
 
         <Route path='/cart_page' element={<CartPage />} />
 
+        <Route path='/notFound' element={<NotFound />} />
       </Routes>
-      
+
 
     </>
 

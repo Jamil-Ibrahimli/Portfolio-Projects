@@ -275,12 +275,13 @@
 
     &_categories {
         position: fixed;
-        top: -100%;
-        left: 5%;
-     
-        background-color: rgba(234, 234, 234, 0.963);
-        transition: 0.2s ease-in 0.2s;
-        padding: 0.5rem;
+        top: 10%;
+        left: 3%;
+        height: 0;
+        overflow: hidden;
+        transition: 0.2s ease-in 0.3s;
+        background-color: rgba(255, 250, 250, 0.963);
+        transition: 0.2 s ease-in 0.3s;
         display: grid;
         border-radius: 10px;
         align-content: start;
@@ -288,17 +289,17 @@
         box-shadow: rgba(0, 0, 0, 0.586) 0px 5px 10px;
 
         &_heading {
+            align-items: center;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding: 0.5rem;
 
             &_close {
                 color: rgb(0, 0, 0);
                 font-size: 2rem;
                 cursor: pointer;
-                transition: 0.2s;
                 color: var(--secondary-color);
+                transition: 0.2s;
 
                 &:hover {
                     transform: rotate(-65deg);
@@ -351,7 +352,9 @@
     }
 
     .categories-active {
-        top: 20%;
+
+        height: 25rem;
+
     }
 
     &_cart {
@@ -408,7 +411,7 @@
                 top: 40%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                color: rgba(0, 0, 0, 0.82);
+              
 
             }
 
@@ -419,7 +422,7 @@
                 top: 60%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                color: #9CA1B9;
+                color: var(--fivth-color);
                 font-family: 'Franklin Gothic Medium';
                 text-transform: uppercase;
 
@@ -516,6 +519,7 @@
     top: -4rem;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
 
 }
 
@@ -644,8 +648,9 @@
         &_categories {
 
             width: 90%;
+            height: 0;
             left: 50%;
-            top: -100%;
+            top: 15%;
             transform: translate(-50%);
 
             &_heading {
@@ -699,9 +704,10 @@
         }
 
         .categories-active {
-            left: 50%;
-            top: 20%;
-            transform: translate(-50%);
+
+            height: 45%;
+
+
         }
 
         &_cart {
@@ -728,14 +734,15 @@
                 height: 100%;
 
                 .searcher {
-                    width: 30rem;
-                    height: 30rem;
+                    width: 50rem;
+                    height: 50rem;
                 }
 
                 &_empty {
-                    font-size: 5rem;
-                    width: 40rem;
+                    font-size: 8rem;
+                    width: 60rem;
                     text-align: center;
+                   
                 }
 
             }
@@ -754,7 +761,7 @@
 
         &_nav-mobile {
             display: block;
-            width: 70%;
+            width: 60%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.813);
             position: fixed;
@@ -768,19 +775,10 @@
                 display: flex;
                 justify-content: end;
                 height: 15rem;
-                background-color: #004DDA;
+
                 align-items: center;
                 padding: 2rem;
 
-                h2 {
-                    text-transform: capitalize;
-                    color: rgb(204, 203, 203);
-                    font-family: "Caveat", cursive;
-                    transform: rotate(-5deg);
-                    cursor: pointer;
-                    font-size: 7rem;
-                    filter: drop-shadow(2px 2px 3px rgb(0, 0, 0));
-                }
 
                 .close {
                     font-size: 8rem;
@@ -839,12 +837,7 @@
                         .navlink-active-mobile {
                             margin-left: 5rem;
 
-                            &::after {
-                                content: "";
-                                display: block;
-                                width: 50%;
-                                background-color: rgb(252, 0, 0);
-                            }
+
                         }
                     }
 

@@ -15,6 +15,8 @@ import { HiOutlineSortAscending } from "react-icons/hi";
 import classNames from 'classnames';
 import womenBanner from '../../../assets/images/women_collection.png';
 import { useLocation } from 'react-router';
+
+
 export interface IShop {
 
     data: IProduct[];
@@ -68,12 +70,12 @@ const Shop: FC<IShop> = ({ data }) => {
         setSortingOptions((prev: any) => {
 
             for (const key in prev) {
+
                 if (key !== option) {
 
                     prev[key] = false
 
                 }
-
 
             }
             return prev
@@ -83,17 +85,34 @@ const Shop: FC<IShop> = ({ data }) => {
 
     useEffect(() => {
 
-        setTimeout(() => {
+        let timeOutId: number;
 
-            if (window.innerWidth <= 1400 && (location.pathname = '/shop') && window.innerWidth >= 800) {
+
+        const shopScroll = () => {
+
+            if (window.innerWidth <= 1400 && window.innerWidth >= 800) {
 
                 window.scrollTo({ top: 600, left: 0, behavior: 'smooth' })
 
             }
+            else { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }
 
-        }, 2000)
+        }
+
+
+        if (location.pathname === '/shop') {
+
+            timeOutId = setTimeout(shopScroll, 2000);
+
+        }
+
+
+        return () => { clearTimeout(timeOutId) }
+
 
     }, [])
+
+
 
 
     const handleFilterCheckbox = (option: string) => {
@@ -268,7 +287,7 @@ const Shop: FC<IShop> = ({ data }) => {
                     </div>
                 </div>
             </div>
-
+       
         </div>
     )
 

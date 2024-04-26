@@ -1,0 +1,47 @@
+.notfound {
+
+    margin: 10rem;
+    display: flex;
+    justify-content: center;
+
+
+    p {
+        margin-top: 7rem;
+        font-size: 5rem;
+        color: #00666F;
+    }
+
+    img {
+        width: 15rem;
+        height: 15rem;
+
+    }
+
+}
+
+
+@media screen and (max-width:768px) {
+
+    .notfound {
+
+        margin: 40rem 0;
+        display: block;
+
+        text-align: center;
+
+
+        p {
+
+            font-size: 8rem;
+            color: #00666F;
+        }
+
+        img {
+            width: 40rem;
+            height: 40rem;
+
+        }
+
+    }
+
+}

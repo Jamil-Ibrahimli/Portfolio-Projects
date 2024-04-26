@@ -8,6 +8,9 @@ import StarRating from '../StarRating/StarRating';
 import { IProduct } from '../../Common/Main/Main';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 
 interface IShopCard {
     item: IProduct;
@@ -24,6 +27,32 @@ const ShopCard: FC<IShopCard> = ({ item, image, title, price, discountedPercent 
     const dispatch = useDispatch()
 
 
+
+    const notify = () => {
+
+        toast.success(' Product added !', {
+
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            style: { fontSize: '20px' }
+        });
+
+    }
+
+
+    const handleAddProduct=()=>{
+
+        dispatch(addToCart(item))
+        notify()
+
+    }
+
     return (
         <>
             <div className={styles.card}>
@@ -32,7 +61,7 @@ const ShopCard: FC<IShopCard> = ({ item, image, title, price, discountedPercent 
                         price > 100 ? <p className={styles.new}>new</p> : <p className={styles.hot}>hot</p>}
 
                     <p className={styles['add-wishlist']}><FaRegHeart className={styles['add-wishlist_icon']} /></p>
-                    <p className={styles['add-cart']} onClick={() => dispatch(addToCart(item))}>
+                    <p className={styles['add-cart']} onClick={handleAddProduct}>
                         <CiShoppingCart className={styles['add-cart_icon']} /></p>
 
                    <Link to={`/prod_detail/${item.id}`}> <img src={image} alt="ItemImage" /> </Link>
@@ -53,9 +82,9 @@ const ShopCard: FC<IShopCard> = ({ item, image, title, price, discountedPercent 
 
                 </div>
 
-
+                <ToastContainer />
+               
             </div>
-
 
         </>
     )

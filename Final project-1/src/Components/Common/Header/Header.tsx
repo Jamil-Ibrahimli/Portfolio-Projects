@@ -14,14 +14,13 @@ import { RootState } from '../../../Redux/Store';
 import { GrClose } from "react-icons/gr";
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { DataContext } from '../../Context/DataContext';
-import searchingImage from '../../../assets/images/CartEmpty.png'
 import { FaPhoneVolume } from "react-icons/fa6";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import webLogo from '../../../assets/images/webLogo.png'
 import { MdOutlineCategory } from "react-icons/md";
-
+import notFound from '../../../assets/images/notFound.gif'
 
 const Header = () => {
 
@@ -48,9 +47,9 @@ const Header = () => {
     const navigate = useNavigate()
     const cartElementRef = useRef<HTMLDivElement>(null)
     const cartButtonRef = useRef<HTMLDivElement>(null)
-    const categoriesElementRef = useRef<HTMLDivElement>(null)
-    const categoriesButtonRef = useRef<HTMLDivElement>(null)
-    
+    const pagesElementRef = useRef<HTMLDivElement>(null)
+    const pagesButtonRef = useRef<HTMLDivElement>(null)
+
     const newData = data.map((item) => item.rating.count < 200 && item.rating.rate < 3.7 ?
 
 
@@ -59,6 +58,8 @@ const Header = () => {
         : ({ ...item, count: 0 })
 
     );
+
+
 
 
     useEffect(() => {
@@ -108,7 +109,7 @@ const Header = () => {
 
             if (currentScroll >= 0 && currentScroll >= previusScroll) {
                 setScrolling(true)
-
+                setSearchMobileActive(false)
             }
             else { setScrolling(false) }
 
@@ -127,12 +128,21 @@ const Header = () => {
     useEffect(() => {
 
         const handleClickOutside = (event: MouseEvent) => {
+
             if ((!cartButtonRef.current?.contains(event.target as Node)
                 && !cartElementRef.current?.contains(event.target as Node))) {
 
                 setCart(false)
 
             }
+
+            if (!pagesButtonRef.current?.contains(event.target as Node) &&
+                !pagesElementRef.current?.contains(event.target as Node)) {
+
+                setNavMobile(false)
+
+            }
+
         }
 
         document.addEventListener('click', handleClickOutside)
@@ -159,6 +169,7 @@ const Header = () => {
         setCart(prev => !prev)
         setCategories(false)
         setNavMobile(false)
+        setSearchMobileActive(false)
     }
 
     const handleActiveCategories = () => {
@@ -166,6 +177,7 @@ const Header = () => {
         setCategories(prev => !prev)
         setCart(true)
         setNavMobile(false)
+        setSearchMobileActive(false)
     }
 
     const handleNewPage = () => {
@@ -174,53 +186,98 @@ const Header = () => {
         setNavMobile(false)
         setCategories(false)
         window.scrollTo(0, 0)
+
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
 
         if (e.key === 'Enter') {
+            setInputData('')
+            setSearchMobileActive(false)
 
-            dispatch(filterInputData({ inputData, newData }))
-            navigate('/shop')
+            newData.map((item) => {
+
+                if (item.category.toLocaleLowerCase().includes(inputData.toLocaleLowerCase().trim())) {
+
+
+                    dispatch(filterInputData({ inputData, newData }))
+                    navigate('/shop')
+
+                }
+                else {
+                    navigate('/notFound')
+
+                    window.scrollTo(0, 0)
+
+                }
+
+            })
+
         }
     }
 
 
     const handleClickInput = () => {
 
-        dispatch(filterInputData({ inputData, newData }))
-        navigate('/shop')
+        setInputData('')
+        newData.map((item) => {
+
+
+            if (item.category.toLocaleLowerCase().includes(inputData.toLocaleLowerCase().trim())) {
+
+
+                dispatch(filterInputData({ inputData, newData }))
+                navigate('/shop')
+
+            }
+            else {
+                navigate('/notFound')
+
+                window.scrollTo(0, 0)
+
+            }
+
+        })
+
+
+
+
+
     }
+
 
     const handleSearchMobileActive = () => {
 
         setSearchMobileActive(prev => !prev)
 
-
+        handleNewPage()  
     }
     const handleNavMobile = () => {
 
         setNavMobile(prev => !prev)
         setCart(false)
+        setCategories(false)
+        setSearchMobileActive(false)
     }
     const handleViewCart = () => {
-
+        setSearchMobileActive(false)
         navigate('./cart_page')
-
-        setCart(false)
+        handleNewPage()
     }
 
     const handleClickLogo = () => {
 
+        setSearchMobileActive(false)
         window.scrollTo(0, 0)
         navigate('/')
+        handleNewPage()
     }
 
     return (
 
         <header className={classNames(styles.header, { [styles['header-active']]: scrolling })}  >
             <div className={styles.header_uppart}>
-                <div className={styles.header_uppart_left} >  <RxHamburgerMenu className={styles['burger-menu']} onClick={handleNavMobile} />
+                <div className={styles.header_uppart_left} ref={pagesButtonRef}>  <RxHamburgerMenu className={styles['burger-menu']} onClick={handleNavMobile} />
                     <img src={webLogo} alt="site_logo" onClick={handleClickLogo} /></div>
                 <div className={styles.header_uppart_center}>
                     <img src={webLogo} alt="site_logo" onClick={handleClickLogo} />
@@ -248,7 +305,7 @@ const Header = () => {
                 </div>
                 <div className={styles.header_downpart_center}>
                     <div className={styles.header_downpart_center_searching}>
-                        <input type="text" placeholder='Search over 10.000 products' onChange={handleInputData} onKeyDown={handleKeyDown} />
+                        <input type="text" placeholder='Search over 10.000 products' onChange={handleInputData} onKeyDown={handleKeyDown} value={inputData} />
                         <GoSearch className={styles.search} onClick={handleClickInput} />
                     </div>
 
@@ -265,7 +322,7 @@ const Header = () => {
 
             </div>
 
-            <div className={classNames(styles.header_categories, { [styles['categories-active']]: isCategories })} onDragCapture={handleActiveCategories}>
+            <div className={classNames(styles.header_categories, { [styles['categories-active']]: isCategories })} onDragCapture={handleActiveCategories} onMouseLeave={handleNewPage}>
                 <div className={styles.header_categories_heading}>
                     <p>categories</p>
 
@@ -303,7 +360,7 @@ const Header = () => {
 
                 <div className={styles.header_cart_content} >
                     {cart.length > 0 ? cart.map((item) =>
-                        <CartItem key={item.id} item={item} />) : <img src={searchingImage} className={styles.searcher} />}
+                        <CartItem key={item.id} item={item} />) : <img src={notFound} className={styles.searcher} />}
 
                     <p className={styles.header_cart_content_empty}>{cart.length > 0 ? '' : 'Cart is empty'}</p>
 
@@ -316,7 +373,7 @@ const Header = () => {
             </div>
 
 
-            <div className={classNames(styles['header_nav-mobile'], { [styles['nav-mobile-active']]: navMobile })}>
+            <div className={classNames(styles['header_nav-mobile'], { [styles['nav-mobile-active']]: navMobile })} ref={pagesElementRef}>
                 <div className={styles['header_nav-mobile_heading']}>
                     <h2>trend-look</h2>
                     < GrClose className={styles.close} onClick={handleNavMobile} /></div>
@@ -337,6 +394,7 @@ const Header = () => {
                 </div>
                 <button onClick={handleClickInput} >Search</button >
             </div>
+
         </header>
 
     )

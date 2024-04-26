@@ -1,23 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-.background {
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    position: fixed;
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: bottom;
-    }
-}
 
 .container {
     scroll-behavior: smooth;
     width: 100%;
+
+    .background {
+        width: 100%;
+        height: 100vh;
+        z-index: -2;
+        position: fixed;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom;
+        }
+    }
 
     .mySwiper {
         width: 100%;
@@ -61,7 +63,7 @@
                 transition: 1s;
 
                 .info {
-                  
+
                     position: absolute;
 
                     &_title {
@@ -412,7 +414,7 @@
 
                 &_button {
 
-                    width: 8rem;
+                   
                     margin-top: 1.3rem;
                     padding: 0.7rem 1rem;
                     background-color: var(--secondary-color);
@@ -513,8 +515,8 @@
                     button {
                         justify-self: center;
                         color: white;
-                        padding: 0.5rem;
-                        font-size: 1.2rem;
+                        padding: 0.7rem 1rem;
+                        font-size: 1.1rem;
                         font-weight: 500;
                         border: none;
                         border-radius: 5px;
@@ -624,7 +626,7 @@
                 }
 
                 &_button {
-
+                  
                     font-size: 5rem;
                     padding: 5rem 5rem;
                     font-weight: 400;
@@ -736,13 +738,13 @@
 
                 &_title {
                     width: 90rem;
-                    font-size: 10rem;
+                    font-size: 12rem;
                     font-weight: 900;
                 }
 
                 &_text {
                     width: 91rem;
-                    font-size: 4.5rem;
+                    font-size: 5.5rem;
                     margin-top: 4rem;
                     font-weight: 500;
                 }
@@ -763,9 +765,9 @@
                     }
 
                     &_button {
-                        padding: 3rem 3rem;
-                        width: 30rem;
-                        font-size: 4rem;
+                        font-size: 5rem;
+                        padding: 5rem 5rem;
+                        font-weight: 400;
                         margin-top: 6rem;
                     }
                 }
@@ -886,9 +888,9 @@
                     }
 
                     button {
-                        font-size: 6rem;
-                        padding: 5rem 6rem;
-                        font-weight: 500;
+                        font-size: 5rem;
+                        padding: 5rem 5rem;
+                        font-weight: 400;
                         text-transform: capitalize;
                         margin-bottom: 15rem;
                     }

@@ -70,15 +70,13 @@ const CategoriesSlice = createSlice({
 
         },
 
-        
-
     }
 });
 
 export const { filteredAll, filteredMen,
     filterWomen, filterJewelery,
     filterElectronics, filterDiscounted,
-     filterInputData,
+    filterInputData,
 } = CategoriesSlice.actions;
 
 export default CategoriesSlice.reducer;
