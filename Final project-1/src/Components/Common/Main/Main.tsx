@@ -8,6 +8,8 @@ import { DataContext } from '../../Context/DataContext';
 import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 import CartPage from '../../Pages/CartPage/CartPage';
 import NotFound from '../../UI/NotFound/NotFound';
+import SignIn from '../../Pages/Sign_In/SignIn';
+
 
 
 export interface IProduct {
@@ -50,7 +52,6 @@ const Main = () => {
   }, [])
 
 
-
   return (
 
     <>
@@ -66,8 +67,14 @@ const Main = () => {
         <Route path='/cart_page' element={<CartPage />} />
 
         <Route path='/notFound' element={<NotFound />} />
-      </Routes>
 
+        <Route path='/sign_in' element={<SignIn />} />
+
+        <Route path='*' element={<NotFound />} />
+
+
+
+      </Routes>
 
     </>
 

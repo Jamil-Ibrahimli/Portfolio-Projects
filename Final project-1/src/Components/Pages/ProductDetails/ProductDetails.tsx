@@ -29,6 +29,7 @@ const ProductDetails: FC<IProductDetails> = ({ data }) => {
 
 
     const { id } = useParams();
+    
     const dispatch = useDispatch();
     const itemDetail = newData.find((item) => item.id === Number(id));
     const filterRelated = newData.filter((item) =>

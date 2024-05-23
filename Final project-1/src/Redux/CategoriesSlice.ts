@@ -63,8 +63,8 @@ const CategoriesSlice = createSlice({
             const { newData, inputData } = action.payload
 
             state.filteredData = newData.filter((item) =>
-                item.category.toLocaleLowerCase().includes(inputData.toLocaleLowerCase().trim()) ||
-                item.title.toLocaleLowerCase().includes(inputData.toLocaleLowerCase().trim())
+                item.category.toLowerCase().includes(inputData.toLowerCase().trim()) ||
+                item.title.toLowerCase().includes(inputData.toLowerCase().trim())
 
             )
 

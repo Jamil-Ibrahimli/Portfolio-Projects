@@ -170,7 +170,15 @@ const Header = () => {
         setCategories(false)
         setNavMobile(false)
         setSearchMobileActive(false)
+
     }
+
+    const handleSignIn = () => {
+
+        navigate('/sign_in')
+
+    }
+
 
     const handleActiveCategories = () => {
 
@@ -190,59 +198,45 @@ const Header = () => {
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
-
         if (e.key === 'Enter') {
-            setInputData('')
-            setSearchMobileActive(false)
+            const matchedItem = newData.find(item =>
+                item.category.toLowerCase().includes(inputData.trim().toLowerCase()) ||
+                item.title.toLowerCase().includes(inputData.trim().toLowerCase())
 
-            newData.map((item) => {
+            );
 
-                if (item.category.toLocaleLowerCase().includes(inputData.toLocaleLowerCase().trim())) {
+            if (matchedItem) {
+                dispatch(filterInputData({ inputData, newData }));
+                navigate('/shop');
+            } else {
+                navigate('/notFound');
+                window.scrollTo(0, 0);
+            }
 
-
-                    dispatch(filterInputData({ inputData, newData }))
-                    navigate('/shop')
-
-                }
-                else {
-                    navigate('/notFound')
-
-                    window.scrollTo(0, 0)
-
-                }
-
-            })
-
+            setInputData('');
+            setSearchMobileActive(false);
         }
     }
 
 
     const handleClickInput = () => {
 
-        setInputData('')
-        newData.map((item) => {
+        const matchedItem = newData.find(item =>
+            item.category.toLowerCase().includes(inputData.trim().toLowerCase()) ||
+            item.title.toLowerCase().includes(inputData.trim().toLowerCase())
 
+        );
 
-            if (item.category.toLocaleLowerCase().includes(inputData.toLocaleLowerCase().trim())) {
+        if (matchedItem) {
+            dispatch(filterInputData({ inputData, newData }));
+            navigate('/shop');
+        } else {
+            navigate('/notFound');
+            window.scrollTo(0, 0);
+        }
 
-
-                dispatch(filterInputData({ inputData, newData }))
-                navigate('/shop')
-
-            }
-            else {
-                navigate('/notFound')
-
-                window.scrollTo(0, 0)
-
-            }
-
-        })
-
-
-
-
-
+        setInputData('');
+        setSearchMobileActive(false);
     }
 
 
@@ -250,7 +244,7 @@ const Header = () => {
 
         setSearchMobileActive(prev => !prev)
 
-        handleNewPage()  
+        handleNewPage()
     }
     const handleNavMobile = () => {
 
@@ -313,7 +307,7 @@ const Header = () => {
 
                 <div className={styles.header_downpart_right}>
                     <GoSearch className={styles.search_mobile} onClick={handleSearchMobileActive} />
-                    <BsPerson className={styles.avatar} />
+                    <BsPerson className={styles.avatar} onClick={handleSignIn} />
                     <IoIosHeartEmpty className={styles.wishlist} />
                     <div className={styles.cart} ref={cartButtonRef}>< IoBagHandleOutline className={styles.cart_icon} onClick={handleActiveCart} />
                         <span className={styles.cart_counter}>{totalCount}</span></div>
@@ -381,7 +375,7 @@ const Header = () => {
 
                     <ul className={styles['header_nav-mobile_nav_list']}>
                         <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option1 })} to='/' onClick={handleNewPage}>Home</NavLink></li>
-                        <li ><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option2 })} to='/shop' onClick={() => dispatch(filteredAll(newData))}>Shop</NavLink></li>
+                        <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option2 })} to='/shop' onClick={() => dispatch(filteredAll(newData))}>Shop</NavLink></li>
                         <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option3 })} to='/contacts' >Contacts</NavLink></li>
                         <li><NavLink className={classNames(styles.navlink, { [styles['navlink-active-mobile']]: activeLink.option4 })} to='/about' >About</NavLink></li>
                         <li onClick={handleActiveCategories} >categories</li>
@@ -389,7 +383,7 @@ const Header = () => {
 
             <div className={classNames(styles.header_bottom, { [styles['bottom-active']]: searchMobileActive })}>
                 <div className={styles.header_bottom_searcher}>
-                    <input type="text" placeholder='Search over 10.000 products' onChange={handleInputData} onKeyDown={handleKeyDown} />
+                    <input type="text" placeholder='Search over 10.000 products' onChange={handleInputData} onKeyDown={handleKeyDown} value={inputData} />
 
                 </div>
                 <button onClick={handleClickInput} >Search</button >
