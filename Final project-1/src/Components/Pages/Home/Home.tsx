@@ -10,7 +10,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import Card from '../../UI/TopCard/Card'
 import HotCard from '../../UI/HodCard/HotCard'
 import { IProduct } from '../../Common/Main/Main'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useContext, useEffect, useRef, useState } from 'react'
 import discountedImage from '../../../assets/images/imgDiscountBanner.jpg'
 import jewelery from '../../../assets/images/jewelery2.jpg'
 import { useNavigate } from 'react-router'
@@ -27,10 +27,12 @@ import { PiHandSwipeRightLight } from "react-icons/pi";
 import Background from '../../../assets/images/Main.jpg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { DataContext } from '../../Context/DataContext';
 
 export interface IHome {
 
     data: IProduct[];
+
 
 }
 
@@ -52,6 +54,8 @@ const Home: FC<IHome> = ({ data }) => {
         option2: false
 
     })
+
+    const { profile } = useContext(DataContext)
 
     const [anounceActive, setAnounceActive] = useState(false)
 
@@ -152,10 +156,13 @@ const Home: FC<IHome> = ({ data }) => {
 
     }, [])
 
+
+
     return (
         <>
 
             <section className={styles.container}>
+            {/* <div className={styles['welcome-back']}>welcomeback</div> */}
 
                 <div className={styles.background}>
                     <img src={Background} alt="background_image" />

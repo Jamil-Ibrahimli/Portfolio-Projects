@@ -6,6 +6,16 @@
 .container {
     scroll-behavior: smooth;
     width: 100%;
+    position: relative;
+
+    // .welcome-back {
+
+    //     background-color: rgba(126, 124, 124, 0.268);
+
+   
+    //     width: 100%;
+       
+    // }
 
     .background {
         width: 100%;
@@ -414,7 +424,7 @@
 
                 &_button {
 
-                   
+
                     margin-top: 1.3rem;
                     padding: 0.7rem 1rem;
                     background-color: var(--secondary-color);
@@ -626,7 +636,7 @@
                 }
 
                 &_button {
-                  
+
                     font-size: 5rem;
                     padding: 5rem 5rem;
                     font-weight: 400;

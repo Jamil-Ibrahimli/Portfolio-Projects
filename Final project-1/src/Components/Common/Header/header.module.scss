@@ -129,7 +129,7 @@
         padding: 0 5rem;
         position: sticky;
         top: 0;
-
+     
         &_left {
             display: flex;
             gap: 0.5rem;
@@ -208,6 +208,22 @@
                 color: var(--secondary-color);
                 transition: 0.2s;
                 display: none;
+            }
+
+
+            .user {
+                cursor: pointer;
+                height: 2rem;
+                width: 2rem;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 2px solid var(--secondary-color);
+
+                &:hover {
+
+                    transform: translate(0, -8%);
+                    border-color: var(--fivth-color);
+                }
             }
 
             .avatar {
@@ -411,7 +427,7 @@
                 top: 40%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-              
+
 
             }
 
@@ -621,6 +637,11 @@
                     }
                 }
 
+                .user {
+                    width: 10rem;
+                    height: 10rem;
+                }
+
                 .avatar {
                     font-size: 10rem;
 
@@ -742,7 +763,7 @@
                     font-size: 8rem;
                     width: 60rem;
                     text-align: center;
-                   
+
                 }
 
             }

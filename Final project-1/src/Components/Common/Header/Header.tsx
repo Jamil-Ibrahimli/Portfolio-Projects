@@ -20,9 +20,17 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import webLogo from '../../../assets/images/webLogo.png'
 import { MdOutlineCategory } from "react-icons/md";
-import notFound from '../../../assets/images/notFound.gif'
+import notFound from '../../../assets/images/notFound.gif';
+import { FC } from 'react';
 
-const Header = () => {
+
+interface IHeader{
+
+picture:string;
+
+}
+
+const Header:FC <IHeader> = ({picture}) => {
 
     const cart = useSelector((state: RootState) => state.AddToCartReducer.cart)
     const [isCart, setCart] = useState(false);
@@ -57,8 +65,7 @@ const Header = () => {
 
         : ({ ...item, count: 0 })
 
-    );
-
+    )
 
 
 
@@ -307,7 +314,11 @@ const Header = () => {
 
                 <div className={styles.header_downpart_right}>
                     <GoSearch className={styles.search_mobile} onClick={handleSearchMobileActive} />
-                    <BsPerson className={styles.avatar} onClick={handleSignIn} />
+                   {!picture?<BsPerson className={styles.avatar} onClick={handleSignIn} />:
+                   
+                   <img src={picture} alt="" className={styles.user} onClick={handleSignIn}/>
+                   } 
+                    
                     <IoIosHeartEmpty className={styles.wishlist} />
                     <div className={styles.cart} ref={cartButtonRef}>< IoBagHandleOutline className={styles.cart_icon} onClick={handleActiveCart} />
                         <span className={styles.cart_counter}>{totalCount}</span></div>

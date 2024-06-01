@@ -13,9 +13,16 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { visas } from '../../../assets/images/Images_datas';
 import { SlArrowUp } from "react-icons/sl";
+import { FC } from 'react';
 
+interface IFooter {
+    userName: string;
+    userEmail: string;
+    login: (value: any) => void
 
-const Footer = () => {
+}
+
+const Footer: FC<IFooter> = ({ userName, userEmail, login }) => {
 
     const [footerActive, setFooterActive] = useState(false)
     const [footerActive2, setFooterActive2] = useState(false)
@@ -75,17 +82,17 @@ const Footer = () => {
             <div className={styles.footer_container} ref={containerRef}>
                 <div className={styles.footer_container_uppart}>
                     <nav className={styles.nav} onClick={() => handleActiveList('option1')}>
-                        <h3 >quick links  <SlArrowUp className={classNames(styles['arrow-icon'],{[styles['arrow-icon-active']]:activeList['option1'as keyof typeof activeList]})}/></h3>
+                        <h3 >quick links  <SlArrowUp className={classNames(styles['arrow-icon'], { [styles['arrow-icon-active']]: activeList['option1' as keyof typeof activeList] })} /></h3>
                         <ul className={classNames(styles.nav_list, { [styles['list-active']]: activeList['option1' as keyof typeof activeList] })}>
-                            <li>About us</li>
-                            <li>Faq</li>
+                            <li>{userName}</li>
+                            <li>{userEmail}</li>
                             <li>Help</li>
                             <li>My account</li>
                             <li>Blog</li></ul>
 
                     </nav>
 
-                    <nav className={styles.nav} onClick={() => { handleActiveList('option2') }}><h3 >categories <SlArrowUp className={classNames(styles['arrow-icon'],{[styles['arrow-icon-active']]:activeList['option2'as keyof typeof activeList]})}/></h3>
+                    <nav className={styles.nav} onClick={() => { handleActiveList('option2') }}><h3 >categories <SlArrowUp className={classNames(styles['arrow-icon'], { [styles['arrow-icon-active']]: activeList['option2' as keyof typeof activeList] })} /></h3>
                         <ul className={classNames(styles.nav_list, { [styles['list-active']]: activeList['option2' as keyof typeof activeList] })}>
                             <li>Clothes</li>
                             <li>Ectronics</li>
@@ -93,7 +100,7 @@ const Footer = () => {
                             <li>Glasses</li>
                             <li>Shoes</li></ul></nav>
 
-                    <nav className={styles.nav} onClick={() => { handleActiveList('option3') }}><h3 >contacts <SlArrowUp className={classNames(styles['arrow-icon'],{[styles['arrow-icon-active']]:activeList['option3'as keyof typeof activeList]})}/></h3>
+                    <nav className={styles.nav} onClick={() => { handleActiveList('option3') }}><h3 >contacts <SlArrowUp className={classNames(styles['arrow-icon'], { [styles['arrow-icon-active']]: activeList['option3' as keyof typeof activeList] })} /></h3>
                         <ul className={classNames(styles.nav_list, { [styles['list-active']]: activeList['option3' as keyof typeof activeList] })}>
                             <li><IoHomeOutline className={styles.icon} />97845 Baker st. <br /> 567 Los Angels-US</li>
                             <li><PiPhoneCallLight className={styles.icon} /> +94 423 23 221</li>
@@ -101,10 +108,10 @@ const Footer = () => {
 
                         </ul></nav>
                     <div className={styles.right} >
-                        <h3 onClick={() => { handleActiveList('option4') }}>Keep in touch <SlArrowUp className={classNames(styles['arrow-icon'],{[styles['arrow-icon-active']]:activeList['option4'as keyof typeof activeList]})}/></h3>
+                        <h3 onClick={() => { handleActiveList('option4') }}>Keep in touch <SlArrowUp className={classNames(styles['arrow-icon'], { [styles['arrow-icon-active']]: activeList['option4' as keyof typeof activeList] })} /></h3>
                         <div className={classNames(styles.right_search, { [styles['list-right-active']]: activeList['option4' as keyof typeof activeList] })}>
                             <div className={styles.right_search_searcher}>
-                                <input type="text" placeholder='Your email' /><button><FaAnglesRight /></button></div>
+                                <input type="text" placeholder='Your email' /><button onClick={login}><FaAnglesRight /></button></div>
 
                             <div className={styles.right_search_medias}>
                                 <h3>Follow us</h3>
